@@ -6,9 +6,13 @@
 \begin_preamble
 \usepackage[style=philosophy-modern,backend=biber]{biblatex}
 
+\addbibresource{/Users/quast/Making-Next-Billion-Demand-Access/man/bibliography.bib}
 \addbibresource{/Users/quast/MaleFemale-Income-Child-Growth/man/bibliography.bib}
 \end_preamble
 \use_default_options true
+\begin_modules
+knitr
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -124,6 +128,16 @@ What this thesis is about, replicability, R, etc.
 
 \begin_layout Chapter
 Making the `Next Billion' Demand Access
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDemandAccess.lyx"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
