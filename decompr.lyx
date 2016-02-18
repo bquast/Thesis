@@ -21,6 +21,9 @@ knitr
 logicalmkup
 \end_modules
 \maintain_unincluded_children false
+\begin_local_layout
+Provides natbib 1
+\end_local_layout
 \language english
 \language_package none
 \inputencoding utf8
@@ -65,8 +68,8 @@ logicalmkup
 \use_package stackrel 0
 \use_package stmaryrd 0
 \use_package undertilde 0
-\cite_engine basic
-\cite_engine_type default
+\cite_engine natbib
+\cite_engine_type authoryear
 \biblio_style plain
 \use_bibtopic false
 \use_indices false
@@ -5047,10 +5050,6 @@ reference "tab:noleon"
 wide false
 sideways true
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -15841,7 +15840,7 @@ key "wickham2014advanced"
 Colophon
 \end_layout
 
-\begin_layout LyX-Code
+\begin_layout Standard
 This paper was written in a combination of R 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -15851,7 +15850,7 @@ key "core2014r"
 
  and LaTeX 
 \begin_inset CommandInset citation
-LatexCommand citealt
+LatexCommand citep
 key "lamport1986document"
 
 \end_inset
@@ -15872,7 +15871,7 @@ key "lehman2006biblatex"
 
  for citations, using Sweave syntax 
 \begin_inset CommandInset citation
-LatexCommand citealp
+LatexCommand citep
 key "leisch2003sweave"
 
 \end_inset
