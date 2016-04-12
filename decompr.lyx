@@ -99,7 +99,41 @@ Provides natbib 1
 \begin_body
 
 \begin_layout Title
-decompr: GVC decomposition in R
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decompr
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+gvc
+\end_layout
+
+\end_inset
+
+:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Global Value Chain decomposition and analysis in R
 \end_layout
 
 \begin_layout Author
@@ -433,6 +467,11 @@ load-data
 \end_layout
 
 \end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 # load the data
 \end_layout
@@ -4416,7 +4455,7 @@ The first step of the analytical process is to load the input object and
 status open
 
 \begin_layout Plain Layout
-decomp
+decomp()
 \end_layout
 
 \end_inset
@@ -4438,6 +4477,11 @@ load_tables_vectors
 \end_layout
 
 \end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 # create the decompr object
 \end_layout
@@ -4864,7 +4908,7 @@ reference "sec:data"
 status open
 
 \begin_layout Plain Layout
-load_tables_vectors
+load_tables_vectors()
 \end_layout
 
 \end_inset
@@ -4875,7 +4919,7 @@ load_tables_vectors
 status open
 
 \begin_layout Plain Layout
-leontief
+leontief()
 \end_layout
 
 \end_inset
@@ -4913,7 +4957,7 @@ In addition, a wrapper function called
 status open
 
 \begin_layout Plain Layout
-decomp
+decomp()
 \end_layout
 
 \end_inset
@@ -4927,7 +4971,7 @@ decomp
 status open
 
 \begin_layout Plain Layout
-decomp
+decomp()
 \end_layout
 
 \end_inset
@@ -4937,17 +4981,17 @@ decomp
 status open
 
 \begin_layout Plain Layout
-help('decomp') 
+help('decomp')
 \end_layout
 
 \end_inset
 
-for details), if none is provided, the function will default to 
+ for details), if none is provided, the function will default to 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-leontief
+leontief()
 \end_layout
 
 \end_inset
@@ -8314,7 +8358,7 @@ Furthermore, it is also possible to derive the results of the Wang-Wei-Zhu
 status open
 
 \begin_layout Plain Layout
-decomp
+decomp()
 \end_layout
 
 \end_inset
@@ -15793,7 +15837,7 @@ load_tables_vectors
 status open
 
 \begin_layout Plain Layout
-decomp
+decomp()
 \end_layout
 
 \end_inset
