@@ -288,32 +288,67 @@ The decompr package implements the algorithms for these decompositions as
 \end_layout
 
 \begin_layout Itemize
-load_tables_vectors; transforms the input objects to an object used for
- the decompositions (class: decompr) 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+load_tables_vectors()
+\end_layout
+
+\end_inset
+
+; transforms the input objects to an object used for the decompositions
+ (class: 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decompr
+\end_layout
+
+\end_inset
+
+) 
 \end_layout
 
 \begin_layout Itemize
-leontief; takes a decompr object and applies the Leontief decomposition
- 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+leontief
+\end_layout
+
+\end_inset
+
+; takes a decompr object and applies the Leontief decomposition 
 \end_layout
 
 \begin_layout Itemize
-wwz; takes a decompr object and applies the Wang-Wei-Zhu decomposition 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+wwz
+\end_layout
+
+\end_inset
+
+; takes a decompr object and applies the Wang-Wei-Zhu decomposition 
 \end_layout
 
 \begin_layout Itemize
-vertical_specialisation; takes a decompr object and returns a measure of
- vertical specialisation (also works with vertical_specialization) 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decomp()
 \end_layout
 
-\begin_layout Itemize
-leontief_output; takes a decompr object and applies the Leontief decomposition
- using final output 
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-decomp; a wrapper function which integrates the use of load_tables_vectors
- with the various decompositions, using an argument 
+; a wrapper function which integrates the use of load_tables_vectors with
+ the various decompositions, using an argument 
 \shape italic
 method
 \shape default
@@ -323,22 +358,7 @@ method
 \begin_layout Standard
 For legacy purposes, several depracated functions / methods are available
  under their original names.
- In addition to this, two example data sets are included.
-\end_layout
-
-\begin_layout Itemize
-
-\shape italic
-World Input-Output Database
-\shape default
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "timmer2012world"
-
-\end_inset
-
-
+ In addition to this, one example data sets is included.
 \end_layout
 
 \begin_layout Itemize
@@ -8290,7 +8310,7 @@ As with the
 status open
 
 \begin_layout Plain Layout
-leontief
+leontief()
 \end_layout
 
 \end_inset
@@ -8300,7 +8320,7 @@ leontief
 status open
 
 \begin_layout Plain Layout
-wwz
+wwz()
 \end_layout
 
 \end_inset
@@ -8320,7 +8340,7 @@ reference "sec:data"
 status open
 
 \begin_layout Plain Layout
-wwz
+wwz()
 \end_layout
 
 \end_inset
