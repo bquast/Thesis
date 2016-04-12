@@ -1,0 +1,839 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{appendix}
+\usepackage[style=philosophy-modern,natbib=true,backend=biber]{biblatex}
+\addbibresource{/Users/quast/Thesis/bibliography.bib}
+\end_preamble
+\use_default_options true
+\begin_modules
+knitr
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+Provides natbib 1
+\end_local_layout
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_author "Bastiaan Quast"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Instrumental Variables using a Neural Network
+\end_layout
+
+\begin_layout Author
+Bastiaan Quast
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+setup, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(printr)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+aer, message=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(AER)
+\end_layout
+
+\begin_layout Plain Layout
+
+data("CigarettesSW")
+\end_layout
+
+\begin_layout Plain Layout
+
+rprice  <- with(CigarettesSW, price/cpi)
+\end_layout
+
+\begin_layout Plain Layout
+
+tdiff   <- with(CigarettesSW, (taxs - tax)/cpi)
+\end_layout
+
+\begin_layout Plain Layout
+
+packs   <- CigarettesSW$packs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A manual instrumental variables would look like this (using the built in
+ lm() function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+manual, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# first stage
+\end_layout
+
+\begin_layout Plain Layout
+
+s1 <- lm(rprice ~ tdiff)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# estimate second stage using fitted values (Xhat)
+\end_layout
+
+\begin_layout Plain Layout
+
+lm(packs ~ s1$fitted.values)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can verity these results using `AER`'s built in function ivreg().
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ivreg, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ivreg(packs ~ rprice | tdiff)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A good way to prove this theoretically is using simulated data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+simulate_data, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# library for generation multivariate distributions
+\end_layout
+
+\begin_layout Plain Layout
+
+library(MASS)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# always use the same random numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(123)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# the means and errors for the multivariate distribution
+\end_layout
+
+\begin_layout Plain Layout
+
+MUs    <- c(10,15)
+\end_layout
+
+\begin_layout Plain Layout
+
+SIGMAs <- matrix(c(1,   0.5,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   0.5, 2   ),
+\end_layout
+
+\begin_layout Plain Layout
+
+                 nrow=2,
+\end_layout
+
+\begin_layout Plain Layout
+
+                 ncol=2       )
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+# the multivariate distribution
+\end_layout
+
+\begin_layout Plain Layout
+
+mdist <- mvrnorm(n     = 1000,
+\end_layout
+
+\begin_layout Plain Layout
+
+                 mu    = MUs,
+\end_layout
+
+\begin_layout Plain Layout
+
+                 Sigma = SIGMAs)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create unobserved covariate 
+\end_layout
+
+\begin_layout Plain Layout
+
+c <- mdist[ , 2]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create the instrumental variable 
+\end_layout
+
+\begin_layout Plain Layout
+
+z <- rnorm(1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create observed variable 
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- mdist[ , 1] + z
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# constuct the dependent variable 
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- 1 + x + c + rnorm(1000, 0, 0.5)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Check if the variables behave as expected
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+check_vars
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+cor(x, c)
+\end_layout
+
+\begin_layout Plain Layout
+
+cor(z, c)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let's look at the true model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+true_model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lm(y ~ x + c)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we assume that we do not have access to c.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+without_c
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lm(y ~ x)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now assume to have access to the variable z, and estimate it using two-stage
+ least squares.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+with_z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# first stage
+\end_layout
+
+\begin_layout Plain Layout
+
+lms1 <- lm(x ~ z)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# manually obtain fitted values 
+\end_layout
+
+\begin_layout Plain Layout
+
+lmXhat <- lms1$coefficients[2]*z + lms1$coefficients[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# estimate second stage using Xhat
+\end_layout
+
+\begin_layout Plain Layout
+
+(lms2 <- lm(y ~ lmXhat) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Or equivalently, using ivreg().
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+with_z_ivreg
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ivreg(y ~ x | z)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can also be done using a neural network.
+ Let's start with looking at how a neural network can generally be equivalent
+ to OLS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+nns1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(nnet)
+\end_layout
+
+\begin_layout Plain Layout
+
+# first stage with neural network
+\end_layout
+
+\begin_layout Plain Layout
+
+nns1 <- nnet(x ~ z, size=0, skip=TRUE, linout=TRUE)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The results obtained by nns1 are virtually identical to those in lms1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+nns1_lms1, message=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lms1$coefficients - nns1$wts
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# graphically
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+qplot(lms1$fitted.values - nns1$fitted.values)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now also perform the second stage using neural networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+nns2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# manually obtain fitted values
+\end_layout
+
+\begin_layout Plain Layout
+
+nnXhat <- nns1$fitted.values
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# estimate second stage using Xhat
+\end_layout
+
+\begin_layout Plain Layout
+
+nns2 <- nnet(y ~ nnXhat, size=0, skip=TRUE, linout=TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# evaluate outcome
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(nns2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now compare the final estimates.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+nns2_lms2, message=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lms2$coefficients - nns2$wts
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# graphically
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+qplot(lms2$fitted.values - nns2$fitted.values)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
