@@ -4963,6 +4963,11 @@ leontief
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
+
 lt <- leontief( decompr_object )
 \end_layout
 
@@ -5033,6 +5038,11 @@ leontief-wrapper
 \end_layout
 
 \end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 lt2 <- decomp( x = inter,
 \end_layout
@@ -8363,6 +8373,11 @@ wwz
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
+
 w <- wwz(decompr_object)
 \end_layout
 
@@ -8400,6 +8415,11 @@ wwz2
 \end_layout
 
 \end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 w2 <-  decomp( x = inter,
 \end_layout
