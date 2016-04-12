@@ -283,7 +283,59 @@ Package Details
 \begin_layout Standard
 The decompr package implements the algorithms for these decompositions as
  R procedures and provides example data sets.
- The R procedures are implemented as functions, the included functions are
+ We start by loading the package and listing the functions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+library
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# load package
+\end_layout
+
+\begin_layout Plain Layout
+
+library(decompr)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# list functions in package
+\end_layout
+
+\begin_layout Plain Layout
+
+ls('package:decompr')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The R procedures are implemented as functions, the included functions are
  listed below.
 \end_layout
 
@@ -316,7 +368,7 @@ decompr
 status open
 
 \begin_layout Plain Layout
-leontief
+leontief()
 \end_layout
 
 \end_inset
@@ -329,7 +381,7 @@ leontief
 status open
 
 \begin_layout Plain Layout
-wwz
+wwz()
 \end_layout
 
 \end_inset
@@ -356,17 +408,55 @@ method
 \end_layout
 
 \begin_layout Standard
-For legacy purposes, several depracated functions / methods are available
- under their original names.
+For legacy purposes, one depracated function is also available under their
+ original names (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+load_tables()
+\end_layout
+
+\end_inset
+
+).
  In addition to this, one example data sets is included.
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 
 \shape italic
-Leather
-\shape default
+\emph on
+leather
+\end_layout
+
+\end_inset
+
 ; a fictional three-country, three-sector data set 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+load using: 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+data(leather)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -443,34 +533,6 @@ key "timmer2012world"
  The latter is a fictional 3-country 3-sector data set, which we will use
  throughout this article to demonstrate the usage and advantages of the
  decompr package.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-load-package, message=FALSE 
-\end_layout
-
-\end_inset
-
-# load the package
-\end_layout
-
-\begin_layout Plain Layout
-
-library(decompr)
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
