@@ -339,7 +339,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 data
 \end_layout
 
@@ -461,7 +460,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 int2binary
 \end_layout
 
@@ -499,7 +497,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 decimal_rep, results='hold'
 \end_layout
 
@@ -547,7 +544,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 binary_rep, results='hold'
 \end_layout
 
@@ -747,7 +743,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 print_sigmoid
 \end_layout
 
@@ -785,7 +780,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 demonstrate_sig, results='hold'
 \end_layout
 
@@ -823,7 +817,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 sigmoid_shape
 \end_layout
 
@@ -857,7 +850,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 print_sigmoid_derivative
 \end_layout
 
@@ -920,8 +912,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-
-rnn_output_full, echo=FALSE
+rnn_output_full, cache=TRUE, echo=FALSE
 \end_layout
 
 \end_inset
@@ -936,7 +927,7 @@ rnn_output_full, echo=FALSE
 
 \begin_layout Plain Layout
 
-set.set(123)
+set.seed(123)
 \end_layout
 
 \begin_layout Plain Layout
@@ -978,7 +969,7 @@ B <- A1 + A2
 
 \begin_layout Plain Layout
 
-# run the
+# train the network
 \end_layout
 
 \begin_layout Plain Layout
@@ -1107,13 +1098,31 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 rnn_output_minimal, cache=TRUE
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+
+# use the same random numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(123)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# train the network
 \end_layout
 
 \begin_layout Plain Layout
@@ -1167,7 +1176,7 @@ rnn(Y,
 \end_layout
 
 \begin_layout Standard
-In fact, from the 4000th summation on, all the printed estimates are in
+In fact, from the 5000th summation on, all the printed estimates are in
  fact correct.
 \end_layout
 
@@ -1233,7 +1242,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 print_rnn
 \end_layout
 
