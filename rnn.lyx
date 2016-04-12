@@ -106,7 +106,7 @@ rnn
 status open
 
 \begin_layout Plain Layout
-https://cran.r-project.org/package=rnn
+https://cran.r-project.org/package=rnn | https://github.com/bquast/rnn
 \end_layout
 
 \end_inset
@@ -723,9 +723,18 @@ If we go back to the output of the int2binary() function for X1, X2, and
 \end_layout
 
 \begin_layout Standard
-The rnn() function internally makes use of the sigmoid() function, which
- is a very simple implementation of a sigmoid which takes the range (-Infinity,
- Infinity) and maps it to the range (0, 1).
+The rnn() function internally makes use of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid()
+\end_layout
+
+\end_inset
+
+ function, which is a very simple implementation of a sigmoid which takes
+ the range (-Infinity, Infinity) and maps it to the range (0, 1).
 \end_layout
 
 \begin_layout Standard
@@ -745,6 +754,11 @@ print_sigmoid
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+
+# print source code of the sigmoid function
 \end_layout
 
 \begin_layout Plain Layout
@@ -854,6 +868,11 @@ print_sigmoid_derivative
 
 \begin_layout Plain Layout
 
+# print source code of the sigmoid_output_to_derivate function
+\end_layout
+
+\begin_layout Plain Layout
+
 sigmoid_output_to_derivative
 \end_layout
 
@@ -868,17 +887,27 @@ Results
 
 \begin_layout Standard
 As the purpose of the package is to illustrate the working of a Recurrent
- Neural Network, the rnn() function is quite verbose (use 
+ Neural Network, the 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-print='none'
+rnn()
 \end_layout
 
 \end_inset
 
- to avoid this).
+ function is quite verbose (this can be controlled using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print
+\end_layout
+
+\end_inset
+
+ argument).
 \end_layout
 
 \begin_layout Standard
@@ -1004,7 +1033,27 @@ rnn(B,
 
 \begin_layout Standard
 The text printed here is of the 8 steps of the summation of the 1000th value
- of X1 and X2, or iteration 7993-8000.
+ of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, or iteration 7993-8000.
 \end_layout
 
 \begin_layout Standard
@@ -1019,8 +1068,27 @@ After each iternation the difference betweeen the predicted value and the
 \end_layout
 
 \begin_layout Standard
-At the end of the 8 iterations that it here takes to add two values of X1
- and X2, the results are printed in a more human legible form.
+At the end of the 8 iterations that it here takes to add two values of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, the results are printed in a more human legible form.
  It should be clear from the results that after 1000 numbers, which 8 iterations
  each, the model is still performing very poorly.
 \end_layout
@@ -1090,7 +1158,7 @@ rnn(Y,
 
 \begin_layout Plain Layout
 
-    print = 'minimal'    )
+    print = 'minimal' )
 \end_layout
 
 \end_inset
@@ -1099,7 +1167,8 @@ rnn(Y,
 \end_layout
 
 \begin_layout Standard
-In fact, from the 4000th summation all are in fact correct.
+In fact, from the 4000th summation on, all the printed estimates are in
+ fact correct.
 \end_layout
 
 \begin_layout Section
@@ -1107,7 +1176,36 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-At moment, most development in 
+CRAN and the rest of the R ecosystem show that there is a strong interest
+ in using the R language for neural network analysis.
+ Existing package such as the built in nnet package and the caret package
+ make available very powerful neural network tools to R users.
+ The RSNNS package acts as an R wrapper for the Stutgard Neural Network
+ Simulator library, which is written in C, and thereby makes available to
+ partial RNNs such as Elman and Jordan networks.
+\end_layout
+
+\begin_layout Standard
+The enormous popularity of full Recurrent Neural Networks in other languages,
+ primarily Python, show that there is a great amount of interest for using
+ this methodology, including interest from Economist, Data Scientists, and
+ other non-professional programmers.
+ Although Python is a relatively accessible programming language for laymen,
+ it has a smaller user base in terms of data analists.
+ The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ package attempts to address this need by showing that Recurrent Neural
+ Networks can be made available and perhaps more importantly, made available
+ in native R, which allows user to delve into the code and understand the
+ method and developer a more thorough understanding of how to use it.
 \end_layout
 
 \begin_layout Section
