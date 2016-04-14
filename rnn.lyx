@@ -242,8 +242,7 @@ Of course, numbers < 128 can be represent in a 7-bit binary form, but since
 \begin_layout Standard
 At this point it is useful to clarrify the nomenclature in this article.
  I use the term RNN (capitalised) for the general concept of a Recurrent
- Neural Network.
- Other than than I use 
+ Neural Network and I use 
 \begin_inset Flex Code
 status open
 
@@ -253,29 +252,7 @@ rnn
 
 \end_inset
 
- (in miniscules and using a monospace font) to refer to the R package, lastly
- I use 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-rnn()
-\end_layout
-
-\end_inset
-
- (miniscules, monospace, and with brackets as a suffix) to refer to the
- central function of the 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-rnn
-\end_layout
-
-\end_inset
-
- package, which is an implementation of a Recurrent Neural Network (RNN).
+ (in miniscules and using a monospace font) to refer to the R package.
 \end_layout
 
 \begin_layout Standard
@@ -358,15 +335,24 @@ Data
 \end_layout
 
 \begin_layout Standard
-The main rnn() function takes three integer vectors as inputs: Y, X1, and
- X2.
+The main 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function takes three integer vectors as inputs: Y, X1, and X2.
  The vectors X1 and X2 are independent variables, the Y vector is the sum
  of X1 and X2 and is the response variable (for more info see 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-help('rnn')
+help('trainr')
 \end_layout
 
 \end_inset
@@ -460,7 +446,7 @@ Internally the
 status open
 
 \begin_layout Plain Layout
-rnn()
+trainr()
 \end_layout
 
 \end_inset
@@ -525,7 +511,7 @@ binary_dim
 status open
 
 \begin_layout Plain Layout
-rnn()
+trainr()
 \end_layout
 
 \end_inset
@@ -795,7 +781,7 @@ rnn
 status open
 
 \begin_layout Plain Layout
-rnn()
+trainr()
 \end_layout
 
 \end_inset
@@ -1025,7 +1011,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-demonstrate_sig, results='hold'
+demonstrate_sigmoid, results='hold'
 \end_layout
 
 \end_inset
@@ -1118,10 +1104,6 @@ sigmoid_output_to_derivative
 
 \end_layout
 
-\begin_layout Section
-Results
-\end_layout
-
 \begin_layout Standard
 As the purpose of the package is to illustrate the working of a Recurrent
  Neural Network, the 
@@ -1129,7 +1111,7 @@ As the purpose of the package is to illustrate the working of a Recurrent
 status open
 
 \begin_layout Plain Layout
-rnn()
+trainr()
 \end_layout
 
 \end_inset
@@ -1157,7 +1139,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-rnn_output_full, cache=TRUE, echo=FALSE
+trainr_output_full, cache=TRUE, echo=FALSE
 \end_layout
 
 \end_inset
@@ -1172,7 +1154,7 @@ rnn_output_full, cache=TRUE, echo=FALSE
 
 \begin_layout Plain Layout
 
-set.seed(123)
+set.seed(1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1219,47 +1201,47 @@ B <- A1 + A2
 
 \begin_layout Plain Layout
 
-rnn(B,
+m0 <- trainr(B,
 \end_layout
 
 \begin_layout Plain Layout
 
-    A1,
+             A1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    A2,
+             A2,
 \end_layout
 
 \begin_layout Plain Layout
 
-    binary_dim =  8,
+             binary_dim =  8,
 \end_layout
 
 \begin_layout Plain Layout
 
-    alpha      =  0.1,
+             alpha      =  0.1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    input_dim  =  2,
+             input_dim  =  2,
 \end_layout
 
 \begin_layout Plain Layout
 
-    hidden_dim = 10,
+             hidden_dim = 10,
 \end_layout
 
 \begin_layout Plain Layout
 
-    output_dim =  1,
+             output_dim =  1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    print = 'full'    )
+             print = 'full'    )
 \end_layout
 
 \end_inset
@@ -1330,7 +1312,7 @@ X2
 \end_layout
 
 \begin_layout Standard
-However, progress can be seen:
+However, progress can be observed:
 \end_layout
 
 \begin_layout Standard
@@ -1343,7 +1325,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-rnn_output_minimal, cache=TRUE
+trainr_output_minimal, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1358,7 +1340,7 @@ rnn_output_minimal, cache=TRUE
 
 \begin_layout Plain Layout
 
-set.seed(123)
+set.seed(1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -1372,47 +1354,47 @@ set.seed(123)
 
 \begin_layout Plain Layout
 
-rnn(Y,
+m1 <- trainr(Y,
 \end_layout
 
 \begin_layout Plain Layout
 
-    X1,
+             X1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    X2,
+             X2,
 \end_layout
 
 \begin_layout Plain Layout
 
-    binary_dim =  8,
+             binary_dim =  8,
 \end_layout
 
 \begin_layout Plain Layout
 
-    alpha      =  0.1,
+             alpha      =  0.1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    input_dim  =  2,
+             input_dim  =  2,
 \end_layout
 
 \begin_layout Plain Layout
 
-    hidden_dim = 10,
+             hidden_dim = 10,
 \end_layout
 
 \begin_layout Plain Layout
 
-    output_dim =  1,
+             output_dim =  1,
 \end_layout
 
 \begin_layout Plain Layout
 
-    print = 'minimal' )
+             print = 'minimal' )
 \end_layout
 
 \end_inset
@@ -1421,8 +1403,155 @@ rnn(Y,
 \end_layout
 
 \begin_layout Standard
-In fact, from the 5000th summation on, all the printed estimates are in
+In fact, from the 6000th summation on, all the printed estimates are in
  fact correct.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+
+The eventual purpose is to use the model generated by the trainr() function
+ as an input to the predictr() function, in order to predict the values
+ of new inputs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+test_data, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create test inputs
+\end_layout
+
+\begin_layout Plain Layout
+
+C1 = sample(0:127, 7000, replace=TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+C2 = sample(0:127, 7000, replace=TRUE)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now predict using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr() 
+\end_layout
+
+\end_inset
+
+function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+predictr, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# predic
+\end_layout
+
+\begin_layout Plain Layout
+
+D  <- predictr(m1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               C1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               C2,
+\end_layout
+
+\begin_layout Plain Layout
+
+               binary_dim =  8,
+\end_layout
+
+\begin_layout Plain Layout
+
+               alpha      =  0.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               input_dim  =  2,
+\end_layout
+
+\begin_layout Plain Layout
+
+               hidden_dim = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+               output_dim =  1   )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# inspect the differences               
+\end_layout
+
+\begin_layout Plain Layout
+
+hist( D-(C1+C2) )
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1476,55 +1605,43 @@ Source code of
 status open
 
 \begin_layout Plain Layout
-rnn()
+trainr()
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status collapsed
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-print_rnn
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-rnn
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+ function
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/Users/quast/rnn/R/rnn.R"
+filename "/Users/quast/rnn/R/trainr.R"
+lstparams "language=S,basicstyle={\\footnotesize},numbers=left,numberstyle={\\tiny},frame=single,breaklines=true,title={\\lstname}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Source code of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr() 
+\end_layout
+
+\end_inset
+
+function
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/Users/quast/rnn/R/predictr.R"
 lstparams "language=S,basicstyle={\\footnotesize},numbers=left,numberstyle={\\tiny},frame=single,breaklines=true,title={\\lstname}"
 
 \end_inset
