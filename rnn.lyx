@@ -142,8 +142,47 @@ The rnn package implements a Recurrent Neural Network (RNN).
  This package is purposely designed to demonstrate the self learning ability
  using the classic example of binary summation on a bit-by-bit (right to
  left) basis, which requires the model to develop the understanding that
- if a 1 and 1 one are added, the outcome is 0, but in the next iteration,
- it has to remember to carry 1.
+ if a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ and a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ are added, the outcome is 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+, but in the next iteration, it has to that it was carrying a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ from the previous iteration.
 \end_layout
 
 \begin_layout Standard
@@ -158,8 +197,13 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-This package implements a neural network which is used to convert numbers
- in range of 0-127 to binary representation.
+This package implements a Recurrent Neural Network which is trained to sum
+ 8-bit binary numbers, teaching itself the complex task of carrying a 1
+ over to the next iteration if the sum of a column takes two bits of space.
+\end_layout
+
+\begin_layout Standard
+to convert numbers in range of 0-127 to binary representation.
 \end_layout
 
 \begin_layout Standard
@@ -209,7 +253,8 @@ rnn
 
 \end_inset
 
- (in miniscules) to refer to the R package, lastly I use 
+ (in miniscules and using a monospace font) to refer to the R package, lastly
+ I use 
 \begin_inset Flex Code
 status open
 
@@ -219,8 +264,8 @@ rnn()
 
 \end_inset
 
- (in miniscules with brackets as a suffix) to refer to the central function
- of the 
+ (miniscules, monospace, and with brackets as a suffix) to refer to the
+ central function of the 
 \begin_inset Flex Code
 status open
 
@@ -425,12 +470,33 @@ rnn()
 status open
 
 \begin_layout Plain Layout
-int2binary()
+intToBits()
 \end_layout
 
 \end_inset
 
- function.
+ function and afterward converts it back into decimal format for printing
+ using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+packBits()
+\end_layout
+
+\end_inset
+
+ function, both functions are included in the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+base
+\end_layout
+
+\end_inset
+
+ package.
 \end_layout
 
 \begin_layout Standard
@@ -444,10 +510,29 @@ X1
 
 \end_inset
 
- and convert it to a binary representation, whereby the length argument
- to the function determines the length of the binary representation, throughout
+ and convert it to a binary representation, whereby the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+binary_dim
+\end_layout
+
+\end_inset
+
+ argument to the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn()
+\end_layout
+
+\end_inset
+
+ function determines the length of the binary representation, throughout
  this paper we will use 8 bit representations (which limits numbers to the
- range 0-255), but the program is by no mean limited to that.
+ range 0-255), but the theoretical limit is 32 bits.
 \end_layout
 
 \begin_layout Standard
@@ -470,12 +555,26 @@ int2binary
 
 \begin_layout Plain Layout
 
+# manually define binary_dim
+\end_layout
+
+\begin_layout Plain Layout
+
+binary_dim = 8
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 X1[1]
 \end_layout
 
 \begin_layout Plain Layout
 
-int2binary(X1[1], length=8)
+rev(as.numeric(intToBits( X1[1] ))[1:binary_dim])
 \end_layout
 
 \end_inset
@@ -497,7 +596,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-decimal_rep, results='hold'
+decimal_rep
 \end_layout
 
 \end_inset
@@ -554,12 +653,12 @@ binary_rep, results='hold'
 
 \begin_layout Plain Layout
 
-int2binary(X1[1], length=8)
+rev(as.numeric(intToBits( X1[1] ))[1:binary_dim])
 \end_layout
 
 \begin_layout Plain Layout
 
-int2binary(X2[1], length=8)
+rev(as.numeric(intToBits( X2[1] ))[1:binary_dim])
 \end_layout
 
 \begin_layout Plain Layout
@@ -569,7 +668,7 @@ print('--------------')
 
 \begin_layout Plain Layout
 
-int2binary(Y[1],  length=8)
+rev(as.numeric(intToBits( Y[1]  ))[1:binary_dim])
 \end_layout
 
 \end_inset
@@ -702,6 +801,152 @@ rnn()
 \end_inset
 
  function.
+\end_layout
+
+\begin_layout Standard
+For example, if we add the binary numbers 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0 0 1
+\end_layout
+
+\end_inset
+
+ (decimal system: 1) and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 0 1
+\end_layout
+
+\end_inset
+
+ (decimal system: 5), we start by adding the right column, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ make 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 0
+\end_layout
+
+\end_inset
+
+ (similar to when 5 and 5 make 1 0 in the decimal system) , the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ is stored in the right column, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ is carried over to the middle column and added with the two existing bits
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+, to form 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+, which is stored in the middle column.
+ This time nothing is carried over and the left column sums 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ to make 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+, which gives the outcome 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 1 0
+\end_layout
+
+\end_inset
+
+ (decimal system: 6).
 \end_layout
 
 \begin_layout Standard
@@ -1217,6 +1462,13 @@ rnn
  method and developer a more thorough understanding of how to use it.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \start_of_appendix
 Source code of 
@@ -1233,8 +1485,12 @@ rnn()
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Note Note
 status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1254,6 +1510,22 @@ print_rnn
 
 rnn
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/Users/quast/rnn/R/rnn.R"
+lstparams "language=S,basicstyle={\\footnotesize},numbers=left,numberstyle={\\tiny},frame=single,breaklines=true,title={\\lstname}"
 
 \end_inset
 
