@@ -284,6 +284,25 @@ setup, echo=FALSE
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Package
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -330,6 +349,11 @@ ls('package:rnn')
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Data
 \end_layout
@@ -361,6 +385,25 @@ help('trainr')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Training Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -433,6 +476,11 @@ Y <- X1 + X2
 \begin_layout Plain Layout
 
 typeof(c(X1,X2,Y))
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -522,6 +570,29 @@ trainr()
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -568,11 +639,43 @@ rev(as.numeric(intToBits( X1[1] ))[1:binary_dim])
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Lets check look at the first sum in decimal representation.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Decimal Summation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -615,13 +718,45 @@ Y[1]
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 and now in binary representation.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Chunk
+\begin_inset Float table
+placement H
+wide false
+sideways false
 status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Summation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -655,6 +790,15 @@ print('--------------')
 \begin_layout Plain Layout
 
 rev(as.numeric(intToBits( Y[1]  ))[1:binary_dim])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -766,7 +910,7 @@ Methodology
 \end_layout
 
 \begin_layout Standard
-The workhorese of the 
+The workhorse of the 
 \begin_inset Flex Code
 status open
 
@@ -965,6 +1109,29 @@ sigmoid()
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Source Code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -997,11 +1164,43 @@ sigmoid
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 For instance:
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Examples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1034,11 +1233,43 @@ sigmoid(5.3)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The shape of the sigmoid function is as follows.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Shape
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1066,12 +1297,44 @@ plot(sigmoid(seq(-10,10)), type='l')
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Additionally the rnn() function uses the sigmoid_output_to_derivative()
  function.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Derivative Source Code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1097,6 +1360,15 @@ print_sigmoid_derivative
 \begin_layout Plain Layout
 
 sigmoid_output_to_derivative
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1130,6 +1402,29 @@ print
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+trainr() Output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1139,7 +1434,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-trainr_output_full, cache=TRUE, echo=FALSE
+trainr_output_full, cache=TRUE, size='tiny', echo=FALSE
 \end_layout
 
 \end_inset
@@ -1249,6 +1544,15 @@ m0 <- trainr(B,
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The text printed here is of the 8 steps of the summation of the 1000th value
  of 
@@ -1316,6 +1620,25 @@ However, progress can be observed:
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+trainr() Output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1325,7 +1648,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-trainr_output_minimal, cache=TRUE
+trainr_output_minimal, cache=TRUE, size='tiny'
 \end_layout
 
 \end_inset
@@ -1402,6 +1725,15 @@ m1 <- trainr(Y,
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 In fact, from the 6000th summation on, all the printed estimates are in
  fact correct.
@@ -1412,13 +1744,53 @@ Results
 \end_layout
 
 \begin_layout Standard
+The eventual purpose is to use the model generated by the 
+\begin_inset Flex Code
+status open
 
-The eventual purpose is to use the model generated by the trainr() function
- as an input to the predictr() function, in order to predict the values
- of new inputs.
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function as an input to the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+ function, in order to predict the values of new inputs.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1428,7 +1800,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 test_data, cache=TRUE
 \end_layout
 
@@ -1457,6 +1828,15 @@ C2 = sample(0:127, 7000, replace=TRUE)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Now predict using the 
 \begin_inset Flex Code
@@ -1472,6 +1852,29 @@ function.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -1481,7 +1884,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 predictr, cache=TRUE
 \end_layout
 
@@ -1554,6 +1956,15 @@ hist( D-(C1+C2) )
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Conclusion
 \end_layout
@@ -1570,9 +1981,9 @@ CRAN and the rest of the R ecosystem show that there is a strong interest
 
 \begin_layout Standard
 The enormous popularity of full Recurrent Neural Networks in other languages,
- primarily Python, show that there is a great amount of interest for using
- this methodology, including interest from Economist, Data Scientists, and
- other non-professional programmers.
+ primarily Python and C, show that there is a great amount of interest for
+ using this methodology, including interest from Economist, Data Scientists,
+ and other non-professional programmers.
  Although Python is a relatively accessible programming language for laymen,
  it has a smaller user base in terms of data analists.
  The 

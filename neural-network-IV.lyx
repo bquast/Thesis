@@ -100,6 +100,56 @@ Bastiaan Quast
 \end_layout
 
 \begin_layout Standard
+This paper discussed the possibility of using a feed-forward neural network
+ to implement an Instrumental Variables approach.
+ I use two types of data, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CitarettesSW
+\end_layout
+
+\end_inset
+
+ dataset from the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AER
+\end_layout
+
+\end_inset
+
+ (Applied Econometric Regressions), which is the standard method for instrumenta
+l variables in R.
+ The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ivreg()
+\end_layout
+
+\end_inset
+
+ function in the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AER
+\end_layout
+
+\end_inset
+
+ package uses the Two-Stage Least Squares (TSLS) approach.
+ The advantage of the simulated dataset is that we can be certain that the
+ conditions for Instrumental Variables (IV) hold.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex Chunk
 status open
 
@@ -128,6 +178,29 @@ library(printr)
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+AER Package & Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -137,7 +210,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-aer, message=FALSE, cache=TRUE
+aer, message=FALSE
 \end_layout
 
 \end_inset
@@ -175,12 +248,50 @@ packs   <- CigarettesSW$packs
 
 \end_layout
 
-\begin_layout Standard
-A manual instrumental variables would look like this (using the built in
- lm() function.
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+A manual Two-Stage Least Squares analysis can be performed as follows (using
+ the built in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+lm()
+\end_layout
+
+\end_inset
+
+ function).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Manual TSLS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -227,11 +338,69 @@ lm(packs ~ s1$fitted.values)
 
 \end_layout
 
-\begin_layout Standard
-We can verity these results using `AER`'s built in function ivreg().
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+We can verity these results using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AER
+\end_layout
+
+\end_inset
+
+'s built in function 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ivreg()
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TSLS using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ivreg()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -259,11 +428,43 @@ ivreg(packs ~ rprice | tdiff)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 A good way to prove this theoretically is using simulated data.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Simulated Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -283,7 +484,7 @@ simulate_data, cache=TRUE
 
 \begin_layout Plain Layout
 
-# library for generation multivariate distributions
+# library for generation of multivariate distributions
 \end_layout
 
 \begin_layout Plain Layout
@@ -361,7 +562,7 @@ mdist <- mvrnorm(n     = 1000,
 
 \begin_layout Plain Layout
 
-                 Sigma = SIGMAs)
+                 sigma = SIGMAs)
 \end_layout
 
 \begin_layout Plain Layout
@@ -425,11 +626,43 @@ y <- 1 + x + c + rnorm(1000, 0, 0.5)
 
 \end_layout
 
-\begin_layout Standard
-Check if the variables behave as expected
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Check if the variables behave as expected.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Simulated Variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -439,7 +672,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-check_vars
+check_vars, cache=TRUE
 \end_layout
 
 \end_inset
@@ -462,11 +695,43 @@ cor(z, c)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Let's look at the true model.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+True Model (OLS)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -476,7 +741,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-true_model
+true_model, cache=TRUE
 \end_layout
 
 \end_inset
@@ -494,11 +759,53 @@ lm(y ~ x + c)
 
 \end_layout
 
-\begin_layout Standard
-Now, we assume that we do not have access to c.
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Now, we assume that we do not have access to 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+c
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+OLS without c
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -526,12 +833,53 @@ lm(y ~ x)
 
 \end_layout
 
-\begin_layout Standard
-We now assume to have access to the variable z, and estimate it using two-stage
- least squares.
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+We now assume to have access to the Instrumental Variable 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+z
+\end_layout
+
+\end_inset
+
+, and estimate it using Two-Stage Least Squares.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Manual IV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -592,11 +940,63 @@ lmXhat <- lms1$coefficients[2]*z + lms1$coefficients[1]
 
 \end_layout
 
-\begin_layout Standard
-Or equivalently, using ivreg().
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Or equivalently, using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ivreg()
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+IV using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ivreg()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -624,13 +1024,54 @@ ivreg(y ~ x | z)
 
 \end_layout
 
-\begin_layout Standard
-This can also be done using a neural network.
- Let's start with looking at how a neural network can generally be equivalent
- to OLS.
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+The Instrumental Variables analysis can also be performed using feed-forward
+ neural networks.
+ Neural networks in their most basic form find weights that correspond to
+ the coefficients of an Ordinary Least Squares (OLS) estimation.
+ However, as the weights are obtained without OLS, this is Instrumental
+ Variables without using Two-Stage Least Squares.
+\end_layout
+
+\begin_layout Standard
+The following table demonstrates how the weights obtained by a neural network
+ are virtually identical to the coefficients obtained by Ordinary Least
+ Squares estimation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Neural Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -655,6 +1096,10 @@ library(nnet)
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 # first stage with neural network
 \end_layout
 
@@ -668,11 +1113,43 @@ nns1 <- nnet(x ~ z, size=0, skip=TRUE, linout=TRUE)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The results obtained by nns1 are virtually identical to those in lms1.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Neural Network and OLS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -719,11 +1196,43 @@ qplot(lms1$fitted.values - nns1$fitted.values)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 We can now also perform the second stage using neural networks.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+IV using Neural Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -784,11 +1293,43 @@ summary(nns2)
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Now compare the final estimates.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Neural Network and TSLS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex Chunk
 status open
 
@@ -828,6 +1369,15 @@ library(ggplot2)
 \begin_layout Plain Layout
 
 qplot(lms2$fitted.values - nns2$fitted.values)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
