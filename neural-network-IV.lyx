@@ -149,6 +149,10 @@ AER
  conditions for Instrumental Variables (IV) hold.
 \end_layout
 
+\begin_layout Section
+Data
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex Chunk
 status open
@@ -562,7 +566,7 @@ mdist <- mvrnorm(n     = 1000,
 
 \begin_layout Plain Layout
 
-                 sigma = SIGMAs)
+                 Sigma = SIGMAs)
 \end_layout
 
 \begin_layout Plain Layout
