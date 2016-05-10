@@ -1,7 +1,9 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \usepackage[style=philosophy-modern,backend=biber]{biblatex}
@@ -19,16 +21,16 @@ logicalmkup
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
-\font_math auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -124,8 +126,52 @@ CHANGE THE APPENDIX METHOD IN CHILD DOCUMENTS!!!!
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Chapter*
 Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+preamble, echo=FALSE, message=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -168,11 +214,7 @@ log R files using version control, git
 
 \begin_layout Itemize
 generalise methods and publish as packages: decompr and gvc, rnn, diagonals,
- rddtools, 
-\end_layout
-
-\begin_layout Itemize
-MANDATORY LEGAL STATEMENT: at end of this or final remarks
+ rddtools,
 \end_layout
 
 \end_inset
@@ -188,6 +230,622 @@ status open
 Choice of not RCTs etc.
  http://www.project-syndicate.org/commentary/evidence-based-policy-problems-by-ric
 ardo-hausmann-2016-02
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As mentioned in the title, methodologically I focus on making the research
+ in this thesis reproducible.
+ Reproducibility is different from replicability in that is refers to regenerati
+ng the research results based on the same data, as opposed to replicablity,
+ which uses newly gathered data.
+ 
+\end_layout
+
+\begin_layout Standard
+A large part this methodology comes from the field of biostatistics and
+ it is best explained by one of the key figures in this field.
+\end_layout
+
+\begin_layout Quotation
+The replication of scientific findings using independent investigators,
+ methods, data, equipment, and protocols has long been, and will continue
+ to be, the standard by which scientific claims are evaluated.
+ However, in many fields of study there are examples of scientific investigation
+s that cannot be fully replicated because of a lack of time or resources.
+ In such a situation, there is a need for a minimum standard that can fill
+ the void between full replication and nothing.
+ One candidate for this minimum standard is “reproducible research”, which
+ requires that data sets and computer code be made available to others for
+ verifying published results and conducting alternative analyses.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite Roger Peng
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I believe that this applies to at least the same extend an probably more
+ in economics.
+ Although there are situations in which replicable research may be conducted,
+ specifically in experimental settings such as those often used in behavioural
+ economicss or in field research using Randomised Control Trials (RCTs),
+ there are also many cases in which this is not possible.
+\end_layout
+
+\begin_layout Standard
+In this thesis I include two chapters where the identification strategy
+ is based on a natural experiment.
+ Firslty, a change in government policy, as a results of the unconstitutional
+ nature of the sex-based discrimination in pension eligibility in South
+ Africa.
+ Secondly, the introduction of an interface language on the South African
+ Google Search website, as a spillover of that translation work being done
+ for Botswana.
+ In both cases I use the National Income Dynamics Study, the most comprehensive
+ panel data set o
+\end_layout
+
+\begin_layout Standard
+n South Africa.
+ Since it will be hard to find more relevant data, a full replication -
+ using new data - will prove difficult.
+ As such, it is all the more important for research to be as transparent
+ as possible, making it at least as reproducible as can be.
+\end_layout
+
+\begin_layout Standard
+There are a number of way in which research can be made reproducible, many
+ of which are already becoming increasingly common.
+ In addition to this, there are several methods which are less widespread,
+ but nevertheless very useful.
+\end_layout
+
+\begin_layout Standard
+First and moremost it is essential to make clear which data is being used
+ and in case it is primary data, how it was produced (e.g.
+ research instruments).
+ Where possible, the data itself should be included.
+ If this is impossible to due e.g.
+ privacy concerns of licencing issues, a clear procedure for obtaining the
+ data should be documented.
+ The data used in both South African studies is available upon request through
+ an online portal.
+ In the publicly available Git project (more details below), I include a
+ description how to obtain the data used through the South African Labour
+ & Development Research Unit 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Secondly, the computer code for producing the research results should be
+ made available, in case this code produces intermediate data sets, where
+ possible also make available.
+\end_layout
+
+\begin_layout Standard
+Comment the code, use e.g.
+ markdown type conventions, # for section, use ## for subsection.
+ Add a header to the file containing (commented out):
+\end_layout
+
+\begin_layout Enumerate
+file name
+\end_layout
+
+\begin_layout Enumerate
+file purpose
+\end_layout
+
+\begin_layout Enumerate
+author name
+\end_layout
+
+\begin_layout Enumerate
+author email
+\end_layout
+
+\begin_layout Standard
+In addition to describing the file purpose, the file name itself should
+ also be meaningful.
+ Typically the code in a file performs a certain action, as a rule, it can
+ therefore best be described using a transitive verb, for instance.
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+import.R
+\end_layout
+
+\end_inset
+
+ the resulting output (here the imported data) can then be saved using an
+ intransitive verb as a file name, e.g.
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+imported.RData
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Development versioning using Git, also useful for registering research designs
+ (since logged), retracing steps.
+ In addition to this, changes in all of the project files are logged using
+ a version control software package.
+ I use the open-source version control software called Git.
+ Projects using version control such as this are called repositories.
+ These repositories are published on the internet on websites such as GitHub
+ or BitBucket.
+\end_layout
+
+\begin_layout Standard
+Good reasons to use open-source R.
+ Using open-source software in order to make the computational procedures
+ of the statistical method verifiable.
+ In my case this means that all statistical analysis has been done using
+ the statistical programming environment R.
+ 
+\end_layout
+
+\begin_layout Standard
+Additionally, when implementing new algorithms, packaging these as R libraries
+ (extensions) and releasing under an open-source licence such as General
+ Public Licence version 3 or later on the Comprensive R Archive Network
+ (CRAN) website is a step towards replicablity.
+ For instance, I packages the procedures implementing the Wang-Wei-Zhu algorithm
+ used for the analysis as the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decompr
+\end_layout
+
+\end_inset
+
+ package.
+ I uploaded this package to CRAN
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Available at: https://cran.r-project.org/web/packages/decompr/index.html
+\end_layout
+
+\end_inset
+
+ and it has since been downloaded over 6,000 times
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Data from the RStudio servers only, other CRAN mirrors to not release statistics
+ so the actual number is presumably higher.
+ Note that this does not correspond directly to users, since updates require
+ a new download.
+\end_layout
+
+\end_inset
+
+.
+ This makes code useful for replicable research, since the original procedures,
+ which may have contained hardcoded procedures (e.g.
+ doing a loop 34 times, one for each country) now have to generalised and
+ transformed into a function, since R package can only contain functions.
+ As a result of this, the code which we developed for the analysis of the
+ TiVa 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite
+\end_layout
+
+\end_inset
+
+ data set, is now also being applied by other used to the wiod data set
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite timmer and cite quast
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+packrat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adding weaving code 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite Knut
+\end_layout
+
+\end_inset
+
+.
+ This also ties into 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+packrat
+\end_layout
+
+\end_inset
+
+, since it makes clear which version of which libraries are used for the
+ analysis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+R 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sessionInfo()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+sessionInfo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sessionInfo()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Piping functions to make to more intuitive.
+ As will most lines will have a structure beginning with the object to which
+ the output is assigned followed by the assignment operator, followed by
+ the function, followed by the input data, followed by the argument.
+ After which the following line again will begin with the output object,
+ etc.
+ We can see this for instance, if we use the built-in data set `swiss`,
+ which examines fertility levels in the French speaking regions of Switzerland
+ in 1888.
+ In this example I reproduce a simplified version of an original study this
+ data, looking at the difference in fertiliity levels between predominantly
+ Catholic and predominantly protestant agricultural regions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+swiss
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+swiss
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# load data
+\end_layout
+
+\begin_layout Plain Layout
+
+data(swiss)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# inspect data
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(swiss)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The typical workflow is demonstrated below.
+ We first define an 
+\emph on
+output
+\emph default
+ object for the filtered Agricultural regions, then the assignment operator,
+ followed by the function, followed by the 
+\emph on
+input
+\emph default
+ data, followed by the argument.
+ The second line then starts with a 
+\emph on
+new 
+\emph default
+intermediate object, etc.
+ The final line starts with the function, then in last intermediate object,
+ then the argument.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+R without pipe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+r_no_pipe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+swiss_agr     <- filter(swiss, Agriculture > 50)
+\end_layout
+
+\begin_layout Plain Layout
+
+swiss_agr_grp <- group_by(swiss_agr, Catholic > 50)
+\end_layout
+
+\begin_layout Plain Layout
+
+summarise(swiss_agr_grp, mean(Fertility, na.rm=TRUE) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this example I now use the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+magrittr
+\end_layout
+
+\end_inset
+
+ package, which has the following pipe operator 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+%>%
+\end_layout
+
+\end_inset
+
+.
+ The first thing is the input data, followed by the transforming function,
+ followed by the argument (criterium), this is passed to the next line where
+ the second transforming function is the first item, follow by its respective
+ argument, this is passed on to last line, where the data is summarised,
+ in this case by computing the mean.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+R with pipe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+r_pipe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+swiss %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	filter(Agriculture > 50) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	group_by(Catholic > 50) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	summarise( mean(Fertility, na.rm=TRUE) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -233,7 +891,26 @@ filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDe
 \end_layout
 
 \begin_layout Chapter
-decompr and gvc: Global Value Chain decomposition and analysis in R
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decompr
+\end_layout
+
+\end_inset
+
+: Global Value Chain decomposition in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -264,7 +941,26 @@ Nothing here het.
 \end_layout
 
 \begin_layout Chapter
-rnn: Recurrent Neural Networks in R
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+: Recurrent Neural Networks in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -314,6 +1010,22 @@ Final Remarks
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Final Remarks}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -334,10 +1046,6 @@ Gratitude to SNF for funding
 \begin_layout Itemize
 Future analysis more complicated with machine learning, greater requirement
  for reproducibility.
-\end_layout
-
-\begin_layout Itemize
-maybe LEGAL STATEMENT
 \end_layout
 
 \end_inset

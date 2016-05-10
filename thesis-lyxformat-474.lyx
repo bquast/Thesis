@@ -1,0 +1,353 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage[style=philosophy-modern,backend=biber]{biblatex}
+
+\addbibresource{/Users/quast/Making-Next-Billion-Demand-Access/man/bibliography.bib}
+\addbibresource{/Users/quast/MaleFemale-Income-Child-Growth/man/bibliography.bib}
+\end_preamble
+\use_default_options true
+\begin_modules
+knitr
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Three Contributions in Development Economics"
+\pdf_author "Bastiaan Quast"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Reproducible Contributions in Development Economics
+\end_layout
+
+\begin_layout Author
+Bastiaan Quast
+\end_layout
+
+\begin_layout Date
+16 June 2016
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+CHANGE THE APPENDIX METHOD IN CHILD DOCUMENTS!!!!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO:
+\end_layout
+
+\begin_layout Itemize
+thesis for PhD Development Economics
+\end_layout
+
+\begin_layout Itemize
+general method: microeconomics and trade economics
+\end_layout
+
+\begin_layout Itemize
+country focus: developing countries, particularly in Africa
+\end_layout
+
+\begin_layout Itemize
+reproducibility vs.
+ replicability, both important, reproducibility needs to come first, rOpenSci,
+ Simply Statistics
+\end_layout
+
+\begin_layout Itemize
+R open-source, example of data splitting nuclear deterence
+\end_layout
+
+\begin_layout Itemize
+save all steps in R files
+\end_layout
+
+\begin_layout Itemize
+log R files using version control, git
+\end_layout
+
+\begin_layout Itemize
+generalise methods and publish as packages: decompr and gvc, rnn, diagonals,
+ rddtools, 
+\end_layout
+
+\begin_layout Itemize
+MANDATORY LEGAL STATEMENT: at end of this or final remarks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Choice of not RCTs etc.
+ http://www.project-syndicate.org/commentary/evidence-based-policy-problems-by-ric
+ardo-hausmann-2016-02
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Making the `Next Billion' Demand Access
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDemandAccess.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+decompr and gvc: Global Value Chain decomposition and analysis in R
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "decompr.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Global Value Chains in LICs
+\end_layout
+
+\begin_layout Standard
+Nothing here het.
+\end_layout
+
+\begin_layout Chapter
+rnn: Recurrent Neural Networks in R
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "rnn.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Male/Female Income and Child Growth
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/MaleFemale-Income-Child-Growth/man/MaleFemaleIncomeChildGrowth.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Final Remarks
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO:
+\end_layout
+
+\begin_layout Itemize
+Gratitude to Arcand, Baldwin, Ugo, other Lore, Martina other profs, other
+ PhD Development Economics and PhD Economics, Oliver Jutersonke, Michael
+ Kende.
+\end_layout
+
+\begin_layout Itemize
+Gratitude to SNF for funding
+\end_layout
+
+\begin_layout Itemize
+Future analysis more complicated with machine learning, greater requirement
+ for reproducibility.
+\end_layout
+
+\begin_layout Itemize
+maybe LEGAL STATEMENT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

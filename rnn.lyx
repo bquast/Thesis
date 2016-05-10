@@ -1,7 +1,9 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass article
 \begin_preamble
 \usepackage{appendix}
@@ -21,16 +23,16 @@ Provides natbib 1
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
-\font_math auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -136,13 +138,37 @@ http://qua.st | bastiaan.quast@graduateinstitute.ch | bquast@gmail.com
 \end_layout
 
 \begin_layout Abstract
-The rnn package implements a Recurrent Neural Network (RNN).
- RNN algorithms have the ability to train neural networks to deal with greater
- levels of complexity .
- This package is purposely designed to demonstrate the self learning ability
- using the classic example of binary summation on a bit-by-bit (right to
- left) basis, which requires the model to develop the understanding that
- if a 
+The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ package implements the first Recurrent Neural Network (RNN) in the R language.
+ RNN algorithms expand on traditional feed-forward neural networks, allowing
+ for greater complexity and dynamics, by implementing a memory state.
+ This temporal nature of the algorithm makes it explicitly well suited for
+ dynamic problems such as time series prediction.
+ Additionally, this also allows for inputs of undefined or changing length,
+ allowing models to be updated as new data comes in.
+ The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ package is the first implementation of a Recurrent Neural Network in the
+ R language, making it both operable and understandable to R users.
+ Here I apply the package to two problems, the classic complex problem of
+ carrying a 
 \begin_inset Flex Code
 status open
 
@@ -152,37 +178,24 @@ status open
 
 \end_inset
 
- and a 
-\begin_inset Flex Code
+, in bit by bit (column by column) binary addition, as well as foreign exchange
+ rate prediction.
+ Interactive live versions of these examples are available on my website
+ http://qua.st/rnn.
+\end_layout
+
+\begin_layout Abstract
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-1
+explicitly moving outside of the realm of computer science, where it originated.
+ 
 \end_layout
 
 \end_inset
 
- are added, the outcome is 
-\begin_inset Flex Code
-status open
 
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-
-, but in the next iteration, it has to that it was carrying a 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-
- from the previous iteration.
 \end_layout
 
 \begin_layout Standard
@@ -197,13 +210,78 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-This package implements a Recurrent Neural Network which is trained to sum
- 8-bit binary numbers, teaching itself the complex task of carrying a 1
- over to the next iteration if the sum of a column takes two bits of space.
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+setup, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path='figure/latex-',
+\end_layout
+
+\begin_layout Plain Layout
+
+cache.path='cache/latex-',
+\end_layout
+
+\begin_layout Plain Layout
+
+fig.width=9,
+\end_layout
+
+\begin_layout Plain Layout
+
+fig.height=5)
+\end_layout
+
+\end_inset
+
+This package implements the first Recurrent Neural Network in the R language.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+only makes use of base R functions, very easy to understand process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+which is trained to sum two (or more) binary numbers, teaching itself the
+ complex task of carrying a 1 over to the next iteration if the sum of a
+ column takes two bits of space.
+\end_layout
+
+\begin_layout Plain Layout
 to convert numbers in range of 0-127 to binary representation.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -233,14 +311,23 @@ mention RNN work in python
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Of course, numbers < 128 can be represent in a 7-bit binary form, but since
  we are adding two numbers in the range 0-127, the total can reach and achieve
  128, which requires 8 bits, it cannot be more than 254, the limit of 8
  bit binary representation is 255, thereby preventing overflows.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-At this point it is useful to clarrify the nomenclature in this article.
+At this point it is useful to clarify the nomenclature in this article.
  I use the term RNN (capitalised) for the general concept of a Recurrent
  Neural Network and I use 
 \begin_inset Flex Code
@@ -252,50 +339,7 @@ rnn
 
 \end_inset
 
- (in miniscules and using a monospace font) to refer to the R package.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-setup, echo=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-opts_chunk$set(fig.path='latex-',
-\end_layout
-
-\begin_layout Plain Layout
-
-cache.path='cache/latex-',
-\end_layout
-
-\begin_layout Plain Layout
-
-fig.width=9,
-\end_layout
-
-\begin_layout Plain Layout
-
-fig.height=5)
-\end_layout
-
-\end_inset
-
-
+ (in minuscules and using a monospace font) to refer to the R package.
 \end_layout
 
 \begin_layout Standard
@@ -346,7 +390,7 @@ library
 
 \begin_layout Plain Layout
 
-# load the package
+# load library
 \end_layout
 
 \begin_layout Plain Layout
@@ -360,7 +404,7 @@ library(rnn)
 
 \begin_layout Plain Layout
 
-# list functions
+# list included functions
 \end_layout
 
 \begin_layout Plain Layout
@@ -438,42 +482,6 @@ trainr()
 status open
 
 \begin_layout Plain Layout
-sigmoid()
-\end_layout
-
-\end_inset
-
-: converts any number to a probability between 0 and 1;
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-sigmoid_output_to_derivative()
-\end_layout
-
-\end_inset
-
-: takes output of 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-sigmoid()
-\end_layout
-
-\end_inset
-
- and returns the point derivative of that output;
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
 trainr()
 \end_layout
 
@@ -526,10 +534,6 @@ bin2int()
  internally to change a single number from decimal to binary or visa versa.
 \end_layout
 
-\begin_layout Section
-Data
-\end_layout
-
 \begin_layout Standard
 The main 
 \begin_inset Flex Code
@@ -541,7 +545,7 @@ trainr()
 
 \end_inset
 
- function takes three integer vectors as inputs: 
+ function takes two arrays as inputs, the response variable 
 \begin_inset Flex Code
 status open
 
@@ -551,28 +555,164 @@ Y
 
 \end_inset
 
-, 
+ and the input variable 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-X1
+X
 \end_layout
 
 \end_inset
 
-, and 
+, it returns a model that can be used with by the 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-X2
+predictr()
+\end_layout
+
+\end_inset
+
+ function together with a testing data input array 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X
 \end_layout
 
 \end_inset
 
 .
- The vectors 
+\end_layout
+
+\begin_layout Standard
+Internally, the functions make use of one or more sigmoid functions.
+ In order to make the Sigmoid functions more generally available, these
+ were moved to a separate package 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+sigmoid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+sigmoid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# load library
+\end_layout
+
+\begin_layout Plain Layout
+
+library(sigmoid)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# list included functions
+\end_layout
+
+\begin_layout Plain Layout
+
+ls('package:sigmoid')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid()
+\end_layout
+
+\end_inset
+
+ function is a wrapper, that defaults to the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+logistic()
+\end_layout
+
+\end_inset
+
+ function, which maps the inputs to (0,1) using the logistic function, when
+ using the default parameters, this is the standard logistic function.
+\end_layout
+
+\begin_layout Section
+Data
+\end_layout
+
+\begin_layout Subsection
+Binary Addition
+\end_layout
+
+\begin_layout Standard
+The vectors 
 \begin_inset Flex Code
 status open
 
@@ -657,7 +797,7 @@ sample()
 \end_inset
 
  function.
- For reproducibility, we also set the seed value of the psuedo-random number
+ For reproducibility, we also set the seed value of the pseudo-random number
  generator that 
 \begin_inset Flex Code
 status open
@@ -735,7 +875,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Training Data
+Binary Numbers
 \end_layout
 
 \end_inset
@@ -753,7 +893,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-data
+binary_data, cache=TRUE
 \end_layout
 
 \end_inset
@@ -845,7 +985,7 @@ bin2int()
 
 \end_inset
 
- fucntion converts it back into decimal format for printing using the 
+ function converts it back into decimal format for printing using the 
 \begin_inset Flex Code
 status open
 
@@ -937,7 +1077,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-int2bin
+int2bin, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1001,7 +1141,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-decimal_rep
+decimal_rep, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1080,7 +1220,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-binary_rep, results='hold'
+binary_rep, results='hold', cache=TRUE
 \end_layout
 
 \end_inset
@@ -1175,8 +1315,12 @@ status open
 
 \end_inset
 
- - is almost outside of the range 0-127, which is why an 8th bit is required
- (i.e.
+ - is almost outside of the range 0-127, 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+which is why an 8th bit is required (i.e.
  the 8th value from right to left in the bottom row is 
 \begin_inset Flex Code
 status open
@@ -1187,7 +1331,12 @@ status open
 
 \end_inset
 
-).
+)
+\end_layout
+
+\end_inset
+
+.
  If we sampled numbers great than 127 for 
 \begin_inset Flex Code
 status open
@@ -1236,7 +1385,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-int2bin_all
+int2bin_all, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1267,6 +1416,207 @@ Y  <- int2bin(Y)
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Array Form
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+array form, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create 3d array: dim 1: samples; dim 2: time; dim 3: variables
+\end_layout
+
+\begin_layout Plain Layout
+
+X <- array( c(X1,X2), dim=c(dim(X1),2) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Foreign Exchange Prediction
+\end_layout
+
+\begin_layout Standard
+In this second example I train a RNN on more real-life data.
+ I use the exchange rates of four major international currencies against
+ the US Dollar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Foreign Exchange Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+quantmod, message=FALSE, warning=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(quantmod) # for downloading FX data
+\end_layout
+
+\begin_layout Plain Layout
+
+start = '1998-12-14'
+\end_layout
+
+\begin_layout Plain Layout
+
+end   = '2001-09-01'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# download values
+\end_layout
+
+\begin_layout Plain Layout
+
+# output is automatically returned to
+\end_layout
+
+\begin_layout Plain Layout
+
+# the global environment (.GlobalEnv)
+\end_layout
+
+\begin_layout Plain Layout
+
+getFX('CHF/USD', from = start, to = end)
+\end_layout
+
+\begin_layout Plain Layout
+
+getFX('GBP/USD', from = start, to = end)
+\end_layout
+
+\begin_layout Plain Layout
+
+getFX('JPY/USD', from = start, to = end)
+\end_layout
+
+\begin_layout Plain Layout
+
+getFX('EUR/USD', from = start, to = end)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Input data should be on the domain [0,1].
+ Exchange rates are well suited for this since either A/B or B/A has to
+ be in this domain.
+ However, it is of course possible that within the time period studied,
+ currency A, initially being worth less than currency B, becomes worth more.
+ This is exactly what happened with the EUR/USD exchange rate.
+ This means that neither EUR/USD nor USD/EUR is within the [0,1] domain
+ for the entire period.
+\end_layout
+
+\begin_layout Standard
+It is for this reason that sigmoid functions are used to map any real number
+ to the domain [0,1].
+ The most function for this is the logistic function.
+ At the end of the process, the outputs are mapped again to the original
+ domain, using the inverse of the sigmoid function, in the case of the logistic,
+ this is the logit function.
+\end_layout
+
+\begin_layout Standard
+By specifying the x0.
 \end_layout
 
 \begin_layout Section
@@ -1566,9 +1916,9 @@ status open
 
 \end_inset
 
- is carried over to colum 4.
+ is carried over to column 4.
  Since the summation is done bit by bit (or column by column), the neural
- network need to remember from the 3rd iteration until the 4th interation
+ network need to remember from the 3rd iteration until the 4th iteration
  that it is carrying a 1 over.
  It is this remembering that a feed-forward neural network cannot teach
  itself.
@@ -1624,7 +1974,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sigmoid Source Code
+Logistic Source Code
 \end_layout
 
 \end_inset
@@ -1642,7 +1992,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-print_sigmoid
+print_logistic
 \end_layout
 
 \end_inset
@@ -1652,12 +2002,26 @@ print_sigmoid
 
 \begin_layout Plain Layout
 
-# print source code of the sigmoid function
+# print arguments to the function
 \end_layout
 
 \begin_layout Plain Layout
 
-sigmoid
+args(logistic)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# print source code of the logistic function
+\end_layout
+
+\begin_layout Plain Layout
+
+logistic
 \end_layout
 
 \end_inset
@@ -1693,7 +2057,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sigmoid Examples
+Logistic Examples
 \end_layout
 
 \end_inset
@@ -1711,7 +2075,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-demonstrate_sigmoid, results='hold'
+demonstrate_logistic, results='hold'
 \end_layout
 
 \end_inset
@@ -1721,12 +2085,12 @@ demonstrate_sigmoid, results='hold'
 
 \begin_layout Plain Layout
 
-sigmoid(-137)
+logistic(-137)
 \end_layout
 
 \begin_layout Plain Layout
 
-sigmoid(5.3)
+logistic(5.3)
 \end_layout
 
 \end_inset
@@ -1762,7 +2126,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sigmoid Shape
+Logistic Shape
 \end_layout
 
 \end_inset
@@ -1780,7 +2144,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-sigmoid_shape
+logistic_shape, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1818,7 +2182,57 @@ x = seq(-10, 10)
 
 \begin_layout Plain Layout
 
-qplot(x = x, y = sigmoid(x), geom='line')
+qplot(x = x, y = logistic(x), geom='line')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Binary Addition
+\end_layout
+
+\begin_layout Subsection
+Foreign Exchange Prediction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Logistic Mapping FX
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+logistic_map_bin, cache=TRUE
 \end_layout
 
 \end_inset
@@ -1828,6 +2242,32 @@ qplot(x = x, y = sigmoid(x), geom='line')
 
 \begin_layout Plain Layout
 
+# logistic map, write to new objects
+\end_layout
+
+\begin_layout Plain Layout
+
+chfusd <- logistic(CHFUSD, k=sd(CHFUSD)^-1, x0=mean(CHFUSD) )
+\end_layout
+
+\begin_layout Plain Layout
+
+gbpusd <- logistic(GBPUSD, k=sd(GBPUSD)^-1, x0=mean(GBPUSD) )
+\end_layout
+
+\begin_layout Plain Layout
+
+jpyusd <- logistic(JPYUSD, k=sd(JPYUSD)^-1, x0=mean(JPYUSD) )
+\end_layout
+
+\begin_layout Plain Layout
+
+eurusd <- logistic(EURUSD, k=sd(EURUSD)^-1, x0=mean(EURUSD) )
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1836,6 +2276,10 @@ qplot(x = x, y = sigmoid(x), geom='line')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Additionally the 
 \begin_inset Flex Code
 status open
@@ -1859,16 +2303,12 @@ predictr()
  functions use the sigmoid_output_to_derivative() function.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float table
 placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1915,7 +2355,8 @@ sigmoid_output_to_derivative
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
@@ -1925,6 +2366,10 @@ sigmoid_output_to_derivative
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 As the purpose of the package is to illustrate the working of a Recurrent
  Neural Network, the 
 \begin_inset Flex Code
@@ -1949,16 +2394,12 @@ print
  argument).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float table
 placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1982,7 +2423,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-trainr_output_full, cache=TRUE, size='tiny', echo=FALSE
+trainr_output_full, size='tiny', echo=FALSE, cache=TRUE
 \end_layout
 
 \end_inset
@@ -2049,42 +2490,17 @@ m0 <- trainr(B,
 
 \begin_layout Plain Layout
 
-             A1,
+             A,
 \end_layout
 
 \begin_layout Plain Layout
 
-             A2,
+             hidden_dim =  3,
 \end_layout
 
 \begin_layout Plain Layout
 
-             binary_dim =  8,
-\end_layout
-
-\begin_layout Plain Layout
-
-             alpha      =  0.1,
-\end_layout
-
-\begin_layout Plain Layout
-
-             input_dim  =  2,
-\end_layout
-
-\begin_layout Plain Layout
-
-             hidden_dim = 10,
-\end_layout
-
-\begin_layout Plain Layout
-
-             output_dim =  1,
-\end_layout
-
-\begin_layout Plain Layout
-
-             print      = 'full'    )
+			 numepochs  = 10)
 \end_layout
 
 \end_inset
@@ -2092,7 +2508,8 @@ m0 <- trainr(B,
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
@@ -2113,7 +2530,18 @@ trainr()
 \end_inset
 
  function will run until it has evaluated all rows in the matrices that
- it is fed.
+ it is fed and repeat this according to the number of epochs specified in
+ the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+numepochs
+\end_layout
+
+\end_inset
+
+ argument.
  Since the training of the network, particularly the carrying part, takes
  many iterations to learn (the exact number of iterations varies but depends
  on the hyperparameters, more on this in the next section), it is therefore
@@ -2161,7 +2589,7 @@ Each iteration is printed individually, with the two input bits, the prediction
 \end_layout
 
 \begin_layout Standard
-After each iternation the difference betweeen the predicted value and the
+After each iteration the difference between the predicted value and the
  actual value is fed back into the neural network using a method called
  back-propagation (an application the chain rule of differential calculus).
 \end_layout
@@ -2188,7 +2616,7 @@ X2
 \end_inset
 
 , the results are printed in a more human legible form.
- It should be clear from the results that after 1000 numbers, which 8 iterations
+ It should be clear from the results that after 1000 numbers, with 8 iterations
  each, the model is still performing very poorly.
 \end_layout
 
@@ -2225,25 +2653,11 @@ status open
 status open
 
 \begin_layout Plain Layout
-trainr_output_minimal, cache=TRUE, size='tiny'
+trainr_output_minimal, cache=TRUE
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# use the same random numbers
-\end_layout
-
-\begin_layout Plain Layout
-
-set.seed(1)
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -2259,50 +2673,31 @@ m1 <- trainr(Y,
 
 \begin_layout Plain Layout
 
-             X1,
+             X,
 \end_layout
 
 \begin_layout Plain Layout
 
-             X2,
+             hidden_dim     =  5,
 \end_layout
 
 \begin_layout Plain Layout
 
-             binary_dim =  8,
+             numepochs      = 10,
 \end_layout
 
 \begin_layout Plain Layout
 
-             alpha      =  0.1,
+             learningrate   =  0.1,
 \end_layout
 
 \begin_layout Plain Layout
 
-             input_dim  =  2,
-\end_layout
-
-\begin_layout Plain Layout
-
-             hidden_dim = 10,
-\end_layout
-
-\begin_layout Plain Layout
-
-             output_dim =  1,
-\end_layout
-
-\begin_layout Plain Layout
-
-             print      = 'minimal')
+             start_from_end = TRUE)
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -2400,6 +2795,20 @@ C1 = int2bin( sample(0:127, 7000, replace=TRUE) )
 C2 = int2bin( sample(0:127, 7000, replace=TRUE) )
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# stack matrices in array
+\end_layout
+
+\begin_layout Plain Layout
+
+C <- array( c(C1,C2), dim=c(dim(C1),2) )
+\end_layout
+
 \end_inset
 
 
@@ -2477,37 +2886,7 @@ D  <- predictr(m1,
 
 \begin_layout Plain Layout
 
-               C1,
-\end_layout
-
-\begin_layout Plain Layout
-
-               C2,
-\end_layout
-
-\begin_layout Plain Layout
-
-               binary_dim =  8,
-\end_layout
-
-\begin_layout Plain Layout
-
-               alpha      =  0.1,
-\end_layout
-
-\begin_layout Plain Layout
-
-               input_dim  =  2,
-\end_layout
-
-\begin_layout Plain Layout
-
-               hidden_dim = 10,
-\end_layout
-
-\begin_layout Plain Layout
-
-               output_dim =  1   )
+               C  )
 \end_layout
 
 \end_inset
@@ -2536,7 +2915,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evalute Predictions
+Evaluate Predictions
 \end_layout
 
 \end_inset
@@ -2554,7 +2933,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-qplot
+qplot, cache=TRUE
 \end_layout
 
 \end_inset
@@ -2569,12 +2948,12 @@ qplot
 
 \begin_layout Plain Layout
 
-C1 <- bin2int(C1)
+C1 <- bin2int(C[,,1])
 \end_layout
 
 \begin_layout Plain Layout
 
-C2 <- bin2int(C2)
+C2 <- bin2int(C[,,2])
 \end_layout
 
 \begin_layout Plain Layout
@@ -2593,7 +2972,7 @@ D  <- bin2int(D)
 
 \begin_layout Plain Layout
 
-qplot( D-(C1+C2) )
+qplot( D - (C1+C2) )
 \end_layout
 
 \end_inset
@@ -2627,11 +3006,31 @@ Conclusion
 \begin_layout Standard
 CRAN and the rest of the R ecosystem show that there is a strong interest
  in using the R language for neural network analysis.
- Existing package such as the built in nnet package and the caret package
- make available very powerful neural network tools to R users.
- The RSNNS package acts as an R wrapper for the Stutgard Neural Network
- Simulator library, which is written in C, and thereby makes available to
- partial RNNs such as Elman and Jordan networks.
+ Existing package such as the built in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+nnet
+\end_layout
+
+\end_inset
+
+ package and the caret package make available very powerful neural network
+ tools to R users.
+ The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+RSNNS
+\end_layout
+
+\end_inset
+
+ package acts as an R wrapper for the Stuttgart Neural Network Simulator
+ library, which is written in C, and thereby makes available to partial
+ RNNs such as Elman and Jordan networks.
 \end_layout
 
 \begin_layout Standard
@@ -2640,7 +3039,7 @@ The enormous popularity of full Recurrent Neural Networks in other languages,
  using this methodology, including interest from Economist, Data Scientists,
  and other non-professional programmers.
  Although Python is a relatively accessible programming language for laymen,
- it has a smaller user base in terms of data analists.
+ it has a smaller user base in terms of data analysts.
  The 
 \begin_inset Flex Code
 status open

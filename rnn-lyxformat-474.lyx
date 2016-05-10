@@ -1,0 +1,2719 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{appendix}
+\usepackage[style=philosophy-modern,natbib=true,backend=biber]{biblatex}
+\addbibresource{/Users/quast/Thesis/bibliography.bib}
+\end_preamble
+\use_default_options true
+\begin_modules
+knitr
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+Provides natbib 1
+\end_local_layout
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_author "Bastiaan Quast"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+: a Recurrent Neural Network in R
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://cran.r-project.org/package=rnn | https://github.com/bquast/rnn
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Bastiaan Quast
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://qua.st | bastiaan.quast@graduateinstitute.ch | bquast@gmail.com
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+The rnn package implements a Recurrent Neural Network (RNN).
+ RNN algorithms have the ability to train neural networks to deal with greater
+ levels of complexity .
+ This package is purposely designed to demonstrate the self learning ability
+ using the classic example of binary summation on a bit-by-bit (right to
+ left) basis, which requires the model to develop the understanding that
+ if a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ and a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ are added, the outcome is 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+, but in the next iteration, it has to that it was carrying a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ from the previous iteration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+This package implements a Recurrent Neural Network which is trained to sum
+ 8-bit binary numbers, teaching itself the complex task of carrying a 1
+ over to the next iteration if the sum of a column takes two bits of space.
+\end_layout
+
+\begin_layout Standard
+to convert numbers in range of 0-127 to binary representation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+mention existing R packages, nnet, caret, and RSNNS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+mention RNN work in python
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Of course, numbers < 128 can be represent in a 7-bit binary form, but since
+ we are adding two numbers in the range 0-127, the total can reach and achieve
+ 128, which requires 8 bits, it cannot be more than 254, the limit of 8
+ bit binary representation is 255, thereby preventing overflows.
+\end_layout
+
+\begin_layout Standard
+At this point it is useful to clarrify the nomenclature in this article.
+ I use the term RNN (capitalised) for the general concept of a Recurrent
+ Neural Network and I use 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ (in miniscules and using a monospace font) to refer to the R package.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+setup, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path='latex-',
+\end_layout
+
+\begin_layout Plain Layout
+
+cache.path='cache/latex-',
+\end_layout
+
+\begin_layout Plain Layout
+
+fig.width=9,
+\end_layout
+
+\begin_layout Plain Layout
+
+fig.height=5)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ Package
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+library
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# load the package
+\end_layout
+
+\begin_layout Plain Layout
+
+library(rnn)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# list functions
+\end_layout
+
+\begin_layout Plain Layout
+
+ls('package:rnn')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As is listed above, the package contains the following functions:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+bin2int()
+\end_layout
+
+\end_inset
+
+: conversion of a matrix of numbers in binary representation to decimal
+ representation;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+int2bin()
+\end_layout
+
+\end_inset
+
+: conversion of a vector numbers in decimal representation to binary representat
+ion;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+: predicts response variable based on a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ model and input data;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid()
+\end_layout
+
+\end_inset
+
+: converts any number to a probability between 0 and 1;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid_output_to_derivative()
+\end_layout
+
+\end_inset
+
+: takes output of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid()
+\end_layout
+
+\end_inset
+
+ and returns the point derivative of that output;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+: primary function, trains a model based on training data and hyperparameters.
+\end_layout
+
+\begin_layout Standard
+In addition to these functions there are also two internal functions 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+i2b()
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+b2i()
+\end_layout
+
+\end_inset
+
+, these functions are used by 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+int2bin()
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+bin2int()
+\end_layout
+
+\end_inset
+
+ internally to change a single number from decimal to binary or visa versa.
+\end_layout
+
+\begin_layout Section
+Data
+\end_layout
+
+\begin_layout Standard
+The main 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function takes three integer vectors as inputs: 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+, and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+.
+ The vectors 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+ are independent variables, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+
+ vector is the sum of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+ and acts as the response variable (for more info see 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+help('trainr')
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Training data can be generated using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+base
+\end_layout
+
+\end_inset
+
+ package's 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sample()
+\end_layout
+
+\end_inset
+
+ function.
+ For reproducibility, we also set the seed value of the psuedo-random number
+ generator that 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+
+ uses internally to 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+.
+ After generating 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, I add the two pairwise and store the result in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+
+.
+ Finally, I convert both the input variables and the response variable to
+ binary representation using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+int2bin()
+\end_layout
+
+\end_inset
+
+ included with the package.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Training Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# use the same random numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create training inputs 
+\end_layout
+
+\begin_layout Plain Layout
+
+X1 = sample(0:127, 7000, replace=TRUE) 
+\end_layout
+
+\begin_layout Plain Layout
+
+X2 = sample(0:127, 7000, replace=TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create training output 
+\end_layout
+
+\begin_layout Plain Layout
+
+Y <- X1 + X2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Internally the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+int2bin()
+\end_layout
+
+\end_inset
+
+ function converts these characters into binary format using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+intToBits()
+\end_layout
+
+\end_inset
+
+ function, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+bin2int()
+\end_layout
+
+\end_inset
+
+ fucntion converts it back into decimal format for printing using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+packBits()
+\end_layout
+
+\end_inset
+
+ function, both functions are included in the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+base
+\end_layout
+
+\end_inset
+
+ package.
+\end_layout
+
+\begin_layout Standard
+We can for instance take the first value of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and convert it to a binary representation, whereby the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+binary_dim
+\end_layout
+
+\end_inset
+
+ argument to the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function determines the length of the binary representation, throughout
+ this paper we will use 8 bit representations (which limits numbers to the
+ range 0-255), but the theoretical limit is 32 bits.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+int2bin
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int2bin( X1[1] )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lets check look at the first sum in decimal representation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Decimal Summation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+decimal_rep
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+X1[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+X2[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+X1[1] + X2[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+Y[1]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and now in binary representation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Summation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+binary_rep, results='hold'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int2bin( X1[1] )
+\end_layout
+
+\begin_layout Plain Layout
+
+int2bin( X2[1] )
+\end_layout
+
+\begin_layout Plain Layout
+
+print('--------------------------------------')
+\end_layout
+
+\begin_layout Plain Layout
+
+int2bin( Y[1]  )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As can be seen from the above output, the first values of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+33
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+89
+\end_layout
+
+\end_inset
+
+ respectively, are both in the range 0-127, which can be represented with
+ only 7 bits.
+ Yet the sum of the two - 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+122
+\end_layout
+
+\end_inset
+
+ - is almost outside of the range 0-127, which is why an 8th bit is required
+ (i.e.
+ the 8th value from right to left in the bottom row is 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+).
+ If we sampled numbers great than 127 for 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+ then the sum of the two could be greater than 255, which requires a ninth
+ bit (or 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+length=9
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+We can now convert the entire vectors to binary matrices.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+int2bin_all
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# convert to binaries of 8 bit (default)
+\end_layout
+
+\begin_layout Plain Layout
+
+X1 <- int2bin(X1)
+\end_layout
+
+\begin_layout Plain Layout
+
+X2 <- int2bin(X2)
+\end_layout
+
+\begin_layout Plain Layout
+
+Y  <- int2bin(Y)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Methodology
+\end_layout
+
+\begin_layout Standard
+The workhorse of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ package is the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function.
+\end_layout
+
+\begin_layout Standard
+For example, if we add the binary numbers 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0 0 1
+\end_layout
+
+\end_inset
+
+ (decimal system: 1) and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 0 1
+\end_layout
+
+\end_inset
+
+ (decimal system: 5), we start by adding the right column, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ make 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 0
+\end_layout
+
+\end_inset
+
+ (similar to when 5 and 5 make 1 0 in the decimal system) , the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ is stored in the right column, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ is carried over to the middle column and added with the two existing bits
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+, to form 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+, which is stored in the middle column.
+ This time nothing is carried over and the left column sums 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ to make 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+, which gives the outcome 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 1 0
+\end_layout
+
+\end_inset
+
+ (decimal system: 6).
+\end_layout
+
+\begin_layout Standard
+If we go back to the output of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+int2bin()
+\end_layout
+
+\end_inset
+
+ function for 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+
+, we see that in the 4th column (from right to left), a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ and a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ are added, resulting in an output of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+.
+ This is because in the previous iteration 3rd column (from right to left)
+ a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ and a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ are added, which becomes 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1 0
+\end_layout
+
+\end_inset
+
+, so the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ goes into column 3 and the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ is carried over to colum 4.
+ Since the summation is done bit by bit (or column by column), the neural
+ network need to remember from the 3rd iteration until the 4th interation
+ that it is carrying a 1 over.
+ It is this remembering that a feed-forward neural network cannot teach
+ itself.
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+ functions internally make use of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sigmoid()
+\end_layout
+
+\end_inset
+
+ function, specifically the standard logistic function, which takes the
+ range (-Infinity, Infinity) and maps it to the range (0, 1).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Source Code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_sigmoid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# print source code of the sigmoid function
+\end_layout
+
+\begin_layout Plain Layout
+
+sigmoid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For instance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Examples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+demonstrate_sigmoid, results='hold'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sigmoid(-137)
+\end_layout
+
+\begin_layout Plain Layout
+
+sigmoid(5.3)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The rough shape of the sigmoid function is shown below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Shape
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+sigmoid_shape
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2) # load plotting package
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# sequence of -10 through 10
+\end_layout
+
+\begin_layout Plain Layout
+
+x = seq(-10, 10)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# plot sigmoid shape
+\end_layout
+
+\begin_layout Plain Layout
+
+qplot(x = x, y = sigmoid(x), geom='line')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Additionally the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+ functions use the sigmoid_output_to_derivative() function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sigmoid Derivative Source Code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_sigmoid_derivative
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# print source code of the sigmoid_output_to_derivate function
+\end_layout
+
+\begin_layout Plain Layout
+
+sigmoid_output_to_derivative
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the purpose of the package is to illustrate the working of a Recurrent
+ Neural Network, the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function is quite verbose (this can be controlled using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print
+\end_layout
+
+\end_inset
+
+ argument).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+trainr() Output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+trainr_output_full, cache=TRUE, size='tiny', echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# use the same random numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create training inputs
+\end_layout
+
+\begin_layout Plain Layout
+
+A1 = sample(0:127, 1000, replace=TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+A2 = sample(0:127, 1000, replace=TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create training output
+\end_layout
+
+\begin_layout Plain Layout
+
+B <- A1 + A2
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# train the network
+\end_layout
+
+\begin_layout Plain Layout
+
+m0 <- trainr(B,
+\end_layout
+
+\begin_layout Plain Layout
+
+             A1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             A2,
+\end_layout
+
+\begin_layout Plain Layout
+
+             binary_dim =  8,
+\end_layout
+
+\begin_layout Plain Layout
+
+             alpha      =  0.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             input_dim  =  2,
+\end_layout
+
+\begin_layout Plain Layout
+
+             hidden_dim = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+             output_dim =  1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             print      = 'full'    )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function will run until it has evaluated all rows in the matrices that
+ it is fed.
+ Since the training of the network, particularly the carrying part, takes
+ many iterations to learn (the exact number of iterations varies but depends
+ on the hyperparameters, more on this in the next section), it is therefore
+ advisable to sample several thousand values (I use 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+7000
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+The text printed here is of the 8 steps of the summation of the 1000th value
+ of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, or iteration 7993-8000.
+\end_layout
+
+\begin_layout Standard
+Each iteration is printed individually, with the two input bits, the prediction
+ for the response value and the actual response value.
+\end_layout
+
+\begin_layout Standard
+After each iternation the difference betweeen the predicted value and the
+ actual value is fed back into the neural network using a method called
+ back-propagation (an application the chain rule of differential calculus).
+\end_layout
+
+\begin_layout Standard
+At the end of the 8 iterations that it here takes to add two values of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X1
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+X2
+\end_layout
+
+\end_inset
+
+, the results are printed in a more human legible form.
+ It should be clear from the results that after 1000 numbers, which 8 iterations
+ each, the model is still performing very poorly.
+\end_layout
+
+\begin_layout Standard
+However, progress can be observed:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+trainr() Output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+trainr_output_minimal, cache=TRUE, size='tiny'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# use the same random numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# train the network
+\end_layout
+
+\begin_layout Plain Layout
+
+m1 <- trainr(Y,
+\end_layout
+
+\begin_layout Plain Layout
+
+             X1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             X2,
+\end_layout
+
+\begin_layout Plain Layout
+
+             binary_dim =  8,
+\end_layout
+
+\begin_layout Plain Layout
+
+             alpha      =  0.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             input_dim  =  2,
+\end_layout
+
+\begin_layout Plain Layout
+
+             hidden_dim = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+             output_dim =  1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             print      = 'minimal')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In fact, from the 6000th summation on, all the printed estimates are in
+ fact correct.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+The eventual purpose is to use the model generated by the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function as an input to the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+ function, in order to predict the values of new inputs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test Data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+test_data, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create test inputs
+\end_layout
+
+\begin_layout Plain Layout
+
+C1 = int2bin( sample(0:127, 7000, replace=TRUE) )
+\end_layout
+
+\begin_layout Plain Layout
+
+C2 = int2bin( sample(0:127, 7000, replace=TRUE) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now predict using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr() 
+\end_layout
+
+\end_inset
+
+function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+predictr()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+predictr, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# predict
+\end_layout
+
+\begin_layout Plain Layout
+
+D  <- predictr(m1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               C1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               C2,
+\end_layout
+
+\begin_layout Plain Layout
+
+               binary_dim =  8,
+\end_layout
+
+\begin_layout Plain Layout
+
+               alpha      =  0.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+               input_dim  =  2,
+\end_layout
+
+\begin_layout Plain Layout
+
+               hidden_dim = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+               output_dim =  1   )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now convert the predictions and the inputs back to decimals and plot
+ them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Evalute Predictions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+qplot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# convert back to decimal
+\end_layout
+
+\begin_layout Plain Layout
+
+C1 <- bin2int(C1)
+\end_layout
+
+\begin_layout Plain Layout
+
+C2 <- bin2int(C2)
+\end_layout
+
+\begin_layout Plain Layout
+
+D  <- bin2int(D)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# inspect the differences               
+\end_layout
+
+\begin_layout Plain Layout
+
+qplot( D-(C1+C2) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As can be seen from the results, the difference is almost always 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+CRAN and the rest of the R ecosystem show that there is a strong interest
+ in using the R language for neural network analysis.
+ Existing package such as the built in nnet package and the caret package
+ make available very powerful neural network tools to R users.
+ The RSNNS package acts as an R wrapper for the Stutgard Neural Network
+ Simulator library, which is written in C, and thereby makes available to
+ partial RNNs such as Elman and Jordan networks.
+\end_layout
+
+\begin_layout Standard
+The enormous popularity of full Recurrent Neural Networks in other languages,
+ primarily Python and C, show that there is a great amount of interest for
+ using this methodology, including interest from Economist, Data Scientists,
+ and other non-professional programmers.
+ Although Python is a relatively accessible programming language for laymen,
+ it has a smaller user base in terms of data analists.
+ The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+ package attempts to address this need by showing that Recurrent Neural
+ Networks can be made available and perhaps more importantly, made available
+ in native R, which allows user to delve into the code and understand the
+ method and developer a more thorough understanding of how to use it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Source code of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/Users/quast/rnn/R/trainr.R"
+lstparams "language=S,basicstyle={\\footnotesize},numbers=left,numberstyle={\\tiny},frame=single,breaklines=true,title={\\lstname}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Source code of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+predictr() 
+\end_layout
+
+\end_inset
+
+function
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/Users/quast/rnn/R/predictr.R"
+lstparams "language=S,basicstyle={\\footnotesize},numbers=left,numberstyle={\\tiny},frame=single,breaklines=true,title={\\lstname}"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
