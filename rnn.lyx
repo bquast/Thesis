@@ -130,13 +130,6 @@ http://qua.st | bastiaan.quast@graduateinstitute.ch | bquast@gmail.com
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
 \begin_layout Abstract
 The 
 \begin_inset Flex Code
@@ -193,13 +186,6 @@ explicitly moving outside of the realm of computer science, where it originated.
  
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
 \end_inset
 
 
@@ -707,6 +693,50 @@ logistic()
 Data
 \end_layout
 
+\begin_layout Standard
+As mentioned above, an explicit element of Recurrent Neural Networks in
+ the temporal aspect.
+ As a result, both the input and the output can have up to three dimensions:
+\end_layout
+
+\begin_layout Enumerate
+variables
+\end_layout
+
+\begin_layout Enumerate
+observations
+\end_layout
+
+\begin_layout Enumerate
+time periods
+\end_layout
+
+\begin_layout Standard
+As a result of this, the functions take inputs of the type 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+array
+\end_layout
+
+\end_inset
+
+, is a matrix is used as an input, the matrix is converted to an 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+array
+\end_layout
+
+\end_inset
+
+.
+ Conversely, if the output is a 2 dimensional, it will be simplified to
+ a matrix.
+\end_layout
+
 \begin_layout Subsection
 Binary Addition
 \end_layout
@@ -942,6 +972,20 @@ X2 = sample(0:127, 7000, replace=TRUE)
 \begin_layout Plain Layout
 
 Y <- X1 + X2
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create 3d array: dim 1: samples; dim 2: time; dim 3: variables
+\end_layout
+
+\begin_layout Plain Layout
+
+X <- array( c(X1,X2), dim=c(dim(X1),2) )
 \end_layout
 
 \end_inset
@@ -1418,72 +1462,6 @@ Y  <- int2bin(Y)
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Array Form
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-array form, cache=TRUE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# create 3d array: dim 1: samples; dim 2: time; dim 3: variables
-\end_layout
-
-\begin_layout Plain Layout
-
-X <- array( c(X1,X2), dim=c(dim(X1),2) )
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Foreign Exchange Prediction
 \end_layout
@@ -1523,7 +1501,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-quantmod, message=FALSE, warning=FALSE
+quantmod, message=FALSE, warning=FALSE, eval=FALSE
 \end_layout
 
 \end_inset
@@ -1590,6 +1568,34 @@ getFX('EUR/USD', from = start, to = end)
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+load_fx, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+load(file = '~/Downloads/FX.RData')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -1616,7 +1622,17 @@ It is for this reason that sigmoid functions are used to map any real number
 \end_layout
 
 \begin_layout Standard
-By specifying the x0.
+By specifying the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x0
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1924,6 +1940,151 @@ status open
  itself.
 \end_layout
 
+\begin_layout Subsection
+Binary Addition
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ function will run until it has evaluated all rows in the matrices that
+ it is fed and repeat this according to the number of epochs specified in
+ the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+numepochs
+\end_layout
+
+\end_inset
+
+ argument.
+ Since the training of the network, particularly the carrying part, takes
+ many iterations to learn (the exact number of iterations varies but depends
+ on the hyperparameters, more on this in the next section), it is therefore
+ advisable to sample several thousand values (I use 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+7000
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+After each iteration the difference between the predicted value and the
+ actual value is fed back into the neural network using a method called
+ back-propagation (an application the chain rule of differential calculus).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ Binary Addition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+trainr_output_minimal, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# train the network
+\end_layout
+
+\begin_layout Plain Layout
+
+m1 <- trainr(Y,
+\end_layout
+
+\begin_layout Plain Layout
+
+             X,
+\end_layout
+
+\begin_layout Plain Layout
+
+             hidden_dim     =  5,
+\end_layout
+
+\begin_layout Plain Layout
+
+             numepochs      = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+             learningrate   =  0.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+             start_from_end = TRUE)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Foreign Exchange Prediction
+\end_layout
+
 \begin_layout Standard
 The 
 \begin_inset Flex Code
@@ -1950,7 +2111,7 @@ predictr()
 status open
 
 \begin_layout Plain Layout
-sigmoid()
+logistic()
 \end_layout
 
 \end_inset
@@ -1965,10 +2126,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2029,10 +2186,6 @@ logistic
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -2048,10 +2201,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2098,10 +2247,6 @@ logistic(5.3)
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -2119,14 +2264,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Logistic Shape
+Standard Logistic Shape
 \end_layout
 
 \end_inset
@@ -2193,14 +2334,6 @@ qplot(x = x, y = logistic(x), geom='line')
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Binary Addition
-\end_layout
-
-\begin_layout Subsection
-Foreign Exchange Prediction
 \end_layout
 
 \begin_layout Standard
@@ -2277,7 +2410,7 @@ eurusd <- logistic(EURUSD, k=sd(EURUSD)^-1, x0=mean(EURUSD) )
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Additionally the 
@@ -2367,7 +2500,7 @@ sigmoid_output_to_derivative
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 As the purpose of the package is to illustrate the working of a Recurrent
@@ -2518,199 +2651,6 @@ m0 <- trainr(B,
 
 \end_layout
 
-\begin_layout Standard
-The 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-trainr()
-\end_layout
-
-\end_inset
-
- function will run until it has evaluated all rows in the matrices that
- it is fed and repeat this according to the number of epochs specified in
- the 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-numepochs
-\end_layout
-
-\end_inset
-
- argument.
- Since the training of the network, particularly the carrying part, takes
- many iterations to learn (the exact number of iterations varies but depends
- on the hyperparameters, more on this in the next section), it is therefore
- advisable to sample several thousand values (I use 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-7000
-\end_layout
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-The text printed here is of the 8 steps of the summation of the 1000th value
- of 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-X1
-\end_layout
-
-\end_inset
-
- and 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-X2
-\end_layout
-
-\end_inset
-
-, or iteration 7993-8000.
-\end_layout
-
-\begin_layout Standard
-Each iteration is printed individually, with the two input bits, the prediction
- for the response value and the actual response value.
-\end_layout
-
-\begin_layout Standard
-After each iteration the difference between the predicted value and the
- actual value is fed back into the neural network using a method called
- back-propagation (an application the chain rule of differential calculus).
-\end_layout
-
-\begin_layout Standard
-At the end of the 8 iterations that it here takes to add two values of 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-X1
-\end_layout
-
-\end_inset
-
- and 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-X2
-\end_layout
-
-\end_inset
-
-, the results are printed in a more human legible form.
- It should be clear from the results that after 1000 numbers, with 8 iterations
- each, the model is still performing very poorly.
-\end_layout
-
-\begin_layout Standard
-However, progress can be observed:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-trainr() Output
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-trainr_output_minimal, cache=TRUE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# train the network
-\end_layout
-
-\begin_layout Plain Layout
-
-m1 <- trainr(Y,
-\end_layout
-
-\begin_layout Plain Layout
-
-             X,
-\end_layout
-
-\begin_layout Plain Layout
-
-             hidden_dim     =  5,
-\end_layout
-
-\begin_layout Plain Layout
-
-             numepochs      = 10,
-\end_layout
-
-\begin_layout Plain Layout
-
-             learningrate   =  0.1,
-\end_layout
-
-\begin_layout Plain Layout
-
-             start_from_end = TRUE)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In fact, from the 6000th summation on, all the printed estimates are in
- fact correct.
-\end_layout
-
 \begin_layout Section
 Results
 \end_layout
@@ -2739,6 +2679,10 @@ predictr()
  function, in order to predict the values of new inputs.
 \end_layout
 
+\begin_layout Subsection
+Binary Addition Sums
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float table
 placement H
@@ -2754,7 +2698,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Test Data
+Binary Addition Test Data
 \end_layout
 
 \end_inset
@@ -2787,12 +2731,12 @@ test_data, cache=TRUE
 
 \begin_layout Plain Layout
 
-C1 = int2bin( sample(0:127, 7000, replace=TRUE) )
+C1 <- int2bin( sample(0:127, 7000, replace=TRUE) )
 \end_layout
 
 \begin_layout Plain Layout
 
-C2 = int2bin( sample(0:127, 7000, replace=TRUE) )
+C2 <- int2bin( sample(0:127, 7000, replace=TRUE) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -2848,7 +2792,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 predictr()
+\end_layout
+
+\end_inset
+
+ Binary Addition
 \end_layout
 
 \end_inset
@@ -2881,12 +2834,7 @@ predictr, cache=TRUE
 
 \begin_layout Plain Layout
 
-D  <- predictr(m1,
-\end_layout
-
-\begin_layout Plain Layout
-
-               C  )
+D  <- predictr(model = m1, X = C )
 \end_layout
 
 \end_inset
@@ -2915,7 +2863,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evaluate Predictions
+Binary Addition Sums
 \end_layout
 
 \end_inset
@@ -2933,7 +2881,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-qplot, cache=TRUE
+qplot, cache=TRUE, message=FALSE
 \end_layout
 
 \end_inset
@@ -2997,6 +2945,69 @@ status open
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Subsection
+Foreign Exchange Rate Predictions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Foreign Exchange Rate Predictions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+fx_predictions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
