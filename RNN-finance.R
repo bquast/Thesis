@@ -43,14 +43,14 @@ fjpyusd <- logistic(fJPYUSD, k=sd(fJPYUSD)^-1, x0=mean(fJPYUSD) )
 feurusd <- logistic(fEURUSD, k=sd(fEURUSD)^-1, x0=mean(fEURUSD) )
 
 ## inspect data
-summary( chfusd)
-summary( gbpusd)
-summary( jpyusd)
-summary( eurusd)
-summary(fchfusd)
-summary(fgbpusd)
-summary(fjpyusd)
-summary(feurusd)
+hist( chfusd)
+hist( gbpusd)
+hist( jpyusd)
+hist( eurusd)
+hist(fchfusd)
+hist(fgbpusd)
+hist(fjpyusd)
+hist(feurusd)
 
 # put in matrix form
 mchfusd <- matrix(chfusd, nrow = 1)
@@ -72,14 +72,14 @@ model <- trainr(X = X,
                 Y = y,
                 learningrate = 0.01,
                 numepochs = 500,
-                hidden_dim = c(10,10) )
+                hidden_dim = c(10,10,10) )
 
 # train binary model
 modelB <- trainr(X = X,
                 Y = yB,
                 learningrate = 0.01,
                 numepochs = 500,
-                hidden_dim = c(10,10) )
+                hidden_dim = c(10,10,10) )
 
 # prediction
 as.vector(predictr(model, X))
