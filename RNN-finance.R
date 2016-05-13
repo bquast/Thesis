@@ -62,17 +62,30 @@ meurusd <- matrix(eurusd, nrow = 1)
 X <- array(c(meurusd, mchfusd, mgbpusd, mjpyusd), dim=c(1,993,4))
 
 # response variable in matrix form
-y <- matrix(feurusd, ncol=993)
+y  <- matrix(feurusd, ncol=993)
+
+# binary response variable in matrix form
+yB <- matrix(ifelse(feurusd < 0.5, 0, 1), ncol=993)
 
 # train model
 model <- trainr(X = X,
                 Y = y,
                 learningrate = 0.01,
                 numepochs = 500,
-                hidden_dim = 10)
+                hidden_dim = c(10,10) )
+
+# train binary model
+modelB <- trainr(X = X,
+                Y = yB,
+                learningrate = 0.01,
+                numepochs = 500,
+                hidden_dim = c(10,10) )
 
 # prediction
 as.vector(predictr(model, X))
 
 # plot prediction
 hist(as.vector(predictr(model,X))-y)
+
+# prediction Binary model
+as.vector(round(predictr(modelB,X))-yB)
