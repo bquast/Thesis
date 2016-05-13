@@ -592,6 +592,7 @@ sigmoid
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -974,20 +975,6 @@ X2 = sample(0:127, 7000, replace=TRUE)
 Y <- X1 + X2
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# create 3d array: dim 1: samples; dim 2: time; dim 3: variables
-\end_layout
-
-\begin_layout Plain Layout
-
-X <- array( c(X1,X2), dim=c(dim(X1),2) )
-\end_layout
-
 \end_inset
 
 
@@ -1274,12 +1261,12 @@ binary_rep, results='hold', cache=TRUE
 
 \begin_layout Plain Layout
 
-int2bin( X1[1] )
+as.vector( int2bin( X1[1] ) )
 \end_layout
 
 \begin_layout Plain Layout
 
-int2bin( X2[1] )
+as.vector( int2bin( X2[1] ) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -1289,7 +1276,7 @@ print('--------------------------------------')
 
 \begin_layout Plain Layout
 
-int2bin( Y[1]  )
+as.vector( int2bin( Y[1]  ) )
 \end_layout
 
 \end_inset
@@ -1457,6 +1444,20 @@ X2 <- int2bin(X2)
 Y  <- int2bin(Y)
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# create 3d array: dim 1: samples; dim 2: time; dim 3: variables
+\end_layout
+
+\begin_layout Plain Layout
+
+X <- array( c(X1,X2), dim=c(dim(X1),2) )
+\end_layout
+
 \end_inset
 
 
@@ -1588,7 +1589,7 @@ load_fx, echo=FALSE
 
 \begin_layout Plain Layout
 
-load(file = '~/Downloads/FX.RData')
+load(file = '~/Thesis/FX.RData')
 \end_layout
 
 \end_inset
@@ -1992,6 +1993,75 @@ After each iteration the difference between the predicted value and the
 
 \begin_layout Standard
 \begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+trainr()
+\end_layout
+
+\end_inset
+
+ arguments
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+trainr_args
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+args(trainr)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
 placement H
 wide false
 sideways false
@@ -2154,20 +2224,6 @@ print_logistic
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# print arguments to the function
-\end_layout
-
-\begin_layout Plain Layout
-
-args(logistic)
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -2676,7 +2732,7 @@ predictr()
 
 \end_inset
 
- function, in order to predict the values of new inputs.
+ function, in order to predict the values for new inputs.
 \end_layout
 
 \begin_layout Subsection
@@ -2689,10 +2745,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2755,10 +2807,6 @@ C <- array( c(C1,C2), dim=c(dim(C1),2) )
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -2920,7 +2968,7 @@ D  <- bin2int(D)
 
 \begin_layout Plain Layout
 
-qplot( D - (C1+C2) )
+table( D - (C1+C2) )
 \end_layout
 
 \end_inset
@@ -3040,8 +3088,8 @@ RSNNS
 \end_inset
 
  package acts as an R wrapper for the Stuttgart Neural Network Simulator
- library, which is written in C, and thereby makes available to partial
- RNNs such as Elman and Jordan networks.
+ library, which is written in C, and thereby makes available to Simple Recurrent
+ Neural Networks such as Elman and Jordan networks.
 \end_layout
 
 \begin_layout Standard

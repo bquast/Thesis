@@ -160,3 +160,4 @@ pythontex-files-*/
 TSWLatexianTemp*
 
 *.lyx~
+cache/
