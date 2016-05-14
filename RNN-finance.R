@@ -78,7 +78,7 @@ model <- trainr(X = X,
 modelB <- trainr(X = X,
                 Y = yB,
                 learningrate = 0.01,
-                numepochs = 500,
+                numepochs = 100,
                 hidden_dim = c(10,10,10) )
 
 # prediction
@@ -88,4 +88,4 @@ as.vector(predictr(model, X))
 hist(as.vector(predictr(model,X))-y)
 
 # prediction Binary model
-as.vector(round(predictr(modelB,X))-yB)
+table(as.vector(round(predictr(modelB,X))-yB))
