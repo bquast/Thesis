@@ -17,7 +17,7 @@ knitr
 logicalmkup
 \end_modules
 \maintain_unincluded_children false
-\language english
+\language british
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -32,12 +32,12 @@ logicalmkup
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \graphics default
-\default_output_format default
+\default_output_format pdf5
 \output_sync 0
 \bibtex_command biber
 \index_command default
 \paperfontsize default
-\spacing single
+\spacing onehalf
 \use_hyperref true
 \pdf_title "Three Contributions in Development Economics"
 \pdf_author "Bastiaan Quast"
@@ -62,8 +62,8 @@ logicalmkup
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
-\cite_engine_type default
+\cite_engine natbib
+\cite_engine_type authoryear
 \biblio_style plain
 \use_bibtopic false
 \use_indices false
@@ -312,7 +312,233 @@ There are a number of way in which research can be made reproducible, many
 \end_layout
 
 \begin_layout Standard
-First and moremost it is essential to make clear which data is being used
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Making the `Next Billion' Demand Access
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDemandAccess.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Male/Female Income and Child Growth
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/MaleFemale-Income-Child-Growth/man/MaleFemaleIncomeChildGrowth.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decompr
+\end_layout
+
+\end_inset
+
+: Global Value Chain decomposition in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "decompr.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Global Value Chains in LICs
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/quast/OECD-TiVA-LMIC-GVCs/GVC-LMICs.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rnn
+\end_layout
+
+\end_inset
+
+: Recurrent Neural Networks in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "rnn.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Final Remarks
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Final Remarks}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO:
+\end_layout
+
+\begin_layout Itemize
+Gratitude to Arcand, Baldwin, Ugo, other Lore, Martina other profs, other
+ PhD Development Economics and PhD Economics, Oliver Jutersonke, Michael
+ Kende.
+\end_layout
+
+\begin_layout Itemize
+Gratitude to SNF for funding
+\end_layout
+
+\begin_layout Itemize
+Future analysis more complicated with machine learning, greater requirement
+ for reproducibility.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\start_of_appendix
+Reproducibe Research
+\end_layout
+
+\begin_layout Standard
+Here I briefly discuss the combination of existing and new methods and tools
+ that I used to try and make the research in this thesis as reproducible
+ as possible.
+\end_layout
+
+\begin_layout Standard
+First and moremost, it is essential to make clear which data is being used
  and in case it is primary data, how it was produced (e.g.
  research instruments).
  Where possible, the data itself should be included.
@@ -458,7 +684,7 @@ Data from the RStudio servers only, other CRAN mirrors to not release statistics
  This makes code useful for replicable research, since the original procedures,
  which may have contained hardcoded procedures (e.g.
  doing a loop 34 times, one for each country) now have to generalised and
- transformed into a function, since R package can only contain functions.
+ transformed into a function, since R packages can only contain functions.
  As a result of this, the code which we developed for the analysis of the
  TiVa 
 \begin_inset Note Note
@@ -657,7 +883,7 @@ data(swiss)
 
 \begin_layout Plain Layout
 
-summary(swiss)
+str(swiss)
 \end_layout
 
 \end_inset
@@ -842,210 +1068,6 @@ swiss %>%
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Making the `Next Billion' Demand Access
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDemandAccess.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-decompr
-\end_layout
-
-\end_inset
-
-: Global Value Chain decomposition in 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-R
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "decompr.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Global Value Chains in LICs
-\end_layout
-
-\begin_layout Standard
-Nothing here het.
-\end_layout
-
-\begin_layout Chapter
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-rnn
-\end_layout
-
-\end_inset
-
-: Recurrent Neural Networks in 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-R
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "rnn.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Male/Female Income and Child Growth
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/quast/MaleFemale-Income-Child-Growth/man/MaleFemaleIncomeChildGrowth.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter*
-Final Remarks
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addcontentsline{toc}{chapter}{Final Remarks}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO:
-\end_layout
-
-\begin_layout Itemize
-Gratitude to Arcand, Baldwin, Ugo, other Lore, Martina other profs, other
- PhD Development Economics and PhD Economics, Oliver Jutersonke, Michael
- Kende.
-\end_layout
-
-\begin_layout Itemize
-Gratitude to SNF for funding
-\end_layout
-
-\begin_layout Itemize
-Future analysis more complicated with machine learning, greater requirement
- for reproducibility.
 \end_layout
 
 \end_inset

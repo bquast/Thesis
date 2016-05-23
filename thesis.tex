@@ -1,0 +1,377 @@
+\batchmode
+\makeatletter
+\def\input@path{{/Users/quast/Thesis/}}
+\makeatother
+\documentclass[a4paper,oneside,british]{book}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{luainputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[authoryear]{natbib}
+\onehalfspacing
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{pdftitle={Three Contributions in Development Economics},
+ pdfauthor={Bastiaan Quast}}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newcommand{\code}[1]{\texttt{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[style=philosophy-modern,backend=biber]{biblatex}
+
+\addbibresource{/Users/quast/Making-Next-Billion-Demand-Access/man/bibliography.bib}
+\addbibresource{/Users/quast/MaleFemale-Income-Child-Growth/man/bibliography.bib}
+
+\makeatother
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\title{Reproducible Contributions in Development Economics}
+
+\author{Bastiaan Quast}
+
+\date{16 June 2016}
+
+\maketitle
+\tableofcontents{}
+
+
+\chapter*{Introduction}
+
+\addcontentsline{toc}{chapter}{Introduction}
+
+
+
+As mentioned in the title, methodologically I focus on making the
+research in this thesis reproducible. Reproducibility is different
+from replicability in that is refers to regenerating the research
+results based on the same data, as opposed to replicablity, which
+uses newly gathered data. 
+
+A large part this methodology comes from the field of biostatistics
+and it is best explained by one of the key figures in this field.
+\begin{quotation}
+The replication of scientific findings using independent investigators,
+methods, data, equipment, and protocols has long been, and will continue
+to be, the standard by which scientific claims are evaluated. However,
+in many fields of study there are examples of scientific investigations
+that cannot be fully replicated because of a lack of time or resources.
+In such a situation, there is a need for a minimum standard that can
+fill the void between full replication and nothing. One candidate
+for this minimum standard is \textquotedblleft reproducible research\textquotedblright ,
+which requires that data sets and computer code be made available
+to others for verifying published results and conducting alternative
+analyses.
+\end{quotation}
+I believe that this applies to at least the same extend an probably
+more in economics. Although there are situations in which replicable
+research may be conducted, specifically in experimental settings such
+as those often used in behavioural economicss or in field research
+using Randomised Control Trials (RCTs), there are also many cases
+in which this is not possible.
+
+In this thesis I include two chapters where the identification strategy
+is based on a natural experiment. Firslty, a change in government
+policy, as a results of the unconstitutional nature of the sex-based
+discrimination in pension eligibility in South Africa. Secondly, the
+introduction of an interface language on the South African Google
+Search website, as a spillover of that translation work being done
+for Botswana. In both cases I use the National Income Dynamics Study,
+the most comprehensive panel data set o
+
+n South Africa. Since it will be hard to find more relevant data,
+a full replication - using new data - will prove difficult. As such,
+it is all the more important for research to be as transparent as
+possible, making it at least as reproducible as can be.
+
+There are a number of way in which research can be made reproducible,
+many of which are already becoming increasingly common. In addition
+to this, there are several methods which are less widespread, but
+nevertheless very useful.
+
+\newpage{}
+
+\chapter{Making the `Next Billion' Demand Access}
+
+\newpage{}
+
+\chapter{Male/Female Income and Child Growth}
+
+
+\chapter{\protect\code{decompr}: Global Value Chain decomposition in \protect\code{R}}
+
+
+\chapter{Global Value Chains in LICs}
+
+
+\chapter{\protect\code{rnn}: Recurrent Neural Networks in \protect\code{R}}
+
+
+\chapter*{Final Remarks}
+
+\addcontentsline{toc}{chapter}{Final Remarks}
+
+
+\appendix
+
+\chapter{Reproducibe Research}
+
+Here I briefly discuss the combination of existing and new methods
+and tools that I used to try and make the research in this thesis
+as reproducible as possible.
+
+First and moremost, it is essential to make clear which data is being
+used and in case it is primary data, how it was produced (e.g. research
+instruments). Where possible, the data itself should be included.
+If this is impossible to due e.g. privacy concerns of licencing issues,
+a clear procedure for obtaining the data should be documented. The
+data used in both South African studies is available upon request
+through an online portal. In the publicly available Git project (more
+details below), I include a description how to obtain the data used
+through the South African Labour \& Development Research Unit .
+
+Secondly, the computer code for producing the research results should
+be made available, in case this code produces intermediate data sets,
+where possible also make available.
+
+Comment the code, use e.g. markdown type conventions, \# for section,
+use \#\# for subsection. Add a header to the file containing (commented
+out):
+\begin{enumerate}
+\item file name
+\item file purpose
+\item author name
+\item author email
+\end{enumerate}
+In addition to describing the file purpose, the file name itself should
+also be meaningful. Typically the code in a file performs a certain
+action, as a rule, it can therefore best be described using a transitive
+verb, for instance. \code{import.R} the resulting output (here the
+imported data) can then be saved using an intransitive verb as a file
+name, e.g. \code{imported.RData}.
+
+Development versioning using Git, also useful for registering research
+designs (since logged), retracing steps. In addition to this, changes
+in all of the project files are logged using a version control software
+package. I use the open-source version control software called Git.
+Projects using version control such as this are called repositories.
+These repositories are published on the internet on websites such
+as GitHub or BitBucket.
+
+Good reasons to use open-source R. Using open-source software in order
+to make the computational procedures of the statistical method verifiable.
+In my case this means that all statistical analysis has been done
+using the statistical programming environment R. 
+
+Additionally, when implementing new algorithms, packaging these as
+R libraries (extensions) and releasing under an open-source licence
+such as General Public Licence version 3 or later on the Comprensive
+R Archive Network (CRAN) website is a step towards replicablity. For
+instance, I packages the procedures implementing the Wang-Wei-Zhu
+algorithm used for the analysis as the \code{decompr} package. I
+uploaded this package to CRAN\footnote{Available at: https://cran.r-project.org/web/packages/decompr/index.html}
+and it has since been downloaded over 6,000 times\footnote{Data from the RStudio servers only, other CRAN mirrors to not release
+statistics so the actual number is presumably higher. Note that this
+does not correspond directly to users, since updates require a new
+download.}. This makes code useful for replicable research, since the original
+procedures, which may have contained hardcoded procedures (e.g. doing
+a loop 34 times, one for each country) now have to generalised and
+transformed into a function, since R packages can only contain functions.
+As a result of this, the code which we developed for the analysis
+of the TiVa  data set, is now also being applied by other used to
+the wiod data set.
+
+Adding weaving code . This also ties into \code{packrat}, since
+it makes clear which version of which libraries are used for the analysis.
+
+\begin{table}[H]
+\caption{R \protect\code{sessionInfo()}}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{sessionInfo}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## R version 3.3.0 (2016-05-03)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: OS X 10.11.5 (El Capitan)
+## 
+## locale:
+## [1] C
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+## [1] dplyr_0.4.3 knitr_1.13 
+## 
+## loaded via a namespace (and not attached):
+##  [1] R6_2.1.2       assertthat_0.1 magrittr_1.5   formatR_1.4   
+##  [5] parallel_3.3.0 DBI_0.4-1      tools_3.3.0    Rcpp_0.12.5   
+##  [9] stringi_1.0-1  methods_3.3.0  stringr_1.0.0  evaluate_0.9
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{table}
+
+Piping functions to make to more intuitive. As will most lines will
+have a structure beginning with the object to which the output is
+assigned followed by the assignment operator, followed by the function,
+followed by the input data, followed by the argument. After which
+the following line again will begin with the output object, etc. We
+can see this for instance, if we use the built-in data set `swiss`,
+which examines fertility levels in the French speaking regions of
+Switzerland in 1888. In this example I reproduce a simplified version
+of an original study this data, looking at the difference in fertiliity
+levels between predominantly Catholic and predominantly protestant
+agricultural regions.
+
+\begin{table}[H]
+\caption{swiss}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# load data}
+\hlkwd{data}\hlstd{(swiss)}
+
+\hlcom{# inspect data}
+\hlkwd{str}\hlstd{(swiss)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{table}
+
+The typical workflow is demonstrated below. We first define an \emph{output}
+object for the filtered Agricultural regions, then the assignment
+operator, followed by the function, followed by the \emph{input} data,
+followed by the argument. The second line then starts with a \emph{new
+}intermediate object, etc. The final line starts with the function,
+then in last intermediate object, then the argument.
+
+\begin{table}[H]
+\caption{R without pipe}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{swiss_agr}     \hlkwb{<-} \hlkwd{filter}\hlstd{(swiss, Agriculture} \hlopt{>} \hlnum{50}\hlstd{)}
+\hlstd{swiss_agr_grp} \hlkwb{<-} \hlkwd{group_by}\hlstd{(swiss_agr, Catholic} \hlopt{>} \hlnum{50}\hlstd{)}
+\hlkwd{summarise}\hlstd{(swiss_agr_grp,} \hlkwd{mean}\hlstd{(Fertility,} \hlkwc{na.rm}\hlstd{=}\hlnum{TRUE}\hlstd{) )}
+\end{alltt}
+\begin{verbatim}
+## Source: local data frame [2 x 2]
+## 
+##   Catholic > 50 mean(Fertility, na.rm = TRUE)
+##           (lgl)                         (dbl)
+## 1         FALSE                      65.62143
+## 2          TRUE                      79.51667
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{table}
+
+In this example I now use the \code{magrittr} package, which has
+the following pipe operator \code{\%>\%}. The first thing is the
+input data, followed by the transforming function, followed by the
+argument (criterium), this is passed to the next line where the second
+transforming function is the first item, follow by its respective
+argument, this is passed on to last line, where the data is summarised,
+in this case by computing the mean.
+
+\begin{table}[H]
+\caption{R with pipe}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{swiss} \hlopt{%>%}
+        \hlkwd{filter}\hlstd{(Agriculture} \hlopt{>} \hlnum{50}\hlstd{)} \hlopt{%>%}
+        \hlkwd{group_by}\hlstd{(Catholic} \hlopt{>} \hlnum{50}\hlstd{)} \hlopt{%>%}
+        \hlkwd{summarise}\hlstd{(} \hlkwd{mean}\hlstd{(Fertility,} \hlkwc{na.rm}\hlstd{=}\hlnum{TRUE}\hlstd{) )}
+\end{alltt}
+\begin{verbatim}
+## Source: local data frame [2 x 2]
+## 
+##   Catholic > 50 mean(Fertility, na.rm = TRUE)
+##           (lgl)                         (dbl)
+## 1         FALSE                      65.62143
+## 2          TRUE                      79.51667
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{table}
+
+\end{document}
