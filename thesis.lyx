@@ -200,23 +200,6 @@ reproducibility vs.
  Simply Statistics
 \end_layout
 
-\begin_layout Itemize
-R open-source, example of data splitting nuclear deterence
-\end_layout
-
-\begin_layout Itemize
-save all steps in R files
-\end_layout
-
-\begin_layout Itemize
-log R files using version control, git
-\end_layout
-
-\begin_layout Itemize
-generalise methods and publish as packages: decompr and gvc, rnn, diagonals,
- rddtools,
-\end_layout
-
 \end_inset
 
 
@@ -293,11 +276,7 @@ In this thesis I include two chapters where the identification strategy
  Google Search website, as a spillover of that translation work being done
  for Botswana.
  In both cases I use the National Income Dynamics Study, the most comprehensive
- panel data set o
-\end_layout
-
-\begin_layout Standard
-n South Africa.
+ panel data set on South Africa.
  Since it will be hard to find more relevant data, a full replication -
  using new data - will prove difficult.
  As such, it is all the more important for research to be as transparent
@@ -308,7 +287,14 @@ n South Africa.
 There are a number of way in which research can be made reproducible, many
  of which are already becoming increasingly common.
  In addition to this, there are several methods which are less widespread,
- but nevertheless very useful.
+ but nevertheless very useful, I discuss these in detail in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:reproducible"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -528,7 +514,17 @@ Future analysis more complicated with machine learning, greater requirement
 
 \begin_layout Chapter
 \start_of_appendix
-Reproducibe Research
+Reproducibe Research Methods
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:reproducible"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

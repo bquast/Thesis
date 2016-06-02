@@ -1,9 +1,7 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
-\save_transient_properties true
-\origin unavailable
 \textclass article
 \begin_preamble
 \usepackage{rotating}
@@ -38,16 +36,16 @@ Provides natbib 1
 \language_package none
 \inputencoding utf8
 \fontencoding T1
-\font_roman "lmodern" "default"
-\font_sans "default" "default"
-\font_typewriter "lmodern" "default"
-\font_math "auto" "auto"
+\font_roman lmodern
+\font_sans default
+\font_typewriter lmodern
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100 100
-\font_tt_scale 100 100
+\font_sf_scale 100
+\font_tt_scale 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -118,11 +116,43 @@ decompr
 
 \end_inset
 
-:Global Value Chain decomposition in R
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+gvc
+\end_layout
+
+\end_inset
+
+:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Global Value Chain decomposition and analysis in R
 \end_layout
 
 \begin_layout Author
 Bastiaan Quast and Victor Kummritz
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -160,6 +190,10 @@ key "wale36"
  format of the input and output data, and exemplifies the usefulness of
  the two methods on the basis of a simple example data set.
  
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -270,7 +304,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-library, message=FALSE
+library
 \end_layout
 
 \end_inset
@@ -603,7 +637,7 @@ Example Input-Output Table: Leather
 \begin_layout Plain Layout
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="15">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -3126,7 +3160,7 @@ name "tab:noleon"
  
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="10">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="right" valignment="top">
 <column alignment="right" valignment="top">
@@ -4527,7 +4561,7 @@ name "tab:leon"
  
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="10">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="right" valignment="top">
 <column alignment="right" valignment="top">
@@ -6057,10 +6091,6 @@ Domestic value added absorbed abroad (
 VAX_G
 \shape default
 , T1-5) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6074,10 +6104,6 @@ DVA_FIN
 
 \begin_layout Itemize
 Domestic value added in intermediate exports 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6097,10 +6123,6 @@ Domestic value added in intermediate exports re-exported to third countries
 DVA_INTrex
 \shape default
 , T3-5) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6140,10 +6162,6 @@ Domestic value added returning home (
 RDV_B
 \shape default
 , T6-8) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6179,10 +6197,6 @@ Foreign value added (
 FVA
 \shape default
 , T11-12/14-15 ) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6192,10 +6206,6 @@ Foreign value added in final good exports (
 FVA_FIN
 \shape default
 , T11/14) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6222,10 +6232,6 @@ Foreign value added in intermediate good exports (
 FVA_INT
 \shape default
 , T12/15) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6254,10 +6260,6 @@ Pure double counting (
 PDC
 \shape default
 , T9-10/13/16) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6267,10 +6269,6 @@ Pure double counting from domestic source (
 DDC
 \shape default
 , T9-10) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6297,10 +6295,6 @@ Pure double counting from foreign source (
 FDC
 \shape default
 , T13/16) 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6549,7 +6543,7 @@ name "tab:wwz"
  
 \begin_inset Tabular
 <lyxtabular version="3" rows="37" columns="16">
-<features booktabs="true" tabularvalignment="middle">
+<features rotate="0" booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="right" valignment="top">
 <column alignment="right" valignment="top">
@@ -13952,16 +13946,14 @@ key "core2014r"
 
 \end_inset
 
- and \SpecialChar LaTeX
- 
+ and LaTeX 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "lamport1986document"
 
 \end_inset
 
-, specifically Lua\SpecialChar TeX
- 
+, specifically LuaTeX 
 \begin_inset CommandInset citation
 LatexCommand citealt
 key "hagen2005luatex"

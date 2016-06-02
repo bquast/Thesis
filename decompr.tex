@@ -1,0 +1,1274 @@
+\batchmode
+\makeatletter
+\def\input@path{{/Users/quast/Thesis/}}
+\makeatother
+\documentclass[a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{lmodern}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{rotating}
+\usepackage{prettyref}
+\usepackage{float}
+\usepackage{rotfloat}
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newcommand{\code}[1]{\texttt{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{rotating}
+\usepackage{adjustbox}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{lscape}
+\usepackage{pbox}
+\usepackage{array}
+\usepackage[style=philosophy-modern,natbib=true,backend=biber]{biblatex}
+\addbibresource{/Users/quast/Thesis/bibliography.bib}
+
+\newcolumntype{R}[2]{
+    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}
+    l
+    <{\egroup}
+}
+\newcommand*\rot{\multicolumn{1}{R{45}{1em}}}
+\newcommand*\rotnt{\multicolumn{1}{R{90}{1em}}}
+
+\makeatother
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\title{\code{decompr}:Global Value Chain decomposition in R}
+
+\author{Bastiaan Quast and Victor Kummritz}
+\maketitle
+
+\section*{Abstract}
+
+Global Value Chains have become a central unit of analysis in research
+on international trade. However, the complex matrix transformations
+at the basis of most Value Chain indicators still constitute a significant
+entry barrier to the field. The R package decompr solves this problem
+by implementing the algorithms for the analysis of Global Value Chains
+as R procedures, thereby simplifying the decomposition process. Two
+methods for gross export flow decomposition using Inter-Country Input-Output
+tables are provided. The first method concerns a decomposition based
+on the classical \citet{wale36} insight. It derives the value added
+origins of an industry's exports by source country and source industry,
+using easily vailable gross trade data. The second method is the Wang-Wei-Zhu
+algorithm which splits bilateral gross exports into 16 value added
+components. These components can broadly be divided into domestic
+and foreign value added in exports. Using the results of the two decompositions,
+decompr provides a set of Global Value Chain indicators, such as the
+now standard Vertical Specialisation ratio. This article summarises
+the methodology of the algorithms, describes the format of the input
+and output data, and exemplifies the usefulness of the two methods
+on the basis of a simple example data set. 
+
+\section{Introduction}
+
+Global Value Chains (GVCs) refer to the quickly expanding internationalization
+of production networks. Most goods we use nowadays consist of parts
+that are sourced from different corners of the planet and are assembled
+across different continents. A popular example of this development
+is the iPhone, which uses inputs from at least five countries (USA,
+China, Germany, Taiwan, South Korea) and is assembled in two (USA
+and China). This has made GVCs a central topic in research on trade
+and development policy. Both policy makers and academia increasingly
+value the growth opportunities GVCs offer to global trade and, especially,
+to developing countries. However, analysing this phenomenon empirically
+requires complex matrix manipulations, since the relevant data is
+only available in the form of gross flows. The decompr package enables
+researchers with little background in matrix algebra and linear programming
+to easily derive standard GVC indicators for statistical analysis.
+
+The package uses Inter-Country Input-Output tables (ICIOs), such as
+those published by the OECD and WTO (TiVA), the World Input Output
+Database \citep{timmer2012world}, or national statistics bureaus,
+as input. These tables state supply and demand relationships in gross
+terms between industries within and across countries. For instance,
+let us look at the example of the leather used in German manufactured
+car seats. The ICIOs quantify the value of inputs that the Turkish
+leather and textiles industry supplies to the German transport equipment
+industry. The problem of these tables measuring gross trade flows,
+is that they do not reveal how much of the value was added in the
+supplying industry, and how much of the value was added in previous
+stages of production, performed by other industries or even countries.
+
+The Leontief decomposition of gross trade flows solves this problem
+by reallocating the value of intermediate goods used by industries
+to the original producers. In our example, the use of Argentinian
+agricultural produce (raw hides) is subtracted from the Turkish leather
+industry and added to the Argentinian agricultural industry. The Wang-Wei-Zhu
+(henceforth WWZ) decomposition goes a step further by not only revealing
+the source of the value added, but also breaking down exports into
+different categories, according to final usage and destination. It
+implements the theoretical work of \citet{wang2014quantifying}. The
+main categories in this framework are listed below.
+\begin{enumerate}
+\item domestic value added in exports 
+\item foreign value added in exports 
+\item pure double counted terms 
+\end{enumerate}
+
+\subsection{Package Details}
+
+The decompr package implements the algorithms for these decompositions
+as R procedures and provides example data sets. We start by loading
+the package and listing the functions.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# load package}
+\hlkwd{library}\hlstd{(decompr)}
+
+\hlcom{# list functions in package}
+\hlkwd{ls}\hlstd{(}\hlstr{'package:decompr'}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] "decomp"              "leontief"            "load_tables"        
+## [4] "load_tables_vectors" "wwz"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The R procedures are implemented as functions, the included functions
+are listed below.
+\begin{itemize}
+\item \code{load\_tables\_vectors()}; transforms the input objects to an
+object used for the decompositions (class: \code{decompr}) 
+\item \code{leontief()}; takes a decompr object and applies the Leontief
+decomposition 
+\item \code{wwz()}; takes a decompr object and applies the Wang-Wei-Zhu
+decomposition 
+\item \code{decomp()}; a wrapper function which integrates the use of load\_tables\_vectors
+with the various decompositions, using an argument \textit{method}
+to specify the desired decomposition (default leontief) 
+\end{itemize}
+For legacy purposes, one depracated function is also available under
+their original names (\code{load\_tables()}). In addition to this,
+one example data sets is included.
+\begin{itemize}
+\item \code{\textit{\emph{leather}}}; a fictional three-country, three-sector
+data set \footnote{load using: \code{data(leather)}}
+\end{itemize}
+Trade flow analysis often involves studying the development of a certain
+variable (set) over time, thus taking the panel form. However, at
+the decomposition level, the panel dimension is essentially a repeated
+cross-section. Therefore, as a design decision, the time dimension
+is not implemented in the package itself. Instead, we provide examples
+of how this repetition can be implemented using a \code{for-loop}.
+
+\prettyref{sec:data} introduces the data as it is used by the package
+as well as two example data sets, after which \prettyref{sec:leontief}
+and \prettyref{sec:wwz} summarise the theoretical derivations for
+the two decompositions, and show how these can be performed in R using
+decompr. We conclude with a discussion of potential uses and further
+developments of GVC research.
+
+\section{Data}
+
+\label{sec:data} Two data sets are included in the package, one real
+world data set and one minimal data set for demonstration purposes.
+The former is the WIOD regional Inter-Country Input Output tables
+for the year 2011 \citep{timmer2012world}. The latter is a fictional
+3-country 3-sector data set, which we will use throughout this article
+to demonstrate the usage and advantages of the decompr package.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# load the data}
+\hlkwd{data}\hlstd{(leather)}
+
+\hlcom{# list the objects in the data set}
+\hlkwd{ls}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] "countries"  "final"      "industries" "inter"      "out"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+This data is set up in order to illustrate the benefits of the decompositions.
+We do this by following the flows of intermediate goods through a
+fictional GVC and by showing how the readily available gross trade
+flows differ from the decomposed value added flows. To this end, we
+construct the elements of the input-output tables such that we have
+two countries and two industries that focus on upstream tasks, which
+means they focus on supplying other industries, and one country and
+industry that is specialized in downstream tasks, i.e.~it serves
+mainly final demand. In our example the upstream industries are Agriculture
+and Textiles while the downstream industry is Transport Equipment.
+Similarly, Argentina and Turkey represent upstream countries with
+Germany being located downstream within this specific value chain
+(see \prettyref{tab:leather}).
+
+\begin{sidewaystable}
+\caption{Example Input-Output Table: Leather}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+ &
+ &
+\multicolumn{3}{c|}{{\scriptsize{}Argentina}} &
+\multicolumn{3}{c|}{{\scriptsize{}Turkey}} &
+\multicolumn{3}{c|}{{\scriptsize{}Germany}} &
+\multicolumn{3}{c|}{{\scriptsize{}Final Demand}} &
+{\scriptsize{}Output }\tabularnewline
+\hline 
+\hline 
+{\scriptsize{}Country } &
+{\scriptsize{}Industry } &
+\begin{turn}{90}
+{\scriptsize{}Agriculture}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Textile and Leather}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Transport Equipment}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Agriculture}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Textile and Leather}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Transport Equipment}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Agriculture}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Textile and Leather}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Transport Equipment}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Argentina}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Turkey}
+\end{turn} &
+\begin{turn}{90}
+{\scriptsize{}Germany}
+\end{turn} &
+\begin{turn}{90}
+\end{turn}\tabularnewline
+\hline 
+{\scriptsize{}Argentina } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}16.1 } &
+{\scriptsize{}5.1 } &
+{\scriptsize{}1.8 } &
+{\scriptsize{}3.2 } &
+{\scriptsize{}4.3 } &
+{\scriptsize{}0.4 } &
+{\scriptsize{}3.1 } &
+{\scriptsize{}2.8 } &
+{\scriptsize{}4.9 } &
+{\scriptsize{}21.5 } &
+{\scriptsize{}6.1 } &
+{\scriptsize{}8.4 } &
+{\scriptsize{}77.7 }\tabularnewline
+\hline 
+{\scriptsize{}Argentina } &
+{\scriptsize{}Textile.and.Leather } &
+{\scriptsize{}2.4 } &
+{\scriptsize{}8.0 } &
+{\scriptsize{}3.2 } &
+{\scriptsize{}0.1 } &
+{\scriptsize{}3.2 } &
+{\scriptsize{}1.6 } &
+{\scriptsize{}1.2 } &
+{\scriptsize{}3.9 } &
+{\scriptsize{}11.5 } &
+{\scriptsize{}16.2 } &
+{\scriptsize{}1.9 } &
+{\scriptsize{}5.1 } &
+{\scriptsize{}58.3 }\tabularnewline
+\hline 
+{\scriptsize{}Argentina } &
+{\scriptsize{}Transport.Equipment } &
+{\scriptsize{}0.9 } &
+{\scriptsize{}0.5 } &
+{\scriptsize{}4.0 } &
+{\scriptsize{}0.0 } &
+{\scriptsize{}0.1 } &
+{\scriptsize{}0.3 } &
+{\scriptsize{}0.0 } &
+{\scriptsize{}0.4 } &
+{\scriptsize{}0.5 } &
+{\scriptsize{}11 } &
+{\scriptsize{}0.5 } &
+{\scriptsize{}0.8 } &
+{\scriptsize{}19.0 }\tabularnewline
+\hline 
+{\scriptsize{}Turkey } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}1.1 } &
+{\scriptsize{}1.9 } &
+{\scriptsize{}0.2 } &
+{\scriptsize{}18.0 } &
+{\scriptsize{}13.2 } &
+{\scriptsize{}6.1 } &
+{\scriptsize{}9.0 } &
+{\scriptsize{}3.1 } &
+{\scriptsize{}8.9 } &
+{\scriptsize{}7.5 } &
+{\scriptsize{}29.5 } &
+{\scriptsize{}14.2 } &
+{\scriptsize{}112.7 }\tabularnewline
+\hline 
+{\scriptsize{}Turkey } &
+{\scriptsize{}Textile.and.Leather } &
+{\scriptsize{}0.3 } &
+{\scriptsize{}2.8 } &
+{\scriptsize{}0.1 } &
+{\scriptsize{}6.1 } &
+{\scriptsize{}28.1 } &
+{\scriptsize{}6.3 } &
+{\scriptsize{}2.1 } &
+{\scriptsize{}2.5 } &
+{\scriptsize{}25.6 } &
+{\scriptsize{}8.9 } &
+{\scriptsize{}24.9 } &
+{\scriptsize{}16.9 } &
+{\scriptsize{}124.6 }\tabularnewline
+\hline 
+{\scriptsize{}Turkey } &
+{\scriptsize{}Transport.Equipment } &
+{\scriptsize{}0.0 } &
+{\scriptsize{}0.1 } &
+{\scriptsize{}0.3 } &
+{\scriptsize{}4.1 } &
+{\scriptsize{}3.2 } &
+{\scriptsize{}8.9 } &
+{\scriptsize{}0.2 } &
+{\scriptsize{}0.0 } &
+{\scriptsize{}1.8 } &
+{\scriptsize{}1.2 } &
+{\scriptsize{}18.5 } &
+{\scriptsize{}4.9 } &
+{\scriptsize{}43.2 }\tabularnewline
+\hline 
+{\scriptsize{}Germany } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}1.2 } &
+{\scriptsize{}4.2 } &
+{\scriptsize{}0.3 } &
+{\scriptsize{}4.1 } &
+{\scriptsize{}1.2 } &
+{\scriptsize{}0.6 } &
+{\scriptsize{}29.0 } &
+{\scriptsize{}19.5 } &
+{\scriptsize{}17.9 } &
+{\scriptsize{}9.2 } &
+{\scriptsize{}17.9 } &
+{\scriptsize{}51.2 } &
+{\scriptsize{}156.3 }\tabularnewline
+\hline 
+{\scriptsize{}Germany } &
+{\scriptsize{}Textile.and.Leather } &
+{\scriptsize{}1.3 } &
+{\scriptsize{}1.1 } &
+{\scriptsize{}0.0 } &
+{\scriptsize{}3.2 } &
+{\scriptsize{}4.8 } &
+{\scriptsize{}2.6 } &
+{\scriptsize{}5.1 } &
+{\scriptsize{}29.1 } &
+{\scriptsize{}24.1 } &
+{\scriptsize{}7.9 } &
+{\scriptsize{}10.1 } &
+{\scriptsize{}38.5 } &
+{\scriptsize{}127.8 }\tabularnewline
+\hline 
+{\scriptsize{}Germany } &
+{\scriptsize{}Transport.Equipment } &
+{\scriptsize{}2.1 } &
+{\scriptsize{}1.4 } &
+{\scriptsize{}3.0 } &
+{\scriptsize{}4.1 } &
+{\scriptsize{}3.1 } &
+{\scriptsize{}3.9 } &
+{\scriptsize{}11.3 } &
+{\scriptsize{}8.1 } &
+{\scriptsize{}51.3 } &
+{\scriptsize{}25.1 } &
+{\scriptsize{}35.2 } &
+{\scriptsize{}68.4 } &
+{\scriptsize{}217.0 }\tabularnewline
+\hline 
+\end{tabular}
+\end{sidewaystable}
+
+The first step of the analytical process is to load the input object
+and create a decompr class object, which contains the data structures
+for the decompositions. This step is not needed when using the \code{decomp()}
+wrapper function but more on this later.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# create the decompr object}
+\hlstd{decompr_object} \hlkwb{<-} \hlkwd{load_tables_vectors}\hlstd{(} \hlkwc{x} \hlstd{= inter,}
+                                       \hlkwc{y} \hlstd{= final,}
+                                       \hlkwc{k} \hlstd{= countries,}
+                                       \hlkwc{i} \hlstd{= industries,}
+                                       \hlkwc{o} \hlstd{= out        )}
+
+\hlcom{# inspect the content of the decompr object}
+\hlkwd{ls}\hlstd{(decompr_object)}
+\end{alltt}
+\begin{verbatim}
+##  [1] "A"         "Ad"        "Am"        "B"         "Bd"       
+##  [6] "Bm"        "E"         "ESR"       "Efd"       "Eint"     
+## [11] "Exp"       "G"         "GN"        "L"         "N"        
+## [16] "Vc"        "Vhat"      "X"         "Y"         "Yd"       
+## [21] "Ym"        "bigrownam" "fdc"       "i"         "k"        
+## [26] "rownam"    "z"         "z01"       "z02"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+As can be seen above, a decompr class object is in fact a list containing
+thirty different objects. For example, \textit{Eint} is an object
+that collects the intermediate goods exports of the industries, while
+\textit{Y} refers to the final demand that the industries supply.
+Depending on the choice of the decomposition, all or some of these
+objects are used.
+
+\section{Leontief decomposition}
+
+\label{sec:leontief}Let us now turn to the algorithms, starting with
+the Leontief decomposition. We shortly describe the theoretical derivation
+of the method to expose the internal steps of the decompr package.
+Afterwards, we turn to the technical implementation and, finally,
+we describe the output.
+
+\subsection{Theoretical derivation}
+
+The tools to derive the source decomposition date back to \citet{wale36}
+who showed that, with a set of simple calculations, national Input-Output
+tables based on gross terms give the true value added flows between
+industries. The idea behind this insight is that the production of
+industry \textit{i}'s output requires inputs of other industries and
+\textit{i}'s own value added. The latter is the direct contribution
+of \textit{i}'s output to domestic value added. The former refers
+to the first round of \textit{i}'s indirect contribution to domestic
+value added since the input from other industries that \textit{i}
+requires for its own production triggers the creation of value added
+in the supplying industries. As supplying industries usually depend
+on inputs from other industries, this sets in motion a second round
+of indirect value added creation in the supplying industries of the
+suppliers, which is also caused by \textit{i}'s production. This goes
+on until value added is traced back to the original suppliers and
+can mathematically be expressed as
+
+\begin{equation}
+VB=V+VA+VAA+VAAA+...=V(I+A+A^{2}+A^{3}+...),
+\end{equation}
+which, as an infinite geometric series with the elements of $A<1$,
+simplifies to
+
+\begin{equation}
+VB=V(I-A)^{-1},
+\end{equation}
+where \textit{V} is a $NxN$ matrix with the diagonal representing
+the direct value added contribution of $N$ industries, \textit{A}
+is the Input-Output coefficient matrix with dimension $NxN$, i.e.
+it gives the direct input flows between industries required for 1\$
+of output, and $B=(I-A)^{-1}$ is the so called Leontief inverse.
+\textit{VB} gives thus a $NxN$ matrix of so called value added multipliers,
+which denote the amount of value added that the production of an industry's
+1\$ of output or exports brings about in all other industries. Looking
+from the perspective of the supplying industries, the matrix gives
+the value added that they contribute to the using industry's production.
+If we multiply it with a $NxN$ matrix whose diagonal specifies each
+industry's total output or exports, we get value added origins as
+absolute values instead of shares.
+
+The application of the Leontief insight to ICIOs as opposed to national
+Input-Output tables for our Leontief decomposition is straightforward.
+\textit{V} refers now to a vector of direct value added contributions
+of all industries across the different countries. Its dimension is
+correspondingly $1xGN$, where $G$ is the number of countries. \textit{A}
+is now of dimension $GNxGN$ and gives the industry flows including
+cross border relationships. Since we are interested in the value added
+origins of exports we multiply these two matrices with a $GNxGN$
+matrix whose diagonal we fill with each industry's exports, $E$,
+such that the basic equation behind the source decomposition is given
+by $V(I-A)^{-1}E$. \footnote{When using the leontief\_output function, the value added multiplier
+is instead multiplied with each industry's output.} In a simple example with two countries (\textit{k} and \textit{l})
+and industries (\textit{i} and \textit{j}) we can zoom in to see the
+matrices' content:
+
+\begin{align}
+\begin{split}V(I-A)^{-1}E & =\begin{pmatrix}v_{k}^{i} & 0 & 0 & 0\\
+0 & v_{k}^{j} & 0 & 0\\
+0 & 0 & v_{l}^{i} & 0\\
+0 & 0 & 0 & v_{l}^{j}
+\end{pmatrix}*\begin{pmatrix}b_{kk}^{ii} & b_{kk}^{ij} & b_{kl}^{ii} & b_{kl}^{ij}\\
+b_{kk}^{ji} & b_{kk}^{jj} & b_{kl}^{ji} & b_{kl}^{jj}\\
+b_{lk}^{ii} & b_{lk}^{ij} & b_{ll}^{ii} & b_{ll}^{ij}\\
+b_{lk}^{ji} & b_{lk}^{jj} & b_{ll}^{ji} & b_{ll}^{jj}
+\end{pmatrix}\\
+ & *\begin{pmatrix}e_{k}^{i} & 0 & 0 & 0\\
+0 & e_{k}^{j} & 0 & 0\\
+0 & 0 & e_{l}^{i} & 0\\
+0 & 0 & 0 & e_{l}^{j}
+\end{pmatrix}\\
+ & =\begin{pmatrix}v_{k}^{i}b_{kk}^{ii}e_{k}^{i} & v_{k}^{i}b_{kk}^{ij}e_{k}^{j} & v_{k}^{i}b_{kl}^{ii}e_{l}^{i} & v_{k}^{i}b_{kl}^{ij}e_{l}^{j}\\
+v_{k}^{j}b_{kk}^{ji}e_{k}^{i} & v_{k}^{j}b_{kk}^{jj}e_{k}^{j} & v_{k}^{j}b_{kl}^{ji}e_{l}^{i} & v_{k}^{j}b_{kl}^{jj}e_{l}^{j}\\
+v_{l}^{i}b_{lk}^{ii}e_{k}^{i} & v_{l}^{i}b_{lk}^{ij}e_{k}^{j} & v_{l}^{i}b_{ll}^{ii}e_{l}^{i} & v_{l}^{i}b_{ll}^{ij}e_{l}^{j}\\
+v_{l}^{j}b_{lk}^{ji}e_{k}^{i} & v_{l}^{j}b_{lk}^{jj}e_{k}^{j} & v_{l}^{j}b_{ll}^{ji}e_{l}^{i} & v_{l}^{j}b_{ll}^{jj}e_{l}^{j}
+\end{pmatrix}\\
+ & =\begin{pmatrix}vae_{kk}^{ii} & vae_{kk}^{ij} & vae_{kl}^{ii} & vae_{kl}^{ij}\\
+vae_{kk}^{ji} & vae_{kk}^{jj} & vae_{kl}^{ji} & vae_{kl}^{jj}\\
+vae_{lk}^{ii} & vae_{lk}^{ij} & vae_{ll}^{ii} & vae_{ll}^{ij}\\
+vae_{lk}^{ji} & vae_{lk}^{jj} & vae_{ll}^{ji} & vae_{ll}^{jj}
+\end{pmatrix}
+\end{split}
+\end{align}
+\begin{align*}
+ & v_{c}^{s}=\frac{va_{c}^{s}}{y_{c}^{s}}=1-a_{kc}^{is}-a_{kc}^{js}-a_{lc}^{js}-a_{lc}^{is}\hspace{2cm}(c\in k,l\hspace{0.5cm}s\in i,j),\\
+ & \begin{pmatrix}b_{kk}^{ii} & b_{kk}^{ij} & b_{kl}^{ii} & b_{kl}^{ij}\\
+b_{kk}^{ji} & b_{kk}^{jj} & b_{kl}^{ji} & b_{kl}^{jj}\\
+b_{lk}^{ii} & b_{lk}^{ij} & b_{ll}^{ii} & b_{ll}^{ij}\\
+b_{lk}^{ji} & b_{lk}^{jj} & b_{ll}^{ji} & b_{ll}^{jj}
+\end{pmatrix}=\begin{pmatrix}1-a_{kk}^{ii} & -a_{kk}^{ij} & -a_{kl}^{ii} & -a_{kl}^{ij}\\
+-a_{kk}^{ji} & 1-a_{kk}^{jj} & -a_{kl}^{ji} & -a_{kl}^{jj}\\
+-a_{lk}^{ii} & -a_{lk}^{ij} & 1-a_{ll}^{ii} & -a_{ll}^{ij}\\
+-a_{lk}^{ji} & -a_{lk}^{jj} & -a_{ll}^{ji} & 1-a_{ll}^{jj}
+\end{pmatrix}^{-1},
+\end{align*}
+and 
+\[
+a_{cf}^{su}=\frac{inp_{cf}^{su}}{y_{f}^{u}}\hspace{2cm}(c,f\in k,l\hspace{0.5cm}s,u\in i,j),
+\]
+where $v_{s}^{c}$ gives the share of industry \emph{s}'s value added,
+$va_{c}^{s},$ in output, $y_{s}^{c}$, and $e_{k}^{i}$ indicates
+gross exports. Finally, $a_{su}^{cf}$ denotes the share of inputs,
+$inp_{su}^{cf}$, in output. The elements of the $V(I-A)^{-1}E$ or
+$vae$ matrix are our estimates for the country-industry level value
+added origins of each country-industry's exports. decompr implements
+this algorithm into R to automate the process of deriving the matrix.
+Equipped with it, researchers can calculate standard GVC indicators.
+Examples include \citet{dahuetal01}'s Vertical Specialisation ratio
+at the industry-level using the \code{vertical\_specialisation} function,
+which sums for each country and industry across the value added of
+all foreign countries and industries, and \citet{rojoguno12}'s so-called
+VAX ratio. Alternatively, the four dimensions of the matrix (source
+country, source industry, using country, using industry) allow for
+industry-level gravity-type estimations of value added trade flows.
+
+\subsection{Implentation}
+
+As described, in \prettyref{sec:data}, the first step of our analytical
+process is to construct a decompr object using the \code{load\_tables\_vectors()}
+function. After this, we can use the \code{leontief()} function to
+apply to Leontief decomposition. 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{lt} \hlkwb{<-} \hlkwd{leontief}\hlstd{( decompr_object )}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+In addition, a wrapper function called \code{decomp()} is provided
+which integrates both elements of the workflow into a single function.
+We recomended that the atomic functions be used for large data sets,
+however, for small data sets this is an easy way to derive the results
+immediatly. The \code{decomp()} function requires a method to be
+specified (see \code{help('decomp')} for details), if none is provided,
+the function will default to \code{leontief()}.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{lt2} \hlkwb{<-} \hlkwd{decomp}\hlstd{(} \hlkwc{x} \hlstd{= inter,}
+               \hlkwc{y} \hlstd{= final,}
+               \hlkwc{k} \hlstd{= countries,}
+               \hlkwc{i} \hlstd{= industries,}
+               \hlkwc{o} \hlstd{= out,}
+               \hlkwc{method} \hlstd{=} \hlstr{"leontief"} \hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Note that the output produced by these two different processes is
+identical.
+
+\subsection{Output}
+
+We can now analyse the output of the Leontief decomposition, which
+consists of a $GNxGN$ matrix that gives for each country and industry
+the value added origins of its exports by country and industry. To
+this end, we look at the results of the Leontief decomposition for
+our example data set (\prettyref{tab:noleon}). In the first column
+we find the source countries and industries while the first row contains
+the using countries and industries. The first element, $28.52$, thus
+gives the amount of value added that the Argentinian Agriculture industry
+has contributed to the exports of the Argentinian Agriculture industry.
+Similarly, the last element of this row, $4.12$, gives the amount
+of value added that the Argentinian Agriculture industry has contributed
+to the exports of the German Transport Equipment industry.
+
+\begin{sidewaystable}
+{\scriptsize{}\caption{Non-decomposed Values}
+\label{tab:noleon} }%
+\begin{tabular}{lrrrrrrrrr}
+\hline 
+ &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Germany. } &
+{\scriptsize{}Germany. } &
+{\scriptsize{}Germany.}\tabularnewline
+ &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport. } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport. } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport.}\tabularnewline
+ &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment } &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment } &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment}\tabularnewline
+\hline 
+{\scriptsize{}Argentina.Agriculture } &
+{\scriptsize{}6.88 } &
+{\scriptsize{}2.49 } &
+{\scriptsize{}0.25 } &
+{\scriptsize{}1.30 } &
+{\scriptsize{}2.04 } &
+{\scriptsize{}0.08 } &
+{\scriptsize{}0.77 } &
+{\scriptsize{}0.68 } &
+{\scriptsize{}1.76 }\tabularnewline
+{\scriptsize{}Argentina.Textile.and.Leather } &
+{\scriptsize{}1.03 } &
+{\scriptsize{}3.91 } &
+{\scriptsize{}0.44 } &
+{\scriptsize{}0.04 } &
+{\scriptsize{}1.52 } &
+{\scriptsize{}0.31 } &
+{\scriptsize{}0.30 } &
+{\scriptsize{}0.95 } &
+{\scriptsize{}4.13 }\tabularnewline
+{\scriptsize{}Argentina.Transport.Equipment } &
+{\scriptsize{}0.38 } &
+{\scriptsize{}0.24 } &
+{\scriptsize{}0.55 } &
+{\scriptsize{}0.00 } &
+{\scriptsize{}0.05 } &
+{\scriptsize{}0.06 } &
+{\scriptsize{}0.00 } &
+{\scriptsize{}0.10 } &
+{\scriptsize{}0.18 }\tabularnewline
+{\scriptsize{}Turkey.Agriculture } &
+{\scriptsize{}0.47 } &
+{\scriptsize{}0.93 } &
+{\scriptsize{}0.03 } &
+{\scriptsize{}7.33 } &
+{\scriptsize{}6.27 } &
+{\scriptsize{}1.20 } &
+{\scriptsize{}2.23 } &
+{\scriptsize{}0.75 } &
+{\scriptsize{}3.19 }\tabularnewline
+{\scriptsize{}Turkey.Textile.and.Leather } &
+{\scriptsize{}0.13 } &
+{\scriptsize{}1.37 } &
+{\scriptsize{}0.01 } &
+{\scriptsize{}2.48 } &
+{\scriptsize{}13.35 } &
+{\scriptsize{}1.24 } &
+{\scriptsize{}0.52 } &
+{\scriptsize{}0.61 } &
+{\scriptsize{}9.19 }\tabularnewline
+{\scriptsize{}Turkey.Transport.Equipment } &
+{\scriptsize{}0.00 } &
+{\scriptsize{}0.05 } &
+{\scriptsize{}0.04 } &
+{\scriptsize{}1.67 } &
+{\scriptsize{}1.52 } &
+{\scriptsize{}1.75 } &
+{\scriptsize{}0.05 } &
+{\scriptsize{}0.00 } &
+{\scriptsize{}0.65 }\tabularnewline
+{\scriptsize{}Germany.Agriculture } &
+{\scriptsize{}0.51 } &
+{\scriptsize{}2.05 } &
+{\scriptsize{}0.04 } &
+{\scriptsize{}1.67 } &
+{\scriptsize{}0.57 } &
+{\scriptsize{}0.12 } &
+{\scriptsize{}7.18 } &
+{\scriptsize{}4.73 } &
+{\scriptsize{}6.43 }\tabularnewline
+{\scriptsize{}Germany.Textile.and.Leather } &
+{\scriptsize{}0.56 } &
+{\scriptsize{}0.54 } &
+{\scriptsize{}0.00 } &
+{\scriptsize{}1.30 } &
+{\scriptsize{}2.28 } &
+{\scriptsize{}0.51 } &
+{\scriptsize{}1.26 } &
+{\scriptsize{}7.06 } &
+{\scriptsize{}8.65 }\tabularnewline
+{\scriptsize{}Germany.Transport.Equipment } &
+{\scriptsize{}0.90 } &
+{\scriptsize{}0.68 } &
+{\scriptsize{}0.41 } &
+{\scriptsize{}1.67 } &
+{\scriptsize{}1.47 } &
+{\scriptsize{}0.77 } &
+{\scriptsize{}2.80 } &
+{\scriptsize{}1.96 } &
+{\scriptsize{}18.42 }\tabularnewline
+\hline 
+\end{tabular}{\scriptsize \par}
+
+{\scriptsize{}\bigskip{}
+\bigskip{}
+\bigskip{}
+}{\scriptsize \par}
+
+{\scriptsize{}\caption{Leontief Decomposition}
+\label{tab:leon} }%
+\begin{tabular}{lrrrrrrrrr}
+\hline 
+ &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Argentina. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Turkey. } &
+{\scriptsize{}Germany. } &
+{\scriptsize{}Germany. } &
+{\scriptsize{}Germany.}\tabularnewline
+ &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport. } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport. } &
+{\scriptsize{}Agriculture } &
+{\scriptsize{}Textile.and. } &
+{\scriptsize{}Transport.}\tabularnewline
+ &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment } &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment } &
+ &
+{\scriptsize{}Leather } &
+{\scriptsize{}Equipment}\tabularnewline
+\hline 
+{\scriptsize{}Argentina.Agriculture } &
+{\scriptsize{}28.52 } &
+{\scriptsize{}2.79 } &
+{\scriptsize{}0.36 } &
+{\scriptsize{}1.81 } &
+{\scriptsize{}3.12 } &
+{\scriptsize{}0.36 } &
+{\scriptsize{}1.24 } &
+{\scriptsize{}1.30 } &
+{\scriptsize{}4.12 }\tabularnewline
+{\scriptsize{}Argentina.Textile.and.Leather } &
+{\scriptsize{}1.06 } &
+{\scriptsize{}19.12 } &
+{\scriptsize{}0.42 } &
+{\scriptsize{}0.48 } &
+{\scriptsize{}1.83 } &
+{\scriptsize{}0.43 } &
+{\scriptsize{}0.59 } &
+{\scriptsize{}1.15 } &
+{\scriptsize{}4.75 }\tabularnewline
+{\scriptsize{}Argentina.Transport.Equipment } &
+{\scriptsize{}0.21 } &
+{\scriptsize{}0.14 } &
+{\scriptsize{}1.06 } &
+{\scriptsize{}0.03 } &
+{\scriptsize{}0.08 } &
+{\scriptsize{}0.04 } &
+{\scriptsize{}0.02 } &
+{\scriptsize{}0.07 } &
+{\scriptsize{}0.19 }\tabularnewline
+{\scriptsize{}Turkey.Agriculture } &
+{\scriptsize{}0.72 } &
+{\scriptsize{}1.34 } &
+{\scriptsize{}0.12 } &
+{\scriptsize{}34.93 } &
+{\scriptsize{}7.00 } &
+{\scriptsize{}1.48 } &
+{\scriptsize{}2.55 } &
+{\scriptsize{}1.52 } &
+{\scriptsize{}6.18 }\tabularnewline
+{\scriptsize{}Turkey.Textile.and.Leather } &
+{\scriptsize{}0.41 } &
+{\scriptsize{}1.39 } &
+{\scriptsize{}0.12 } &
+{\scriptsize{}2.69 } &
+{\scriptsize{}40.17 } &
+{\scriptsize{}1.32 } &
+{\scriptsize{}1.11 } &
+{\scriptsize{}1.15 } &
+{\scriptsize{}9.51 }\tabularnewline
+{\scriptsize{}Turkey.Transport.Equipment } &
+{\scriptsize{}0.03 } &
+{\scriptsize{}0.09 } &
+{\scriptsize{}0.03 } &
+{\scriptsize{}0.81 } &
+{\scriptsize{}0.91 } &
+{\scriptsize{}3.16 } &
+{\scriptsize{}0.12 } &
+{\scriptsize{}0.07 } &
+{\scriptsize{}0.65 }\tabularnewline
+{\scriptsize{}Germany.Agriculture } &
+{\scriptsize{}0.93 } &
+{\scriptsize{}2.25 } &
+{\scriptsize{}0.16 } &
+{\scriptsize{}2.31 } &
+{\scriptsize{}2.06 } &
+{\scriptsize{}0.51 } &
+{\scriptsize{}29.88 } &
+{\scriptsize{}5.25 } &
+{\scriptsize{}9.60 }\tabularnewline
+{\scriptsize{}Germany.Textile.and.Leather } &
+{\scriptsize{}0.65 } &
+{\scriptsize{}0.73 } &
+{\scriptsize{}0.08 } &
+{\scriptsize{}1.54 } &
+{\scriptsize{}2.55 } &
+{\scriptsize{}0.63 } &
+{\scriptsize{}1.46 } &
+{\scriptsize{}18.96 } &
+{\scriptsize{}8.16 }\tabularnewline
+{\scriptsize{}Germany.Transport.Equipment } &
+{\scriptsize{}0.67 } &
+{\scriptsize{}0.65 } &
+{\scriptsize{}0.26 } &
+{\scriptsize{}1.29 } &
+{\scriptsize{}1.49 } &
+{\scriptsize{}0.57 } &
+{\scriptsize{}1.73 } &
+{\scriptsize{}1.51 } &
+{\scriptsize{}34.74 }\tabularnewline
+\hline 
+\end{tabular}{\scriptsize \par}
+\end{sidewaystable}
+
+A key advantage of the decomposition becomes clear when we compare
+the decomposed values with the intermediate trade values of the non-decomposed
+IO table when multiplied with the exports over output ratio to create
+comparability (\prettyref{tab:noleon}). We see for instance that
+Argentina's Agriculture industry contributes significantly more value
+added to the German Transport Equipment industry than suggested by
+the non-decomposed IO table. The reason is that Argentina's Agriculture
+industry is an important supplier to Turkey's Textile and Leather
+industry which is in turn an important supplier for the German Transport
+Equipment industry. The decomposition thus allows us to see how the
+value added flows along this Global Value Chain.
+
+We can also take look at specific industries. For instance, we find
+that the non-decomposed values of the Transport Equipment are for
+many elements larger than the value added elements while the opposite
+holds for Agriculture. This emphasises the fact that Transport Equipment
+is a downstream industry that produces mostly final goods. Agriculture
+on the other hand qualifies as an upstream industry that produces
+also many intermediate goods so that its value added in other industries
+is typically large.
+
+Finally let's consider the countries of our specific example. We see
+that Germany has more instances in which the non-decomposed values
+are above the value added flows than Argentina and Turkey combined.
+Along the lines of the industry analysis, this shows that Germany
+focuses within this GVC on downstream tasks producing mostly final
+goods that contain value added from countries located more upstream.
+In our example these are Turkey and Argentina.
+
+\section{Wang-Wei-Zhu decomposition}
+
+\label{sec:wwz} The Wang-Wei-Zhu decomposition builds upon the Leontief
+insight but uses, in addition, further valuable information provided
+in ICIOs. More specifically, the Leontief decomposition traces the
+value added back to where it originates but ICIOs also contain data
+on how the value added is subsequently used. This information is extracted
+by the Wang-Wei-Zhu decomposition, which thereby allows a much more
+detailed look at the structures of international production networks
+and the respective positions of countries and industries within them.
+
+\subsection{Theoretical derivation}
+
+The derivation of the Wang-Wei-Zhu decomposition is significantly
+more technical than the source decomposition since it splits gross
+exports up more finely. This is why we present here only the final
+equation for a two country one industry model (equation 22 in WWZ)
+and refer the interested reader to the original paper by \citet{wang2014quantifying}.
+The key idea is to use the Leontief insight and extend it using additional
+information from ICIOs on the final usage and destination of the exports
+(e.g. re-imported vs. absorbed abroad). 
+\begin{align}
+\begin{split}E^{kl}= & \left(V^{k}B^{kk}\right)^{T}*F^{kl}+\left(V^{k}L^{kk}\right)^{T}*\left(A^{kl}B^{ll}F^{ll}\right)\\
++ & \left(V^{k}L^{kk}\right)^{T}*(A^{kl}\sum_{t\neq k,l}^{G}B^{lt}F^{tt})+\left(V^{k}L^{kk}\right)^{T}*(A^{kl}B^{ll}\sum_{t\neq k,l}^{G}F^{lt})\\
++ & \left(V^{k}L^{kk}\right)^{T}*(A^{kl}\sum_{t\neq k}^{G}\sum_{l,u\neq k,t}^{G}B^{lt}F^{tu})+\left(V^{k}L^{kk}\right)^{T}*\left(A^{kl}B^{ll}F^{lk}\right)\\
++ & \left(V^{k}L^{kk}\right)^{T}*(A^{kl}\sum_{t\neq k,l}^{G}B^{lt}F^{tk})+\left(V^{k}L^{kk}\right)^{T}*\left(A^{kl}B^{lk}F^{kk}\right)\\
++ & \left(V^{k}L^{kk}\right)^{T}*(A^{kl}\sum_{t\neq k}^{G}B^{lk}F^{kt})+\left(V^{k}B^{kk}-V^{k}L^{kk}\right)^{T}*\left(A^{kl}X^{l}\right)\\
++ & \left(V^{l}B^{lk}\right)^{T}*F^{kl}+\left(V^{l}B^{lk}\right)^{T}*\left(A^{kl}L^{ll}F^{ll}\right)+\left(V^{l}B^{lk}\right)^{T}\\
+* & \left(A^{kl}L^{ll}E^{l*}\right)+(\sum_{t\neq k,l}^{G}V^{t}B^{tk})^{T}*F^{kl}+(\sum_{t\neq k,l}^{G}V^{t}B^{tk})^{T}\\
+* & \left(A^{kl}L^{ll}F^{ll}\right)+(\sum_{t\neq k,l}^{G}V^{t}B^{tk})^{T}*\left(A^{kl}L^{ll}E^{l*}\right),
+\end{split}
+\label{eq:wwz}
+\end{align}
+where $F^{kl}$ is the final demand in $l$ for goods of $k$, $L^{ll}$
+refers to the national Leontief inverse as opposed to the Inter-Country
+inverse $B$, and \textit{T} indicates a matrix transpose operation.
+As can be seen from equation (\ref{eq:wwz}), the Wang-Wei-Zhu decomposition
+splits gross exports into 16 terms with three main categories given
+by domestic value added in exports (\textit{DViX\_B}), foreign value
+added in exports (\textit{FVA}), and purely double counted terms (\textit{PDC}).
+The main categories are further divided according to their final destination
+so that the final decomposition is given by: 
+\begin{itemize}
+\item Domestic value added absorbed abroad (\textit{VAX\_G}, T1-5) 
+
+\begin{itemize}
+\item Domestic value added in final exports (\textit{DVA\_FIN}, T1) 
+\item Domestic value added in intermediate exports 
+
+\begin{itemize}
+\item Domestic value added in intermediate exports absorbed by direct importers
+(\textit{DVA\_INT}, T2) 
+\item Domestic value added in intermediate exports re-exported to third
+countries (\textit{DVA\_INTrex}, T3-5) 
+
+\begin{itemize}
+\item Domestic value added in intermediate exports re-exported to third
+countries as intermediate goods to produce domestic final goods (\textit{DVA\_INTrexI1},
+T3) 
+\item Domestic value added in intermediate exports re-exported to third
+countries as final goods (\textit{DVA\_INTrexF}, T4) 
+\item Domestic value added in intermediate exports re-exported to third
+countries as intermediate goods to produce exports (\textit{DVA\_INTrexI2},
+T5) 
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item Domestic value added returning home (\textit{RDV\_B}, T6-8) 
+
+\begin{itemize}
+\item Domestic value added returning home as final goods (\textit{RDV\_FIN},
+T6) 
+\item Domestic value added returning home as final goods through third countries
+(\textit{RDV\_FIN2}, T7) 
+\item Domestic value added returning home as intermediate goods (\textit{RDV\_INT},
+T8) 
+\end{itemize}
+\item Foreign value added (\textit{FVA}, T11-12/14-15 ) 
+
+\begin{itemize}
+\item Foreign value added in final good exports (\textit{FVA\_FIN}, T11/14)
+
+\begin{itemize}
+\item Foreign value added in final good exports sourced from direct importer
+(\textit{MVA\_FIN}, T11) 
+\item Foreign value added in final good exports sourced from other countries
+(\textit{OVA\_FIN}, T14) 
+\end{itemize}
+\item Foreign value added in intermediate good exports (\textit{FVA\_INT},
+T12/15) 
+
+\begin{itemize}
+\item Foreign value added in intermediate good exports sourced from direct
+importer (\textit{MVA\_INT}, T12) 
+\item Foreign value added in intermediate good exports sourced from other
+countries(\textit{OVA\_INT}, T15) 
+\end{itemize}
+\end{itemize}
+\item Pure double counting (\textit{PDC}, T9-10/13/16) 
+
+\begin{itemize}
+\item Pure double counting from domestic source (\textit{DDC}, T9-10) 
+
+\begin{itemize}
+\item Due to final goods exports production (\textit{DDF}, T9) 
+\item Due to intermediate goods exports production (\textit{DDI}, T10) 
+\end{itemize}
+\item Pure double counting from foreign source (\textit{FDC}, T13/16) 
+
+\begin{itemize}
+\item Due to direct importer exports production (\textit{FDF}, T13) 
+\item Due to other countries' exports production (\textit{FDI}, T16) 
+\end{itemize}
+\end{itemize}
+\end{itemize}
+The higher resolution of the WWZ decomposition comes at the cost of
+a lower dimension (source country, using country, using industry)
+since the current, highly aggregated, ICIOs render a four-dimensional
+decomposition unfeasible. This means that the two methods are complementary
+and imply a trade-off between detail and disaggregation.
+
+\subsection{Implementation}
+
+As with the \code{leontief()} function, the \code{wwz()} function
+also takes a decompr class object as its input, the procedure for
+this is described in \prettyref{sec:data}. After having created this
+decompr object, we can apply the Wang-Wei-Zhu decomposition using
+the \code{wwz()} function.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{w} \hlkwb{<-} \hlkwd{wwz}\hlstd{(decompr_object)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Furthermore, it is also possible to derive the results of the Wang-Wei-Zhu
+decomposition directly, using the \code{decomp()} function.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{w2} \hlkwb{<-}  \hlkwd{decomp}\hlstd{(} \hlkwc{x} \hlstd{= inter,}
+               \hlkwc{y} \hlstd{= final,}
+               \hlkwc{k} \hlstd{= countries,}
+               \hlkwc{i} \hlstd{= industries,}
+               \hlkwc{o} \hlstd{= out,}
+               \hlkwc{method} \hlstd{=} \hlstr{"wwz"} \hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Both these processes will yield the same results.
+
+\subsection{Output}
+
+The output when using the WWZ algorithm is a matrix with dimensions
+$GNGx19$, whereby 19 consists of the 16 objects the WWZ algorithm
+decomposes exports into, plus three checksums. $GNG$ represents source
+country, source industry and using country whereas these terms are
+slightly ambiguous here due to the complex nature of the decomposition.
+More specifically, the using country can also be the origin of the
+foreign value added in the exports of the source country to the using
+country (see for example T11 and T12). Therefore we use the terms
+exporter, exporting industry, and direct importer instead. This becomes
+much clearer when we take a look at specific examples.
+
+\prettyref{tab:wwz} shows the results for the example data. The first
+column lists exporter, exporting industry, and direct importer. Note
+that the value added is domestic but not necessarily created in the
+exporting industry. When exporter and importer are identical, the
+values are zero since there are no exports. The first row lists the
+16 components of bilateral exports at the sector level and three checksums.
+
+The first eight components relate to domestic value added of the exporting
+country contained in the sectoral exports of the exporting industry
+to the direct importer. For instance, the first non-zero element in
+\prettyref{tab:wwz} refers to $DVA\_FIN$, or domestic value added
+in final good exports. It shows that there are 5.47 units of domestic
+value added in the exports of final goods from Argentina's Agriculture
+industry to Turkey. In the same row the third term, \textit{DVA\_INTrexI1},
+is slightly more complicated. As mentioned above, it gives the amount
+of domestic Value added in intermediate exports re-exported to third
+countries as intermediate goods to produce domestic final goods. In
+our example this means that there are 1.14 units of domestic value
+added in the intermediate exports of Argentina's Agriculture industry
+to Turkey, that are re-exported by Turkey as intermediates to a third
+country which produces final goods with it. Terms six to eight concern
+domestic value added that eventually returns home. \textit{RDV\_FIN2}
+reveals for example that there are 0.35 units of domestic value added
+in the intermediate exports of Argentina's Agriculture industry to
+Turkey, that Turkey re-exports as intermediates to Argentina for the
+latter's final good production.
+
+The following four terms apply to foreign value added in exports and
+separate on the one hand between the origin of the foreign value added
+($MVA$ vs $OVA$) and on the other hand between the type of export
+(intermediate vs final good). $MVA$ describes hereby foreign value
+added sourced by the exporting country from the direct importer. From
+the perspective of the latter, these terms are thus part of the $RDV$
+(value added returning home) share. $OVA$ in contrast sums over the
+foreign value added sourced from all other countries. Going back to
+the example, this means that there are 0.21 units of Turkish value
+added in the final goods exports of Argentina's Agriculture industry
+to Turkey.
+
+Terms 13 to 16 collect the double counting of gross trade statistics
+that occurs when goods cross borders multiple times. $DDC$ captures
+double counting due to domestic value added, which is further classified
+according to the type of the ultimate export (final vs intermediate
+good). $MDC$ and $ODC$, on the other hand, capture double counting
+due to foreign value added from either the direct importer or other
+countries. For the Argentina-Turkey case this implies, for instance,
+that there are 0.18 units of value added in the intermediate exports
+of Turkey to Argentina which are re-exported by Argentina's Agriculture
+industry to Turkey as intermediates and then again re-exported. Since
+they would be part of $MVA$ twice, they are now counted once as double-counted
+term.
+
+Finally, the three checksums give total exports, total final goods
+exports, and total intermediate exports. The difference between the
+first and the latter two should be zero.
+
+One interesting application of this decomposition for trade and development
+uses changes over time in $FVA\_FIN$ and $FVA\_INT$. When low-wage
+developing countries enter GVCs, they tend to specialize mainly in
+assembly but try to gradually move up within the value chain. To illustrate
+this, we can reuse the example of the iPhone. Most of the value added
+in the device stems from US design and Japanese technology but it
+is ultimately assembled in China. This means for China that when it
+enters this GVC, its $FVA\_FIN$ starts to increase since it imports
+a lot of foreign value added, assembles it, and exports a final good:
+the iPhone. However, assembly itself does not contain a lot of value
+added so that the benefit of China initially is small. When its technology
+improves due to the interaction with Japan and the USA, it might be
+able to produce actual parts of the phone, which contain more value
+added. Eventually it might even be able to outsource assembly to a
+cheaper country. This would imply that it seizes a larger share of
+the value added, something commonly referred to as upgrading or moving
+up within the value chain. In terms of the WWZ decomposition, we would
+then observe that China's $FVA\_FIN$ first goes up and then starts
+to decline with a simultaneous increase in $FVA\_INT$.
+
+\section{Conclusion}
+
+\label{sec:conclusion}GVCs describe the increasingly international
+organization of production structures. As more and more regional trade
+agreements come into force, which drive down trade costs and harmonize
+product standards, it becomes more and more attractive for firms to
+outsource certain tasks of their production lines. Research on international
+trade analysing this development evolves quickly and reveals important
+implications of GVCs for economic growth and competitiveness. decompr
+aims at facilitating this reasearch by simplifying the calculation
+of standard GVC indicators. The purpose is to accelerate the research
+and, especially, to make it accesible to a wider audience.
+
+We have designed the package using a modular structure, with an additional
+user interface function for increased ease of use. The modular structure
+enables users to break the computationally intensive analysis process
+down into several steps. Furthermore, the modular structure enables
+users and other developers to build on top of basic data structures
+which are created by the \code{load\_tables\_vectors} function when
+implementing other decompositions or analyses. However, a wrapper
+function (\code{decomp()}) is also provided, which combines the use
+of the atomic functions into one. All of this should allow users of
+the package to adapt the package to their specific needs as the GVC
+research progresses.
+
+Since GVCs constitute a fairly new field of research, there are many
+ways forward for its analysis. The next central step is to examine
+both in theory and empirically how GVC participation affects real
+economic activity. More specifically, it is very relevant to look
+at how, for instance, employment and economic growth react when countries
+join GVCs and what the factors are that determine a successful relationship.
+From the standpoint of developing and emerging countries a very interesting
+question is if GVCs simplify industrialization and the formation of
+comparative advantage while high-income countries might look for an
+additional push for their stagnating post-crisis economies. We hope
+that decompr can play a part in this field and promote it.
+
+\nocite{wickham2014advanced} 
+
+\vfill{}
+
+
+\section*{Colophon}
+
+This paper was written in a combination of R \citep{core2014r} and
+\LaTeX{} \citep{lamport1986document}, specifically Lua\TeX{} \citealt{hagen2005luatex},
+with biblatex and biber \citep{lehman2006biblatex} for citations,
+using Sweave syntax \citep{leisch2003sweave} and compiled using knitr
+\citep{yihui2013knitr} and Pandoc \citep{macfarlane2012pandoc}.
+
+\newpage{}
+
+\printbibliography
+\end{document}
