@@ -118,7 +118,7 @@ decompr
 
 \end_inset
 
-:Global Value Chain decomposition in R
+: Global Value Chain decomposition in R
 \end_layout
 
 \begin_layout Author
@@ -13933,13 +13933,6 @@ key "wickham2014advanced"
  
 \end_layout
 
-\begin_layout Standard
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section*
 Colophon
 \end_layout
@@ -13997,13 +13990,6 @@ key "macfarlane2012pandoc"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
