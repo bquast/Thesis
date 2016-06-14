@@ -114,33 +114,94 @@ Provides natbib 1
 \begin_body
 
 \begin_layout Title
-Reproducible Contributions in Development Economics
+Four Reproducible Contributions in Development Economics
 \end_layout
 
 \begin_layout Author
 Bastiaan Quast
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+~
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Submitted in partial fulfilment of the requirements for the
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ PhD in Development Economics
 \end_layout
 
 \begin_layout Date
-16 June 2016
+Geneva, 2016
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset toc
-LatexCommand tableofcontents
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-CHANGE THE APPENDIX METHOD IN CHILD DOCUMENTS!!!!
+\begin_layout Section*
+Acknowledgements
 \end_layout
+
+\begin_layout Standard
+This thesis would not have existed without the help from many people.
+ First and foremost my supervisor Prof.
+ Jean-Louis Arcand, who has helped a tremendous amount, not in the least
+ by creating the PhD Development Economics programme in the first place.
+ In addition to this, I am very grateful to the second reader Prof.
+ Richard Baldwin and Prof.
+ Ugo Panizza who was the second reader during the preliminary thesis defence.
+ Of course, I am also very thankful to my coauthor in Chapters 3 & 4, Victor
+ Kummritz.
+ In addition to this I am grateful to great many people who have given feedback
+ in sessions such as Development Therapy and otherwise given support, in
+ particular: Aditi Srinivasan, Aksel Erbahar, Anne-Floor Quast, Arnout Quast,
+ Ben Lumsdaine, Carl Gahnberg, Daniel Norfolk, Françoise Quast, Martina
+ Viarengo, Matthias Rieger, Matthieu Stigler, Michael Kende, Laura Cyron,
+ Oliver Jütersonke, Patricia Arnold, Rahul Mehrota, Sandra Riemann, Stela
+ Rubinova, Steven Quast, Thijs Quast, Tu Chi Nguyen, Yi Huang.
+ Any remaining mistakes are of course my own.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
 
 \end_inset
 
@@ -227,25 +288,10 @@ reproducibility vs.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Choice of not RCTs etc.
- http://www.project-syndicate.org/commentary/evidence-based-policy-problems-by-ric
-ardo-hausmann-2016-02
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 As mentioned in the title, methodologically I focus on making the research
  in this thesis reproducible.
  Reproducibility is different from replicability in that is refers to regenerati
-ng the research results based on the same data, as opposed to replicablity,
+ng the research results based on the same data, as opposed to replicability,
  which uses newly gathered data.
  
 \end_layout
@@ -279,18 +325,18 @@ cite Roger Peng
 \end_layout
 
 \begin_layout Standard
-I believe that this applies to at least the same extend an probably more
- in economics.
+I believe that this applies to at least the same extend and perhaps even
+ more so in economics.
  Although there are situations in which replicable research may be conducted,
  specifically in experimental settings such as those often used in behavioural
- economicss or in field research using Randomised Control Trials (RCTs),
+ economics or in field research using Randomised Control Trials (RCTs),
  there are also many cases in which this is not possible.
 \end_layout
 
 \begin_layout Standard
-In this thesis I include two chapters where the identification strategy
+In this dissertation I include two studies where the identification strategy
  is based on a natural experiment.
- Firslty, a change in government policy, as a results of the unconstitutional
+ Firstly, a change in government policy, as a results of the unconstitutional
  nature of the sex-based discrimination in pension eligibility in South
  Africa.
  Secondly, the introduction of an interface language on the South African
@@ -308,7 +354,7 @@ In this thesis I include two chapters where the identification strategy
 There are a number of way in which research can be made reproducible, many
  of which are already becoming increasingly common.
  In addition to this, there are several methods which are less widespread,
- but nevertheless very useful, I discuss these in detail in 
+ which I discuss these in detail in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:reproducible"
@@ -316,10 +362,72 @@ reference "chap:reproducible"
 \end_inset
 
 .
+ One of these methods is weaving 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "knuth1984literate"
+
+\end_inset
+
+, which allows code - in this case for analysis though regression and plotting
+ - to be executed while the LaTeX document compiles and the outputs to be
+ directly integrated in the document.
+ The implementation for R is called knitr and as it is still under development,
+ which means the formatting in some cases can be a bit unconventional.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage newpage
+The third and fourth chapter were written together with Victor Kummritz.
+ We take an innovative new algorithm for trade flow decomposition and implement
+ this is the R language.
+ The functions that we created for this implementation were included in
+ an open-source R package which was published on the Comprehensive R Archive
+ Network (CRAN).
+ Since publication the package has been downloaded more than 6500 times.
+ Chapter 3 is the paper that accompanies this R package.
+ In Chapter 4 we use the package and apply this to a previously unavailable
+ dataset TiVa, with a specific focus on developing economies.
+\end_layout
+
+\begin_layout Standard
+Finally, in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:rnn"
+
+\end_inset
+
+ I include paper that describes an R package called rnn.
+ This package implements a machine learning algorithm known as a Recurrent
+ Neural Network (RNN).
+ These RNNs are already very popular in computer science and are increasingly
+ being applied in economics.
+ A problem with neural networks is that the parameters linking the inputs
+ and outputs are determined entirely by the algorithm, which means that
+ these do not have one-to-one mapping to a variable, such as when using
+ for instance a linear model.
+ Most of the existing tools such as Theano and Google's Tensorflow are open
+ source, which means that there is some transparency at least in the way
+ the model is constructed.
+ These tools are highly optimised and thereby complex, in addition to this,
+ they are written in language that aren't very common to everyday users.
+ As a result, it becomes very difficult to read the code in order to determine
+ how a model is constructed.
+ I attempt to remedy this by implementing the model in a user-friendly R
+ language, with the explicit aim on keeping the code as simple as possible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
 \end_inset
 
 
@@ -10687,7 +10795,7 @@ This data is set up in order to illustrate the benefits of the decompositions.
  To this end, we construct the elements of the input-output tables such
  that we have two countries and two industries that focus on upstream tasks,
  which means they focus on supplying other industries, and one country and
- industry that is specialized in downstream tasks, i.e.
+ industry that is specialised in downstream tasks, i.e.
 \begin_inset space ~
 \end_inset
 
@@ -39113,6 +39221,16 @@ R
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:rnn"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -39132,7 +39250,7 @@ filename "rnn.lyx"
 \end_layout
 
 \begin_layout Chapter
-Reproducibe Research Methods
+Reproducible Research Methods
 \end_layout
 
 \begin_layout Standard
@@ -39142,22 +39260,18 @@ name "chap:reproducible"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Here I briefly discuss the combination of existing and new methods and tools
  that I used to try and make the research in this thesis as reproducible
  as possible.
 \end_layout
 
 \begin_layout Standard
-First and moremost, it is essential to make clear which data is being used
+First and foremost, it is essential to make clear which data is being used
  and in case it is primary data, how it was produced (e.g.
  research instruments).
  Where possible, the data itself should be included.
  If this is impossible to due e.g.
- privacy concerns of licencing issues, a clear procedure for obtaining the
+ privacy concerns of licensing issues, a clear procedure for obtaining the
  data should be documented.
  The data used in both South African studies is available upon request through
  an online portal.
