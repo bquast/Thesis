@@ -390,34 +390,6 @@ The third and fourth chapter were written together with Victor Kummritz.
 \end_layout
 
 \begin_layout Standard
-Finally, in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:rnn"
-
-\end_inset
-
- I include paper that describes an R package called rnn.
- This package implements a machine learning algorithm known as a Recurrent
- Neural Network (RNN).
- These RNNs are already very popular in computer science and are increasingly
- being applied in economics.
- A problem with neural networks is that the parameters linking the inputs
- and outputs are determined entirely by the algorithm, which means that
- these do not have one-to-one mapping to a variable, such as when using
- for instance a linear model.
- Most of the existing tools such as Theano and Google's Tensorflow are open
- source, which means that there is some transparency at least in the way
- the model is constructed.
- These tools are highly optimised and thereby complex, in addition to this,
- they are written in language that aren't very common to everyday users.
- As a result, it becomes very difficult to read the code in order to determine
- how a model is constructed.
- I attempt to remedy this by implementing the model in a user-friendly R
- language, with the explicit aim on keeping the code as simple as possible.
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -39198,58 +39170,6 @@ Future analysis more complicated with machine learning, greater requirement
 
 \begin_layout Chapter
 \start_of_appendix
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-rnn
-\end_layout
-
-\end_inset
-
-: Recurrent Neural Networks in 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-R
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "chap:rnn"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "rnn.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
 Reproducible Research Methods
 \end_layout
 
@@ -39277,17 +39197,7 @@ First and foremost, it is essential to make clear which data is being used
  an online portal.
  In the publicly available Git project (more details below), I include a
  description how to obtain the data used through the South African Labour
- & Development Research Unit 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite
-\end_layout
-
-\end_inset
-
-.
+ & Development Research Unit.
 \end_layout
 
 \begin_layout Standard

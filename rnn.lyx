@@ -1463,179 +1463,6 @@ X <- array( c(X1,X2), dim=c(dim(X1),2) )
 
 \end_layout
 
-\begin_layout Subsection
-Foreign Exchange Prediction
-\end_layout
-
-\begin_layout Standard
-In this second example I train a RNN on more real-life data.
- I use the exchange rates of four major international currencies against
- the US Dollar.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Foreign Exchange Data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-quantmod, message=FALSE, warning=FALSE, eval=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-library(quantmod) # for downloading FX data
-\end_layout
-
-\begin_layout Plain Layout
-
-start = '1998-12-14'
-\end_layout
-
-\begin_layout Plain Layout
-
-end   = '2001-09-01'
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# download values
-\end_layout
-
-\begin_layout Plain Layout
-
-# output is automatically returned to
-\end_layout
-
-\begin_layout Plain Layout
-
-# the global environment (.GlobalEnv)
-\end_layout
-
-\begin_layout Plain Layout
-
-getFX('CHF/USD', from = start, to = end)
-\end_layout
-
-\begin_layout Plain Layout
-
-getFX('GBP/USD', from = start, to = end)
-\end_layout
-
-\begin_layout Plain Layout
-
-getFX('JPY/USD', from = start, to = end)
-\end_layout
-
-\begin_layout Plain Layout
-
-getFX('EUR/USD', from = start, to = end)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex Chunk
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-load_fx, echo=FALSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-load(file = '~/Thesis/FX.RData')
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Input data should be on the domain [0,1].
- Exchange rates are well suited for this since either A/B or B/A has to
- be in this domain.
- However, it is of course possible that within the time period studied,
- currency A, initially being worth less than currency B, becomes worth more.
- This is exactly what happened with the EUR/USD exchange rate.
- This means that neither EUR/USD nor USD/EUR is within the [0,1] domain
- for the entire period.
-\end_layout
-
-\begin_layout Standard
-It is for this reason that sigmoid functions are used to map any real number
- to the domain [0,1].
- The most function for this is the logistic function.
- At the end of the process, the outputs are mapped again to the original
- domain, using the inverse of the sigmoid function, in the case of the logistic,
- this is the logit function.
-\end_layout
-
-\begin_layout Standard
-By specifying the 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-x0
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Section
 Methodology
 \end_layout
@@ -1941,10 +1768,6 @@ status open
  itself.
 \end_layout
 
-\begin_layout Subsection
-Binary Addition
-\end_layout
-
 \begin_layout Standard
 The 
 \begin_inset Flex Code
@@ -2032,7 +1855,6 @@ status open
 status open
 
 \begin_layout Plain Layout
-
 trainr_args
 \end_layout
 
@@ -2149,10 +1971,6 @@ m1 <- trainr(Y,
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Foreign Exchange Prediction
 \end_layout
 
 \begin_layout Standard
