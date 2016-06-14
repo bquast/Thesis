@@ -6579,7 +6579,7 @@ opts_chunk$set(fig.path='../Making-Next-Billion-Demand-Access/misc/latex-',
 
 \begin_layout Plain Layout
 
-load(file = '../data/googletrends.RData')
+load(file = '../Making-Next-Billion-Demand-Access/data/googletrends.RData')
 \end_layout
 
 \begin_layout Plain Layout
@@ -8783,7 +8783,7 @@ plot_data, cache=TRUE, echo=FALSE
 
 \begin_layout Plain Layout
 
-ggplot(thuso) + geom_smooth(aes(x = date, y = thuso))
+ggplot(thuso) + geom_smooth(aes(x = date, y = thuso)) 
 \end_layout
 
 \end_inset
