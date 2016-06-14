@@ -326,7 +326,4630 @@ reference "chap:reproducible"
 \end_layout
 
 \begin_layout Chapter
-Making the `Next Billion' Demand Access
+Grandfathers and Grandsons:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Effects on a Male-Only Pension Change
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{refsection}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Abstract
+\end_layout
+
+\begin_layout Standard
+An exogenous male-only increase in cash transfer causes an increase in expenditu
+re on food, an improvement in Weight-for-Age z-scores, a deterioration in
+ Height-for-Age z-scores and no change in Weight-for-Height scores in children
+ in the same household, as observed in the context of South Africa's 2010
+ state pension expansion for males.
+ When estimated separately, these effects disappear for girls, whereas for
+ boys they remain intact.
+ In 2010 the male eligibility age for the South-African state pension was
+ brought on a par with female eligibility age (60, previously 65).
+ I exploit this policy change in order to estimate the effects of the male-only
+ change in cash transfers, on growth of young children living in the same
+ household, as well as on food expenditure.
+ The policy change took place shortly after the completion of the first
+ wave of South Africa's National Income Dynamics Survey and shortly before
+ the start of the second wave, which lends itself well for a Difference-in-Diffe
+rences approach on the Right-Hand Side.
+ On the Left-Hand Side I use z-scores of the anthropometrics status of young
+ children in the household (against WHO standards) as well as food expenditure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Chunk
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+load_data_libraries, include=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+opts_chunk$set(fig.path='figures/latex-', cache.path='data/cache/latex-',
+ fig.width=9, fig.height=5)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(magrittr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(plm)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(dplyr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(broom)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(printr)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+load(file = '../Grandfathers-Grandsons/data/merged.RData')
+\end_layout
+
+\begin_layout Plain Layout
+
+load(file = '../Grandfathers-Grandsons/data/results-new.RData')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:intro"
+
+\end_inset
+
+ Conditional Cash Transfer schemes are increasingly common in developing
+ countries.
+ However, the efficacy of these schemes - in particular in terms of the
+ investments in children - as compared to in-kind benefits such as universal
+ health care are often brought into question, especially when the recipient
+ of the transfer is male.
+ 
+\end_layout
+
+\begin_layout Standard
+With this study I seek to answer the question, whether cash transfers can
+ be effective if the recipient is male, specifically, when looking at the
+ effects on the anthropometric status of children in the household, and
+ if these effects are different for boys and girls.
+\end_layout
+
+\begin_layout Standard
+In order to answer this question, I examine a policy change in the South
+ African state pension scheme that only benefits men, namely the bringing
+ down of the eligibility age from 65 years of age to 60 years, on a par
+ with women's eligibility age 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ralston2015benefits,SAinfo2008pension"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+I find that this policy change leads to increased expenditure on food, improveme
+nts in Weight-for-Age, a deterioration in Height-for-Age, and no effect
+ on Weight-for-Height of young children in the household.
+ Furthermore, when estimated separately, for girls the effect disappears,
+ for boys the same effects remain intact at greater significance levels.
+ This suggest that the additional income of newly eligible men only affected
+ boys and not girls.
+ Additionally, it shows that increased expenditure on food has ambiguous
+ effect on anthropometrics.
+\end_layout
+
+\begin_layout Standard
+The debate on Conditional Cash Transfer (CCT) schemes and anthropometric
+ status is closely linked.
+ One of the key determinants of a lag in anthropometric status z-scores
+ is malnutrition.
+ Malnutrition can affect physical and cognitive development, which effects
+ future productivity and income 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "strauss1986does,dasgupta1997nutritional"
+
+\end_inset
+
+.
+ In spite of this, low levels of investment in child health are often observed,
+ despite the inefficiency of this 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rosenzweig1982market,rosenzweig1983estimating,arcand2001undernourishment"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Although Conditional Cash Transfer schemes are much more common, it can
+ be more informative to study Unconditional Cash Transfer schemes (UCTs)
+ as these are inherently less prone to selection bias issues.
+ State pension systems are an opportune subject of study, since they are
+ often virtually unconditional upon reaching a certain age.
+\end_layout
+
+\begin_layout Standard
+The South African pension system is of particular interest, because of the
+ relatively high amount of the payout.
+ Upon the initial expansion to include the black population, in 1991, this
+ amount was as much as twice the median monthly income for the rural population
+ 
+\begin_inset CommandInset citation
+LatexCommand citep*
+key "tangwe2013impact"
+
+\end_inset
+
+.
+ At the time of this study, the state pension payout of is just over 1000
+ ZAR, which is about half of median income in South Africa.
+ As a result of this, although the pension system was intended as a form
+ of poverty relief for the elderly population, it has also become that for
+ the South-African general population, serving as a general source of income
+ to many households 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ralston2015benefits"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Most of the literature suggests that cash transfers to women are more beneficial
+ to children.
+ In particular, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "duflo2000child,duflo2003grandmothers"
+
+\end_inset
+
+ studies the effects of South African state pension shortly after the policy
+ change that expended the system to include the black and other non-white
+ populations in 1993.
+ That study finds that income that accrues to a woman in the household leads
+ to improvements in anthropometic status z-scores of girls living in the
+ same household.
+ Studying the grandparents is particularly relevant in the South African
+ context, as they are often the primary caregivers when parents works in
+ other parts of the country.
+ Currently less than one in three children lives with their biological parents
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "stats2016statistics"
+
+\end_inset
+
+.
+ At the time of this study in 1993, the male eligibility age was 65 and
+ the female age was 60, while average life expectancy in South Africa being
+ significantly lower than that at around 56 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "stats2016statistics"
+
+\end_inset
+
+, complicating the comparison.
+ In addition to this, since then, social security coverage has expanded
+ from a rate of 2.5-million in 1994 to over 12.7-million in 2008 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "SAinfo2008pension"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This age discrepancy has always been considered discriminatory on the basis
+ of age and thereby unconstitutional by the South African government.
+ As a consequence of this, in 2010 the pension eligibility age for South
+ African men was lowered from 65 to 60 years old, eliminating the discrepancy
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "SAinfo2008pension"
+
+\end_inset
+
+.
+ I exploit this policy change by estimating a Difference-in-Differences
+ model, quantifying the effects of the male-only increase in cash transfers
+ to households with male household members aged 60 until 65.
+\end_layout
+
+\begin_layout Standard
+This lowering of the pension eligibility age for men, took place between
+ the first and the second wave of data collection for the South African
+ National Income Dynamics Study 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "saldru2008nids,saldru2012nids,saldru2013nids"
+
+\end_inset
+
+, which took place respectively in 2008 and 2011.
+ This household survey includes data on age, state-pension eligibility and
+ receipts, children's anthropometric z-scores, income, food/non-food expenditure
+, etc.
+ The children's z-scores are computed by comparing their anthropometics
+ with the WHO Child Growth Standards 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "who2006child,world2006world,onyango2009world"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The availability of data directly prior to and after the policy change,
+ enables me to estimate the effect of the cash transfer to the newly eligible
+ group of males aged 60 until 65 in their households using a Difference-in-Diffe
+rences approach.
+ In particular, I estimate effect of this change on food and non-food expenditur
+e as well as on the anthropometric status z-scores of young children living
+ in the same households.
+\end_layout
+
+\begin_layout Standard
+I find that the transfer leads to an increase in food expenditure, but shows
+ no significant impact on non-food expenditure.
+ The effects on the anthropometric status of children in the same households
+ are more ambiguous.
+ The change led to an improvement in the Weight-for-Age z-scores, as well
+ as a regression in the Height-for-Age z-scores of children.
+ When I estimate these equations separately for boys and girls, the same
+ variables have no significant effect for girls, for boys the effects remain
+ intact, at greater significance levels.
+\end_layout
+
+\begin_layout Standard
+These results suggest that the increased expenditure in food results in
+ improvements in the short-term Weight-for-Age indicators, but at the same
+ time that the more long-term effect on Height-for-Age is opposite to this.
+ A possible explanation for this is that the increase food expenditure goes
+ towards unhealthy food, increasing weight, but not leading to any long
+ term increases in growth.
+ Furthermore, the separate estimations suggest that this change only affects
+ boys.
+\end_layout
+
+\begin_layout Standard
+The following 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:data"
+
+\end_inset
+
+ discusses the National Income Dynamics Study, as well as the WHO Child
+ Growth Standards used to compute the anthropometric z-scores.
+ This is followed by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:methodology"
+
+\end_inset
+
+ which discusses the empirical model estimated, as well as the tools employed
+ for this.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:results"
+
+\end_inset
+
+, I present the outcome of these estimations.
+ Finally, I interpret these results and their limitations in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:conclusions"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Data
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:data"
+
+\end_inset
+
+The 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "NIDS,"
+key "saldru2008nids,saldru2012nids,saldru2013nids"
+
+\end_inset
+
+, collected the data in the National Income Dynamics Study, together with
+ the World Bank, which is the primary source of data in this study.
+\end_layout
+
+\begin_layout Standard
+The study collects information on a representative set of approximately
+ ten thousand South-African households over time.
+ Currently three `waves' of data are available, these waves date from 2008,
+ 2011, and 2013.
+ The key variables that I use are that I use are: 
+\end_layout
+
+\begin_layout Itemize
+child anthropometrics status, Weight for Age, Weight for Height, and Height
+ for Age (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+zwfa
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+zwfh
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+zhfa
+\end_layout
+
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Itemize
+food and non-food expenditure (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+expf
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+expnf
+\end_layout
+
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Itemize
+child age in days (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+c_age_days1
+\end_layout
+
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Itemize
+gender of the child (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman
+\end_layout
+
+\end_inset
+
+); 
+\end_layout
+
+\begin_layout Itemize
+pension eligible adult (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_60_65
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_65
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_65
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+In addition to these variables of interest, I include a number relevant
+ of covariates, such as household income (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+hhincome
+\end_layout
+
+\end_inset
+
+), in the analysis.
+\end_layout
+
+\begin_layout Standard
+Children's anthropometrics including length/height, weight, and waist, are
+ combined with the WHO growth standards, to calculate the z-scores.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:haz_descr"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:waz_descr"
+
+\end_inset
+
+ the distributions of both variables for both boys and girls are presented.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:expf_descr"
+
+\end_inset
+
+ presents distributions statistics on the food expenditure variable.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Weight-for-Age z-score distributions
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:waz_descr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+waz_boxplot, message=FALSE, echo=FALSE, warning=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    filter(wave==1)                                        %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    ggplot( aes(x=c_woman, y=zwfa) )                       %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    geom_boxplot(outlier.size = .1, outlier.color = 'red') %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    stat_boxplot(geom='errorbar')                          %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    coord_flip()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Height-for-Age z-score distributions
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:haz_descr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+haz_boxplot, warning=FALSE, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    filter(wave==1)                                        %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+    ggplot( aes(x=c_woman, y=zhfa) )                       %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    geom_boxplot(outlier.size = .1, outlier.color = 'red') %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    stat_boxplot(geom='errorbar')                          %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+    coord_flip()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement bh
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Food expenditure 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:expf_descr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf_descr, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(wave) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  do(tidy( summary(.$expf) ))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For adults several variables measure the different amounts and sources of
+ income.
+ Among those, a variable if the adult receives a state pension, and if so,
+ how much.
+ This is a numeric variable, the values of which lie very close together.
+ A total of 22.99% of households in the dataset have a female pension recipient
+ as a household member.
+ Conversely, only 9.06% of households in the dataset have a male pension
+ recipient as a household members.
+ 
+\end_layout
+
+\begin_layout Standard
+The income received by state pension recipients is generally the same amount,
+ which slightly more than 1000 ZAR.
+ This is about half of median household income, as recorded in this dataset.
+\end_layout
+
+\begin_layout Standard
+I construct a dummy variable for children living in a household with a man
+ aged 60 until 65 (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+).
+ As well as dummies for a man 65 years or older (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_65
+\end_layout
+
+\end_inset
+
+) and these same dummies for children living with women of those ages.
+ The coefficient of interest relates to the interaction of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ dummy variable with the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+ dummy, whereby the interaction with the additional household member dummies
+ serve to distinguish the outcome.
+\end_layout
+
+\begin_layout Standard
+In addition to the explanandum, I include number of relevant covariates
+ on the Right-Hand Side (RHS).
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:income"
+
+\end_inset
+
+ gives a description of the distribution of household income as found in
+ the dataset.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement hb!
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Income distribution
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:income"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+hhincome_descr, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(wave) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  do(tidy( summary(.$hhincome) ))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 2006 the WHO published its standards for child growth
+\begin_inset CommandInset citation
+LatexCommand citep
+key "who2006child"
+
+\end_inset
+
+, superseding the previously used CDC Growth Charts of 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "CDC Growth Charts: United States"
+key "nchs2000cdc"
+
+\end_inset
+
+.
+ The WHO charts map the average growth of an ethnically varied sample of
+ children living in households with healthy lifestyles, setting a benchmark
+ for growth.
+\end_layout
+
+\begin_layout Standard
+The various anthropometric z-scores are representative of child health in
+ related but somewhat different ways.
+ The overarching idea is that factors that harm the child's health, such
+ as malnutrition on illness, adversely affects these variables.
+ Both malnutrition and illness can cause the child to grow less for a certain
+ amount of time, as a result, the height of the child is on average less
+ than that other children of the same age that have not suffered this period
+ of malnutrition or disease.
+ This effect not disappear over time, making Height-for-Age an indicator
+ that can reflect past malnutrition or illness, even after quite some time.
+ The Weight-for-Height is an indicator that relates children's weight to
+ their height, irrespective of their age.
+ Weight can also be adversely affected by malnutrition or disease, but unlike
+ Height-for-Age, this effect disappears of time in healthy periods.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+add description on Weight-for-Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For instance, if we measure a height 
+\begin_inset Formula $x$
+\end_inset
+
+ for a child of age 
+\begin_inset Formula $y$
+\end_inset
+
+ (in weeks/months), then we refer the to WHO tables, find the relevant ideal
+ height and standard deviation for a child of age 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We then subtract the ideal height (
+\begin_inset Formula $\mu_{y}$
+\end_inset
+
+) from the observed height, and divide by the standard deviation (
+\begin_inset Formula $\sigma_{y}$
+\end_inset
+
+), like so: 
+\begin_inset Formula 
+\[
+z_{xy}=\frac{x-\mu_{y}}{\sigma_{y}}
+\]
+
+\end_inset
+
+These ideal scores are based on a sample of children from different ethnic
+ populations, in households which observed a healthy lifestyle.
+ Any health issues, such as malnutrition or disease will affect these metrics,
+ by causing the child to be shorter or lighter as compared to these ideal
+ standards.
+ It is however not possible to distinguish between the different causes
+ of an observed slowed growth.
+\end_layout
+
+\begin_layout Standard
+It is best practice to use only metrics for children between the ages of
+ 6 months and 60 months.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cite something for that; Angus & Deaton ?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we use two type of z-scores, the Height-for-Age Z-score (HAZ) and the
+ Weight-for-Age Z-score (WAZ).
+ Since these metrics are both age-based, they provide information about
+ all past growth issues.
+ Any past issues such a malnutrition and disease will have impaired growth,
+ and these effects will still be captured by today's height.
+ This also applies to the WAZ, as the ideal weight is a function of the
+ height, which is in turn a function of the age.
+\end_layout
+
+\begin_layout Standard
+These are constructed on a weekly basis up to the age of 60 months, and
+ on a monthly basis thereafter.
+\end_layout
+
+\begin_layout Standard
+The NIDS uses a file and data structure which is ill suited for panel data
+ analysis.
+ I therefore transform the data to a format which is more conducive to panel
+ data analysis.
+ For this I used `Tidy Data' structure, as described in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "wickham2014tidy"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Empirical methodology
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:methodology"
+
+\end_inset
+
+With this study I aim to answer the question whether a male-only cash can
+ be effective, in particular with regard to the effects on the growth of
+ young children in the same household.
+ 
+\end_layout
+
+\begin_layout Subsection
+Identification strategy
+\end_layout
+
+\begin_layout Standard
+The identification strategy in this paper is based on a policy change in
+ the pension eligibility age for men.
+ Until the middle of 2009, men became eligible for the state pension at
+ the age of 65.
+ Between mid 2009 and December 31st 2010, this was gradually lowered to
+ 60 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ralston2015benefits"
+
+\end_inset
+
+.
+ I combine this information with data from the South-African National Income
+ Dynamics Study, a full-panel dataset, which contains information on households
+ from before and after this policy change.
+ This policy change falls between waves 1 and 2 of the NIDS, which took
+ place in 2008 and 2011 respectively.
+\end_layout
+
+\begin_layout Standard
+I study the effect of this policy change, on the anthropometric status of
+ children in the same household as pension recipients as well as on food
+ and non-food expenditure.
+ 
+\end_layout
+
+\begin_layout Standard
+This identification strategy is operationalised by constructing a policy
+ change or event dummy.
+ This event dummy is called 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+, and takes the value 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ for data after the policy change (waves 2 & 3), and the value 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+ before the policy change (wave 1).
+ This dummy is interacted with a dummy variable on having a male household
+ member aged between 60 and 65 (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+), as well as with dummies for men age 65 or older and dummies for women
+ of the same ages.
+\end_layout
+
+\begin_layout Subsection
+Regression specification
+\end_layout
+
+\begin_layout Standard
+In order to identify the effect of the policy change, I employ Difference-in-Dif
+ferences, using the fixed-effects estimator (the Hausman test rejected random
+ effects as biased, see 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:add_estimates"
+
+\end_inset
+
+).
+ Based on this setup, I formulate two base models.
+ One model with the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+ dummy, and an interaction term with male pension recipient (
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+).
+ The second model has the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+ dummy and an interaction term with the same 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ dummy, as well as interaction terms with the dummies for women between
+ 60 and 65 and women and men 65 and above.
+ Each of these models is estimated with both types of z-scores, as well
+ as food and non-food expenditure as dependent variables.
+\end_layout
+
+\begin_layout Standard
+The outcome variable is 
+\begin_inset Formula $y_{it}$
+\end_inset
+
+, this outcome variable takes the form of the of the z-scores, such as Weight-fo
+r-Age or Height-for-Age, food/non-food expenditure.
+ Here 
+\begin_inset Formula $t$
+\end_inset
+
+ denotes time and 
+\begin_inset Formula $i$
+\end_inset
+
+ the individual.
+ The individual and time fixes effects are denoted by 
+\begin_inset Formula $\gamma_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{t}$
+\end_inset
+
+ respectively.
+ Dummies for living in a household with a female or a male pension recipient
+ are included as 
+\begin_inset Formula $P_{it}^{f}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{it}^{m}$
+\end_inset
+
+ respectively.
+ The dummy variable 
+\begin_inset Formula $T_{it}$
+\end_inset
+
+ denoted the treatment status.
+ Lastly, 
+\begin_inset Formula $\epsilon_{it}$
+\end_inset
+
+ is the error term, which is assumed to be distributed as 
+\begin_inset Formula $\epsilon_{it}\sim N(0,\sigma)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{it}=α_{i}+\lambda_{t}+\delta D{}_{it}+βX_{it}+\epsilon_{it}\label{eq:m1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this, 
+\begin_inset Formula $α_{i}$
+\end_inset
+
+ represents the individual fixed effects, 
+\begin_inset Formula $\lambda_{t}$
+\end_inset
+
+ represent the time fixed effects, and 
+\begin_inset Formula $X_{it}$
+\end_inset
+
+ are the time varying covariates.
+ The error term is 
+\begin_inset Formula $\epsilon_{it}$
+\end_inset
+
+.
+ Finally the term of interest is 
+\begin_inset Formula $D_{it}$
+\end_inset
+
+ , which is the interaction of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ dummy variable with the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+ dummy variable.
+ Whereby the coefficient of interest being 
+\begin_inset Formula $\delta$
+\end_inset
+
+.
+ In the second specification, I also include dummy variables for male household
+ members of 65 years and over, and for woman aged 60-65 and 65 years and
+ over.
+ In this specification, 
+\begin_inset Formula $D_{it}$
+\end_inset
+
+ represent the interaction of the vector of household member dummies, with
+ the event dummy.
+\end_layout
+
+\begin_layout Standard
+The event variable 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+
+ is a dummy which takes the value 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TRUE
+\end_layout
+
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+) for the data collected after the policy change, i.e.
+ waves 2 and 3 and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+FALSE
+\end_layout
+
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+
+) for data collected before then.
+ Lastly, I include the covariate 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+hhincome
+\end_layout
+
+\end_inset
+
+ which represents total household income.
+\end_layout
+
+\begin_layout Standard
+As the variables of interest living with a man between 60 and 65, as well
+ as the other household member dummy variables are determined at a household
+ level, I apply standard error corrections to take this into account, the
+ full procedure is outlined in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:add_estimates"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As described above, I use a total of five dependent variables, Height-for-Age
+ (HAZ), Weight-for-Height (HAZ), Weight-for-Age (WAZ), and food and non-food
+ expenditure.
+ Each of these is used in a different estimation as the Left-Hand Side (LHS)
+ variable.
+ Combining these five LHSs with each of the RHS specifications.
+ I present the key results of these estimations in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:results"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:results"
+
+\end_inset
+
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:foodexp"
+
+\end_inset
+
+ I present the result of the estimations with food and non-food expenditure
+ as dependent variables.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:WAZ-full"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:HAZ-full"
+
+\end_inset
+
+ I present the estimation results for the equations with anthropometric
+ status as the dependent variables, coefficients with a corresponding p-value
+ of less than 0.1 are printed in bold font.
+\end_layout
+
+\begin_layout Standard
+The first four items in each table represent the interaction terms between
+ the event dummy and the various household member dummies, e.g.
+ the variable 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ is a dummy variable for the child living in the same household as a male
+ aged 60 until 65.
+\end_layout
+
+\begin_layout Standard
+The other rows represent the independent variables.
+ Where 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_60_65
+\end_layout
+
+\end_inset
+
+ represents the dummy variable for children living in a household with a
+ state pension eligible woman aged 60 until 65.
+ The variables 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_65
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_65
+\end_layout
+
+\end_inset
+
+ represent pension eligible men an women over the age of 65 respectively.
+ 
+\end_layout
+
+\begin_layout Standard
+As mentioned in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:methodology"
+
+\end_inset
+
+ I estimate the equations using only the interaction term with 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ as well as with all household member of age dummies, such as woman_65,
+ etc.
+ I only present the results here using all interaction terms.
+ The estimates with the sole interaction term are qualitatively and quantitative
+ly similar to the full estimates and are available in appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:add_estimates"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The key result in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:foodexp"
+
+\end_inset
+
+ is that in the estimation with food expenditure as the explanandum the
+ coefficient estimate for the interaction term event * man_60_65, is positive
+ at 103.82 with a corresponding p-value of 0.03.
+ This coefficient estimate represents a 103.82 Rand (ZAR) increase on food
+ expenditure in the households which received the additional income through
+ pension receipts of men aged between 60 and 65.
+ The interaction term with Woman 65+ is also positive and significant, although
+ as we will see below, this effect does not permeate to any of the anthropometri
+c z-scores.
+ In addition to this, the estimate for household income is positive at 0.03
+ and highly significant at 0.00.
+\end_layout
+
+\begin_layout Standard
+In the estimation with non-food expenditure as the explanandum, I find so
+ significant effects other than household income.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Food and Non-Food Expenditure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:foodexp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="5">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Food
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-Food
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+103.82
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.03)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.22)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(1.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.35)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.69
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.90)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.36)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+104.24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.51)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+55.61
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.20)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+206.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.57)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+112.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+377.43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.57)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46.88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.13)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-356.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.16)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-181.57
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.38)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+131.32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.08)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Household Income
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Observations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15938
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15938
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When using Weight-for-Age as a dependent variable, the coefficient of interest
+ is positive at 0.33 and significant, with a p-value of 0.02.
+ This represents an increase of 33% of a standard deviation of the WHO Child
+ Growth Standards towards the WHO target mean value.
+\end_layout
+
+\begin_layout Standard
+The interaction terms of the event dummy with the other household member
+ dummies, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_65
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_60_65
+\end_layout
+
+\end_inset
+
+, and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+woman_65
+\end_layout
+
+\end_inset
+
+, are not significant with p-values of 0.74, 0.18, and 0.58 respectively.
+\end_layout
+
+\begin_layout Standard
+Household income is positive and highly significant, although effect of
+ one additional Rand on the z-scores is very small.
+ The coefficient of Girl is position at 0.09 and significant, indicating
+ that girl's have a lag 9% less of a WHO Standards standard deviation.
+\end_layout
+
+\begin_layout Standard
+I also estimate this equation separately for boys and for girls.
+ The estimation including only boys gives a somewhat higher estimate of
+ 0.44, with a p-value of 0.03.
+ The estimate for girls is lower at 0.26 and insignificant at a p-value of
+ 0.23.
+\end_layout
+
+\begin_layout Standard
+A graphical illustration of the result on the variable of interest can be
+ found in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:waz-bars"
+
+\end_inset
+
+, which shows the average lag in 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+zwfa
+\end_layout
+
+\end_inset
+
+ for children living with a man between 60 and 65, before and after the
+ policy change on the right, as compared to children who do not have such
+ a household member on the left.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Weight for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:WAZ-full"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="8">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+General
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Boys
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Girls
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.33
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.02)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.03)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.23)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.74)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.31)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.05)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.18)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.23)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.44)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.58)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.79)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.77)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.03)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.06)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.13)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.47)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.01)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.04)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.06)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.27)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.21)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.69)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.32)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.80)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.85)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.19)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Household Income
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Girl
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Observations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11740
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5878
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5862
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Weight for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:waz-bars"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+waz1, warning=FALSE, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	group_by(wave, man_60_65)                   %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	summarise( zwfa=mean(zwfa, na.rm=TRUE) )    %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+	ggplot( aes(x=wave,y=zwfa, fill=man_60_65)) %+%  
+\end_layout
+
+\begin_layout Plain Layout
+
+	geom_area(position="identity")              %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	facet_grid(~man_60_65)                      %+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	scale_fill_brewer(palette='Set1')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When I use Height-for-Age as a dependent variable, the result is very different.
+ I find a negative effect of -0.52 of the treatment on the dependent variable,
+ at a p-value of 0.09.
+ This represents a drop of 52% of a standard deviation in the WHO Child
+ Growth Standards, falling further below the WHO target mean value.
+\end_layout
+
+\begin_layout Standard
+None of the interaction terms with any of the other household member dummies
+ are significant, at p-values of 0.31, 0.24, and 0.98 respectively.
+ When I re-estimate this equation to only include boys in the sample, I
+ find a much greater effect of -0.94, which is also more significant, with
+ a p-value of 0.04.
+ The same is not true of the re-estimation which only includes girls, where
+ the estimate is -0.24 and entirely insignificant with a p-value of 0.57.
+\end_layout
+
+\begin_layout Standard
+The coefficient estimate for Girl is 0.22, which means that on average across
+ all three waves, girls z-scores are 22% of a WHO standard deviation less
+ below the WHO target mean value than boys are.
+ Again, the value of the household income coefficient is very low (rounded
+ to 0.00) but highly significant at a p-value of 0.00, this is simply because
+ the marginal effect of one additional Rand is very small but nevertheless
+ decisively positive.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Height for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:HAZ-full"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="7">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+General
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Boys
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Girls
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(P > |t|)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.52
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.09)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.94
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.04)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.57)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.31)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.92)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.25)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.24)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.08)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.95)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event * Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.98)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.49)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.54)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.66)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.37
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.06
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.85)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Man 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.29)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.07
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.79)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.08)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 60-65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+-0.32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.08)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.32)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.15)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Woman 65+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.74)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.50)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.88)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+event
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.867)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.92)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.77)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Household Income
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Girl
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Observations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4809
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2301
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2377
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusions and limitations
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:conclusions"
+
+\end_inset
+
+The impetus for this paper is to gain a greater understanding of the efficiency
+ of cash transfers to male household members, to for instance improve the
+ designs of CCTs.
+ To do this I seek to answer the question if cash transfers to men are effective
+ in influencing the health of household members, particularly the growth
+ of children in the same household.
+\end_layout
+
+\begin_layout Standard
+I analyse data from the National Income Dynamics Study around the exogenous
+ lowering of the pension eligibility age for men, from 65 to 60, in the
+ South African state pension system.
+\end_layout
+
+\begin_layout Standard
+Using a Difference-in-Differences based estimation, I compare differences
+ in the anthropometric status of children living in the same household as
+ men of the newly eligible age with children live in a household without
+ such a member.
+\end_layout
+
+\begin_layout Standard
+On the Right-Hand Side I use a dummy variable for the policy change as well
+ as dummy variables for men aged 60-65, men aged 65+ and the same two dummy
+ variables for women of those ages as household members.
+ On the Left-Hand Side (LHS) I use three different anthropometric z-scores,
+ Height-for-Age, Weight-for-Age, and Weight-for-Height, as well as food
+ and non-food expenditure.
+ In addition to the general estimates using z-scores as a dependent variable,
+ I also re-estimate these three equations once using only boys in the sample
+ and once using only girls.
+\end_layout
+
+\begin_layout Standard
+The estimation of these equations gives three key results.
+ Firstly, I find that there is a significant and consistent positive effect
+ of the interaction term of the event dummy and the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+man_60_65
+\end_layout
+
+\end_inset
+
+ dummy, on food expenditure.
+ Secondly, there is a significant and consistent positive effect of the
+ same interaction term on the Weight-for-Age Z-score, the interaction terms
+ with other household member dummies are not significant.
+ Thirdly, I find a consistent and negative effect of the interaction term
+ on the Height-for-Age Z-scores.
+ I find no significant effect on Weight-for-Height.
+ All of these effects are consistent across the different specifications
+ and use standard error corrections.
+\end_layout
+
+\begin_layout Standard
+These effects suggest that the male income resulted in greater food expenditure,
+ which improved the Weight-for-Height anthropometric status.
+ Since the estimation includes data from two waves after the policy change,
+ we would expect this additional food expenditure to also lead to an improvement
+ in the more long-term metric of Height-for-Age.
+ Surprisingly we observe an opposite effect here.
+ An explanation for this could be that nature of the expenditure on food
+ has changed, helping improve the Weight-for-Age, but not improving the
+ Height-for-Age, with the later being a more long term health indicator.
+\end_layout
+
+\begin_layout Standard
+When I subset to a data to only includes girls and reestimate the equation
+ with the two z-score dependent variables, I find no significant effects.
+ However, using a subset of only boys gives the same results as in the original
+ estimation and at greater significance levels.
+ This makes it unlikely that the surprising deterioration in Height-for-Age
+ can be attributed to another factor such as the 2008 global financial crisis,
+ since this would in all likelihood also have affected girls as it did boys.
+\end_layout
+
+\begin_layout Standard
+More central to this study, it suggest that the cash transfer only affected
+ boys living with a new recipient.
+ As shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:waz_descr"
+
+\end_inset
+
+, the boys in the dataset scored slightly worse in the Weight-for-Age z-scores
+ before the policy change.
+ One possible explanation for the improvement in Weight-for-Age in boys
+ could be that they benefitted more in terms of this metric because the
+ addition food expenditure had a relatively large effect due as a result
+ of the initial greater lag.
+ However, this is at odds with the deterioration in Height-for-Age, since
+ also here, boys scored worse even in wave 1 of the dataset.
+ Should a greater lag have been the cause of the effect in the improvement
+ in Weight-for-Age then we would expect a similar improvement in Height-for-Age.
+\end_layout
+
+\begin_layout Standard
+An alternative explanation could be that if the cash transfer was used to
+ purchase unhealthy food, which increases weight but is not nutritious in
+ terms of promoting growth, than this was only spent on boys in the household.
+ If there is merit to this last explanation, then this result mirrors the
+ result found in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "duflo2000child,duflo2003grandmothers"
+
+\end_inset
+
+, where the central result is an improvement in girls' anthropometric status
+ when they live with a female pension recipient.
+ The combination of these two results is in that sense similar to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "thomas1994like"
+
+\end_inset
+
+, who finds that within households, father's education has a larger effect
+ on the anthropometric status of boys and mother's education has a larger
+ effect on the anthropometric status of girls.
+\end_layout
+
+\begin_layout Standard
+The first key outcome of this research is that food expenditure is some
+ way too ambiguous a variable.
+ The results of the increased food expenditure are not altogether positive,
+ leading to a deterioration in Height-for-Age.
+ In context such as these, the increased food expenditure would generally
+ be thought of as a positive development.
+ By further analysing the types of food purchased, it might be possible
+ to better understand the deterioration in Height-for-Age and the lack of
+ an effect on Weight-for-Height.
+\end_layout
+
+\begin_layout Standard
+The second key outcome of this research is that both the positive and negative
+ consequence of the male-only cash transfer seem to only effect boys.
+ This could suggest that, similarly to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "duflo2000child,duflo2003grandmothers"
+
+\end_inset
+
+ the grandparent seems to spend only on grandchildren of the same sex.
 \end_layout
 
 \begin_layout Standard
@@ -334,9 +4957,23 @@ Making the `Next Billion' Demand Access
 status open
 
 \begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDemandAccess.lyx"
+discuss possible consequences
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "bibliography"
+options "plain"
 
 \end_inset
 
@@ -349,33 +4986,1388 @@ filename "/Users/quast/Making-Next-Billion-Demand-Access/man/MakingNextBillionDe
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage newpage
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{subappendices}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Original Estimates
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:add_estimates"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Standard Error Correction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+se-correction, messages=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+library(lmtest)  # standard error correction
+\end_layout
+
+\begin_layout Plain Layout
+
+library(broom)   # output formatting
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# standard error correction
+\end_layout
+
+\begin_layout Plain Layout
+
+tidy( coeftest(expf1, vcov=vcovHC(expf1,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  type="HC0",
+\end_layout
+
+\begin_layout Plain Layout
+
+                                  cluster="group")) )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Non-food expenditure 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:expnf_descr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expnf_descr, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+NIDS %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  group_by(wave) %>%
+\end_layout
+
+\begin_layout Plain Layout
+
+  do(tidy(summary(.$expnf)))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Non-Food Expenditure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:expnf"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expnf1_vis, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(expnf ~	post_treatment*post_treatment + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		wopost_treatment + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman,
+\end_layout
+
+\begin_layout Plain Layout
+
+		data   = NIDS,
+\end_layout
+
+\begin_layout Plain Layout
+
+		model  = 'random')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_expnf1, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(expnf1)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Food Expenditure Interact All
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:expf2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf2_vis, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(expf ~	post_treatment*post_treatment +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*wopost_treatment + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman,
+\end_layout
+
+\begin_layout Plain Layout
+
+		data   = NIDS,
+\end_layout
+
+\begin_layout Plain Layout
+
+		model  = 'within')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf2, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(expf2)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Girls Height for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:haz1-girls"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+hfa_vis_girls, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(zhfa ~ 	post_treatment*man_60_65 +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome,
+\end_layout
+
+\begin_layout Plain Layout
+
+		data = NIDS, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		subset = best_age_yrs < 4 &
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman == TRUE,
+\end_layout
+
+\begin_layout Plain Layout
+
+		model='between')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_hfa_girls, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(zhfa20)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Boys Height for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:haz1-boys"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+hfa_vis_boys, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(zhfa ~ 	post_treatment*man_60_65 +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome,
+\end_layout
+
+\begin_layout Plain Layout
+
+		data = NIDS, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		subset = best_age_yrs < 4 &
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman == FALSE,
+\end_layout
+
+\begin_layout Plain Layout
+
+		model='between')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_hfa_boys, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(zhfa22)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Height for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:haz1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+hfa_vis, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(zhfa ~ 	post_treatment*man_60_65 +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		data = NIDS, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		subset = best_age_yrs < 4, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		model='between')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_hfa, echo=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(zhfa7)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Weight for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:waz1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+waz_vis, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(zwfa ~ 	post_treatment*man_60_65 +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		data = NIDS, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		subset = c_age_days1 > 180 & c_age_days1 < 2920, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		model='between')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+print_wfa, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(zwfa9)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Food Expenditure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:expf"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf1_vis, eval=FALSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+plm(expf ~	post_treatment*man_60_65 +
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+		woman,
+\end_layout
+
+\begin_layout Plain Layout
+
+		data   = NIDS,
+\end_layout
+
+\begin_layout Plain Layout
+
+		model  = 'within')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf1, echo=FALSE, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+kable(summary(expf2)$coef)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hausmann
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Chunk
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+expf2_hausman, cache=TRUE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+model_expf2 <- expnf ~ post_treatment*man_60_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+post_treatment*man_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+woman_60_65*post_treatment + 
+\end_layout
+
+\begin_layout Plain Layout
+
+post_treatment*woman_65 + 
+\end_layout
+
+\begin_layout Plain Layout
+
+hhincome + 
+\end_layout
+
+\begin_layout Plain Layout
+
+woman
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+fe_expf2 <- plm(model_expf2, data=NIDS, model='within')
+\end_layout
+
+\begin_layout Plain Layout
+
+re_expf2 <- plm(model_expf2, data=NIDS, model='random')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+phtest(fe_expf2, re_expf2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Software
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:software"
+
+\end_inset
+
+The computation estimation of these models is performed using R 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "R"
+
+\end_inset
+
+, with the implementation of the panel data structure and models using the
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plm
+\end_layout
+
+\end_inset
+
+ package by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "croissant2008panel"
+
+\end_inset
+
+.
+ Generalized Linear Models for the panel data set are estimated using the
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pglm
+\end_layout
+
+\end_inset
+
+ package by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "croissant2013pglm"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+All changes are logged using the version control system Git 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "git"
+
+\end_inset
+
+ and publicly available on GitHub at 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/bquast/Grandfathers-Grandsonds/"
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The repository can by cloned to a local computer by entering in following
+ command in a terminal (with Git installed):
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+git clone https://github.com/bquast/Grandfathers-Grandsons.git
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In order to merge data and compute of these statistics, I make use of the
+ dplyr and tidyr R packages 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "wickham2015dplyr,wickham2016tidyr"
+
+\end_inset
+
+.
+ After having combined the various data.frames within each wave, the three
+ waves can be combined by simply joining the rows using base R's 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rbind()
+\end_layout
+
+\end_inset
+
+ function
+\begin_inset CommandInset citation
+LatexCommand citep
+key "R"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{subappendices}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{refsection}
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Chapter
-Male/Female Income and Child Growth
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/quast/MaleFemale-Income-Child-Growth/man/MaleFemaleIncomeChildGrowth.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+Making the Next Billion Demand Access
 \end_layout
 
 \begin_layout Chapter
