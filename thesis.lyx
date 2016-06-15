@@ -91,7 +91,7 @@ Provides natbib 1
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 1
+\use_refstyle 0
 \index Index
 \shortcut idx
 \color #008000
@@ -229,6 +229,22 @@ addcontentsline{toc}{chapter}{Introduction}
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{refsection}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex Chunk
 status open
 
@@ -257,37 +273,6 @@ library(dplyr)
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO:
-\end_layout
-
-\begin_layout Itemize
-thesis for PhD Development Economics
-\end_layout
-
-\begin_layout Itemize
-general method: microeconomics and trade economics
-\end_layout
-
-\begin_layout Itemize
-country focus: developing countries, particularly in Africa
-\end_layout
-
-\begin_layout Itemize
-reproducibility vs.
- replicability, both important, reproducibility needs to come first, rOpenSci,
- Simply Statistics
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 As mentioned in the title, methodologically I focus on making the research
  in this thesis reproducible.
  Reproducibility is different from replicability in that is refers to regenerati
@@ -297,8 +282,8 @@ ng the research results based on the same data, as opposed to replicability,
 \end_layout
 
 \begin_layout Standard
-A large part this methodology comes from the field of biostatistics and
- it is best explained by one of the key figures in this field.
+A large part the methodology that I use comes from the field of biostatistics
+ and it is perhaps best explained by one of the key figures in this field.
 \end_layout
 
 \begin_layout Quotation
@@ -312,12 +297,9 @@ s that cannot be fully replicated because of a lack of time or resources.
  One candidate for this minimum standard is “reproducible research”, which
  requires that data sets and computer code be made available to others for
  verifying published results and conducting alternative analyses.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite Roger Peng
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand citep
+key "peng2014reproducible"
 
 \end_inset
 
@@ -325,8 +307,8 @@ cite Roger Peng
 \end_layout
 
 \begin_layout Standard
-I believe that this applies to at least the same extend and perhaps even
- more so in economics.
+I believe that this applies to the same extend and perhaps even to a greater
+ extent in economics.
  Although there are situations in which replicable research may be conducted,
  specifically in experimental settings such as those often used in behavioural
  economics or in field research using Randomised Control Trials (RCTs),
@@ -336,25 +318,24 @@ I believe that this applies to at least the same extend and perhaps even
 \begin_layout Standard
 In this dissertation I include two studies where the identification strategy
  is based on a natural experiment.
- Firstly, a change in government policy, as a results of the unconstitutional
- nature of the sex-based discrimination in pension eligibility in South
- Africa.
+ Firstly, a change in government policy, pension eligibility age for men
+ in South Africa.
  Secondly, the introduction of an interface language on the South African
  Google Search website, as a spillover of that translation work being done
  for Botswana.
  In both cases I use the National Income Dynamics Study, the most comprehensive
  panel data set on South Africa.
  Since it will be hard to find more relevant data, a full replication -
- using new data - will prove difficult.
- As such, it is all the more important for research to be as transparent
- as possible, making it at least as reproducible as can be.
+ using new data - will prove to be difficult.
+ As such, I believe it is all the more important for research to be as transpare
+nt as possible, making it at least as reproducible as can be.
 \end_layout
 
 \begin_layout Standard
 There are a number of way in which research can be made reproducible, many
  of which are already becoming increasingly common.
  In addition to this, there are several methods which are less widespread,
- which I discuss these in detail in 
+ I discuss these in detail in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:reproducible"
@@ -378,8 +359,8 @@ key "knuth1984literate"
 
 \begin_layout Standard
 The third and fourth chapter were written together with Victor Kummritz.
- We take an innovative new algorithm for trade flow decomposition and implement
- this is the R language.
+ We take a new algorithm for trade flow decomposition and implement this
+ is the R language.
  The functions that we created for this implementation were included in
  an open-source R package which was published on the Comprehensive R Archive
  Network (CRAN).
@@ -387,6 +368,58 @@ The third and fourth chapter were written together with Victor Kummritz.
  Chapter 3 is the paper that accompanies this R package.
  In Chapter 4 we use the package and apply this to a previously unavailable
  dataset TiVa, with a specific focus on developing economies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "bibliography"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{refsection}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -406,21 +439,10 @@ mainmatter
 \end_layout
 
 \begin_layout Chapter
-Grandfathers and Grandsons:
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
+Grandfathers and Grandsons
 \end_layout
 
-\end_inset
-
+\begin_layout Standard
 Effects on a Male-Only Pension Change
 \end_layout
 
@@ -561,7 +583,7 @@ name "sec:intro"
  countries.
  However, the efficacy of these schemes - in particular in terms of the
  investments in children - as compared to in-kind benefits such as universal
- health care are often brought into question, especially when the recipient
+ health care is often brought into question, especially when the recipient
  of the transfer is male.
  
 \end_layout
@@ -569,8 +591,8 @@ name "sec:intro"
 \begin_layout Standard
 With this study I seek to answer the question, whether cash transfers can
  be effective if the recipient is male, specifically, when looking at the
- effects on the anthropometric status of children in the household, and
- if these effects are different for boys and girls.
+ effects on the anthropometric status of children in the household and if
+ these effects are different for boys and girls.
 \end_layout
 
 \begin_layout Standard
@@ -596,7 +618,7 @@ nts in Weight-for-Age, a deterioration in Height-for-Age, and no effect
  This suggest that the additional income of newly eligible men only affected
  boys and not girls.
  Additionally, it shows that increased expenditure on food has ambiguous
- effect on anthropometrics.
+ effects on anthropometrics.
 \end_layout
 
 \begin_layout Standard
@@ -649,7 +671,7 @@ key "tangwe2013impact"
  ZAR, which is about half of median income in South Africa.
  As a result of this, although the pension system was intended as a form
  of poverty relief for the elderly population, it has also become that for
- the South-African general population, serving as a general source of income
+ the South-African general population, serving as a main source of income
  to many households 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -711,7 +733,7 @@ key "SAinfo2008pension"
 
 \begin_layout Standard
 This age discrepancy has always been considered discriminatory on the basis
- of age and thereby unconstitutional by the South African government.
+ of gender and thereby unconstitutional by the South African government.
  As a consequence of this, in 2010 the pension eligibility age for South
  African men was lowered from 65 to 60 years old, eliminating the discrepancy
  
@@ -766,9 +788,10 @@ e as well as on the anthropometric status z-scores of young children living
 I find that the transfer leads to an increase in food expenditure, but shows
  no significant impact on non-food expenditure.
  The effects on the anthropometric status of children in the same households
- are more ambiguous.
+ are ambiguous.
  The change led to an improvement in the Weight-for-Age z-scores, as well
- as a regression in the Height-for-Age z-scores of children.
+ as a regression in the Height-for-Age z-scores of children, and no observable
+ change in Weight-for-Height.
  When I estimate these equations separately for boys and girls, the same
  variables have no significant effect for girls, for boys the effects remain
  intact, at greater significance levels.
@@ -1005,14 +1028,14 @@ Children's anthropometrics including length/height, weight, and waist, are
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:haz_descr"
+reference "fig:waz_descr"
 
 \end_inset
 
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:waz_descr"
+reference "fig:haz_descr"
 
 \end_inset
 
@@ -1048,7 +1071,7 @@ Weight-for-Age z-score distributions
 
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:waz_descr"
+name "fig:waz_descr"
 
 \end_inset
 
@@ -1133,7 +1156,7 @@ Height-for-Age z-score distributions
 
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:haz_descr"
+name "fig:haz_descr"
 
 \end_inset
 
@@ -1271,13 +1294,12 @@ NIDS %>%
 \begin_layout Standard
 For adults several variables measure the different amounts and sources of
  income.
- Among those, a variable if the adult receives a state pension, and if so,
- how much.
- This is a numeric variable, the values of which lie very close together.
+ Among those there is a variable describing if the adult receives a state
+ pension, and if so, how much.
  A total of 22.99% of households in the dataset have a female pension recipient
  as a household member.
  Conversely, only 9.06% of households in the dataset have a male pension
- recipient as a household members.
+ recipient as a household member.
  
 \end_layout
 
@@ -1336,7 +1358,7 @@ event
 \end_layout
 
 \begin_layout Standard
-In addition to the explanandum, I include number of relevant covariates
+In addition to the explanandum, I include number a of relevant covariates
  on the Right-Hand Side (RHS).
  
 \begin_inset CommandInset ref
@@ -1456,16 +1478,6 @@ The various anthropometric z-scores are representative of child health in
  their height, irrespective of their age.
  Weight can also be adversely affected by malnutrition or disease, but unlike
  Height-for-Age, this effect disappears of time in healthy periods.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-add description on Weight-for-Age
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1509,34 +1521,29 @@ These ideal scores are based on a sample of children from different ethnic
 \end_layout
 
 \begin_layout Standard
-It is best practice to use only metrics for children between the ages of
- 6 months and 60 months.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite something for that; Angus & Deaton ?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Here we use two type of z-scores, the Height-for-Age Z-score (HAZ) and the
- Weight-for-Age Z-score (WAZ).
- Since these metrics are both age-based, they provide information about
- all past growth issues.
+Here I use three type of z-scores, the Height-for-Age Z-score (HAZ), Weight-for-
+Age Z-score (WAZ), and Weight-for-Height (WHZ).
+ Since these first two metrics are both age-based, they provide information
+ about all past growth issues.
  Any past issues such a malnutrition and disease will have impaired growth,
  and these effects will still be captured by today's height.
  This also applies to the WAZ, as the ideal weight is a function of the
  height, which is in turn a function of the age.
+ Weight-for-Height is a more short term metric.
 \end_layout
 
 \begin_layout Standard
 These are constructed on a weekly basis up to the age of 60 months, and
  on a monthly basis thereafter.
+ It is best practice to use only metrics for children between the ages of
+ 6 months and 60 months 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "deaton2009food"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1722,48 +1729,7 @@ The outcome variable is
 
 , this outcome variable takes the form of the of the z-scores, such as Weight-fo
 r-Age or Height-for-Age, food/non-food expenditure.
- Here 
-\begin_inset Formula $t$
-\end_inset
-
- denotes time and 
-\begin_inset Formula $i$
-\end_inset
-
- the individual.
- The individual and time fixes effects are denoted by 
-\begin_inset Formula $\gamma_{i}$
-\end_inset
-
- and 
-\begin_inset Formula $\lambda_{t}$
-\end_inset
-
- respectively.
- Dummies for living in a household with a female or a male pension recipient
- are included as 
-\begin_inset Formula $P_{it}^{f}$
-\end_inset
-
- and 
-\begin_inset Formula $P_{it}^{m}$
-\end_inset
-
- respectively.
- The dummy variable 
-\begin_inset Formula $T_{it}$
-\end_inset
-
- denoted the treatment status.
- Lastly, 
-\begin_inset Formula $\epsilon_{it}$
-\end_inset
-
- is the error term, which is assumed to be distributed as 
-\begin_inset Formula $\epsilon_{it}\sim N(0,\sigma)$
-\end_inset
-
-.
+ I use the follow specification:
 \end_layout
 
 \begin_layout Standard
@@ -1821,12 +1787,12 @@ event
 \end_inset
 
  dummy variable.
- Whereby the coefficient of interest being 
+ Whereby the coefficient of interest is 
 \begin_inset Formula $\delta$
 \end_inset
 
 .
- In the second specification, I also include dummy variables for male household
+ In the second specification I also include dummy variables for male household
  members of 65 years and over, and for woman aged 60-65 and 65 years and
  over.
  In this specification, 
@@ -1858,8 +1824,7 @@ TRUE
 
 \end_inset
 
- (i.e.
- 
+ (
 \begin_inset Flex Code
 status open
 
@@ -1880,8 +1845,7 @@ FALSE
 
 \end_inset
 
- (i.e.
- 
+ (
 \begin_inset Flex Code
 status open
 
@@ -1892,7 +1856,7 @@ status open
 \end_inset
 
 ) for data collected before then.
- Lastly, I include the covariate 
+ Lastly, I include a number of covariates, such as 
 \begin_inset Flex Code
 status open
 
@@ -1926,14 +1890,7 @@ As described above, I use a total of five dependent variables, Height-for-Age
  Each of these is used in a different estimation as the Left-Hand Side (LHS)
  variable.
  Combining these five LHSs with each of the RHS specifications.
- I present the key results of these estimations in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:results"
-
-\end_inset
-
-.
+ I present the key results of these estimations in the next section.
 \end_layout
 
 \begin_layout Section
@@ -2084,7 +2041,7 @@ c z-scores.
 \end_layout
 
 \begin_layout Standard
-In the estimation with non-food expenditure as the explanandum, I find so
+In the estimation with non-food expenditure as the explanandum, I find no
  significant effects other than household income.
 \end_layout
 
@@ -2759,10 +2716,11 @@ woman_65
 \end_layout
 
 \begin_layout Standard
-Household income is positive and highly significant, although effect of
- one additional Rand on the z-scores is very small.
- The coefficient of Girl is position at 0.09 and significant, indicating
- that girl's have a lag 9% less of a WHO Standards standard deviation.
+Household income is positive and highly significant, although the effect
+ of one additional Rand on the z-scores is very small.
+ The coefficient of Girl is positive at 0.09 and significant, indicating
+ that girl's have a lag of 9% less of a WHO Standards standard deviation
+ than boys do.
 \end_layout
 
 \begin_layout Standard
@@ -4881,8 +4839,8 @@ name "sec:conclusions"
 \end_inset
 
 The impetus for this paper is to gain a greater understanding of the efficiency
- of cash transfers to male household members, to for instance improve the
- designs of CCTs.
+ of cash transfers to male household members, for instance in order to improve
+ the designs of CCTs.
  To do this I seek to answer the question if cash transfers to men are effective
  in influencing the health of household members, particularly the growth
  of children in the same household.
@@ -4897,8 +4855,8 @@ I analyse data from the National Income Dynamics Study around the exogenous
 \begin_layout Standard
 Using a Difference-in-Differences based estimation, I compare differences
  in the anthropometric status of children living in the same household as
- men of the newly eligible age with children live in a household without
- such a member.
+ men of the newly eligible age, with children live in a household without
+ such a household member.
 \end_layout
 
 \begin_layout Standard
@@ -4928,10 +4886,10 @@ man_60_65
 
  dummy, on food expenditure.
  Secondly, there is a significant and consistent positive effect of the
- same interaction term on the Weight-for-Age Z-score, the interaction terms
+ same interaction term on the Weight-for-Age z-score, the interaction terms
  with other household member dummies are not significant.
  Thirdly, I find a consistent and negative effect of the interaction term
- on the Height-for-Age Z-scores.
+ on the Height-for-Age z-scores.
  I find no significant effect on Weight-for-Height.
  All of these effects are consistent across the different specifications
  and use standard error corrections.
@@ -4939,7 +4897,7 @@ man_60_65
 
 \begin_layout Standard
 These effects suggest that the male income resulted in greater food expenditure,
- which improved the Weight-for-Height anthropometric status.
+ which improved the Weight-for-Age anthropometric status.
  Since the estimation includes data from two waves after the policy change,
  we would expect this additional food expenditure to also lead to an improvement
  in the more long-term metric of Height-for-Age.
@@ -4955,17 +4913,18 @@ When I subset to a data to only includes girls and reestimate the equation
  However, using a subset of only boys gives the same results as in the original
  estimation and at greater significance levels.
  This makes it unlikely that the surprising deterioration in Height-for-Age
- can be attributed to another factor such as the 2008 global financial crisis,
- since this would in all likelihood also have affected girls as it did boys.
+ can be attributed to an external factor such as the 2008 global financial
+ crisis, since this would in all likelihood also have affected girls as
+ it did boys.
 \end_layout
 
 \begin_layout Standard
-More central to this study, it suggest that the cash transfer only affected
- boys living with a new recipient.
+The results therefore suggest that the cash transfer only affected boys
+ living with a new recipient.
  As shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:waz_descr"
+reference "fig:waz_descr"
 
 \end_inset
 
@@ -6518,7 +6477,7 @@ Internet uptake is a two-sided market, with users on one side and content
  creators on the other side.
  Positive cross-side network effects mean that increases in content leads
  to increases in user adoption and visa versa.
- This market exists separately for each language but for many indigenous
+ This market exists separately for each language, however for many indigenous
  languages this virtuous circle fails to start properly, keeping usage and
  content levels low.
  
@@ -6591,7 +6550,7 @@ In the period 2010-2014 the average annual growth of Internet bandwidth
 \begin_layout Standard
 As is shown in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:adoption_growth"
 
 \end_inset
@@ -6736,7 +6695,7 @@ In the case of Internet adoption in a certain language, these sides are
  other hand the content consumers, or Internet users.
  Ideally, adoption should follow a virtuous circle, whereby the content
  offering encourages more users to come online, which in turn incentivises
- more content creation and so on 
+ more content creation and so forth 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "rochet2003platform,rochet2006two"
@@ -6914,7 +6873,7 @@ google.co.bw
 \end_inset
 
 ) available in the local language: `Setswana'.
- In addition to being spoken in Botswana, there is also a sizeable population
+ In addition to being spoken in Botswana, there is also a large population
  of Setswana speakers across the border in South Africa, where it is also
  one of the official state languages.
  This led to the Setswana-language interface also being introduced on the
@@ -6932,7 +6891,7 @@ google.co.za
  Botswanan website.
  This introduction led to a large increase in the number of native Setswana
  speakers reporting to have spent some amount of money in the past 30 days
- on Internet access as well as increased computer ownership.
+ on Internet access, as well as increased computer ownership.
 \end_layout
 
 \begin_layout Standard
@@ -6971,7 +6930,7 @@ key "saldru2008nids,saldru2012nids,saldru2013nids"
 
 , the data is further discussed in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:data-3"
 
 \end_inset
@@ -6979,7 +6938,7 @@ reference "sec:data-3"
 .
  After which 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:methods"
 
 \end_inset
@@ -6987,14 +6946,14 @@ reference "sec:methods"
  discusses the methods employed in this study, specifically, the discussion
  of the identification strategy can be found is 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:identification"
 
 \end_inset
 
  and the use of the Difference-in-Differences estimator in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "subsec:estimation"
 
 \end_inset
@@ -7002,7 +6961,7 @@ reference "subsec:estimation"
 .
  Further, I present the results of the estimation in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:results-1"
 
 \end_inset
@@ -7010,7 +6969,7 @@ reference "sec:results-1"
 .
  Finally, I conclude in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "sec:conclusions-1"
 
 \end_inset
@@ -7426,8 +7385,8 @@ Household Internet Expenditure
 \begin_layout Standard
 I use both household expenditure on Internet access and computer ownership
  as dependent variables.
- Household expenditure includes a variety of way in which this expense can
- be made, including paying for a fixed-line subscription, a mobile Internet
+ Household expenditure includes a variety of ways in which this expense
+ can be made, including paying for a fixed-line subscription, a mobile Internet
  subscription, as well using Internet in an Internet cafe.
  More than 99% of South Africa is covered by mobile Internet networks, this
  figure did not change during the time periods used in this study 
@@ -7456,7 +7415,7 @@ In addition to the variables of interest, I include a number of relevant
 \begin_layout Standard
 In 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:langsex"
 
 \end_inset
@@ -7733,7 +7692,7 @@ TRUE
 \end_inset
 
  after this introduction (here wave 3).
- The model than takes the form as described in 
+ The fixed-effects model than takes the form that is described in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:m1-1"
@@ -7967,7 +7926,7 @@ woman
  I further investigate this issue in a separate estimation discussed below.
  The variables describing linguistic skills in reading and writing in both
  English and the native language do yield many significant results, though
- lower levels of English writing skill seems to be correlated with a lower
+ lower levels of English writing skills seem to be correlated with a lower
  propensity to use the Internet (
 \begin_inset Flex Code
 status open
@@ -8080,17 +8039,8 @@ own_computer
 \end_inset
 
 ) to own a computer is used as an explanandum, I find similar results.
- This is of particular relevance, as the explanandum here (
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-own_computer
-\end_layout
-
-\end_inset
-
-) differs from the base model's explanandum in two ways.
+ This is of particular relevance, as the explanandum here ådiffers from
+ the base model's explanandum in two ways.
  Firstly, it does not include expenditure on Internet in ways such as Internet
  cafes, but focusses on actual ownership, signalling a more long-term investment
  and interest.
@@ -8885,13 +8835,13 @@ reference "sec:data-3"
 \end_inset
 
  I use the partially released 4th wave of the dataset, which covers the
- year 2014 in order to relate the increased Internet usage with employment
+ year 2014, in order to relate the increased Internet usage with employment
  levels.
- I do this by subsetting data to include one the one hand, only the individuals
+ I do this by subsetting data to include, one the one hand, only the individuals
  that owned a computer in after the event in wave 3 and on the other hand
  the individuals in households that reported spending on internet access.
  The idea is that the owners/users in wave 3 are an expanded demographic
- for Setswana speakers but remain relatively unchanged.
+ for Setswana speakers but remain relatively unchanged for other populations.
  With this, we can see the evolution of the employment level for this expanded
  demographic.
 \end_layout
@@ -10800,6 +10750,13 @@ status open
 \lang english
 Example Input-Output Table: Leather
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:leather"
 
 \end_inset
 
@@ -16725,6 +16682,8 @@ n.
 \end_layout
 
 \begin_layout Standard
+
+\lang english
 \begin_inset Note Note
 status open
 
@@ -16738,23 +16697,8 @@ status collapsed
 
 \begin_layout Plain Layout
 
-\lang english
-[htbp]
 \size scriptsize
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
- 
+\lang english
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -16762,13 +16706,6 @@ centering
 \lang english
 WWZ Decomposition
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:wwz-1"
 
 \end_inset
 
@@ -16813,35 +16750,37 @@ exporter.exportingind.importer
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DVA_FIN}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
 \end_layout
 
 \end_inset
-
-DVA_FIN
-\begin_inset ERT
-status collapsed
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
 
-}
+\size scriptsize
+\lang english
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+rot{DVA_INT}
 \end_layout
 
 \end_inset
@@ -16859,40 +16798,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DVA_INTrexI1}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DVA_INT
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -16905,40 +16822,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DVA_INTrexF
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DVA_INTrexI1
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -16951,40 +16846,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DVA_INTrexI2}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DVA_INTrexF
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -16997,40 +16870,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{RDV_INT}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DVA_INTrexI2
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17043,40 +16894,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{RDV_FIN}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-RDV_INT
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17089,40 +16918,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{RDV_FIN2}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-RDV_FIN
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17135,40 +16942,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{OVA_FIN}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-RDV_FIN2
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17181,40 +16966,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{MVA_FIN}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-OVA_FIN
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17227,40 +16990,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{OVA_INT}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-MVA_FIN
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17273,40 +17014,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{MVA_INT}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-OVA_INT
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17319,40 +17038,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DDC_FIN}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-MVA_INT
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17365,40 +17062,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{DDC_INT}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DDC_FIN
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -17411,86 +17086,18 @@ status collapsed
 \size scriptsize
 \lang english
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-rot
+rot{ODC}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-DDC_INT
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="right" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size scriptsize
-\lang english
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-rot
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-ODC
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \end_inset
@@ -24498,6 +24105,65 @@ sub.TOTAL
 \end_layout
 
 \begin_layout Standard
+
+\lang english
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\lang english
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+WWZ Decomposition
+\end_layout
+
+\end_inset
+
+
+\size scriptsize
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:wwz-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\lang english
+\begin_inset Graphics
+	filename WWZdecomposition.png
+	scale 65
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:wwz-1"
@@ -24533,9 +24199,9 @@ reference "tab:wwz-1"
  It shows that there are 5.47 units of domestic value added in the exports
  of final goods from Argentina's Agriculture industry to Turkey.
  In the same row the third term, 
-\shape italic
-DVA_INTrexI1
-\shape default
+\begin_inset Formula $DVA_{I}NTrexI1$
+\end_inset
+
 , is slightly more complicated.
  As mentioned above, it gives the amount of domestic Value added in intermediate
  exports re-exported to third countries as intermediate goods to produce
@@ -24637,7 +24303,7 @@ One interesting application of this decomposition for trade and development
 \end_inset
 
 .
- When low-wage developing countries enter GVCs, they tend to specialize
+ When low-wage developing countries enter GVCs, they tend to specialise
  mainly in assembly but try to gradually move up within the value chain.
  To illustrate this, we can reuse the example of the iPhone.
  Most of the value added in the device stems from US design and Japanese
@@ -24679,18 +24345,18 @@ name "sec:conclusion-1"
 
 \end_inset
 
-GVCs describe the increasingly international organization of production
+GVCs describe the increasingly international organisation of production
  structures.
  As more and more regional trade agreements come into force, which drive
- down trade costs and harmonize product standards, it becomes more and more
+ down trade costs and harmonise product standards, it becomes more and more
  attractive for firms to outsource certain tasks of their production lines.
  Research on international trade analysing this development evolves quickly
  and reveals important implications of GVCs for economic growth and competitiven
 ess.
- decompr aims at facilitating this reasearch by simplifying the calculation
+ decompr aims at facilitating this research by simplifying the calculation
  of standard GVC indicators.
- The purpose is to accelerate the research and, especially, to make it accesible
- to a wider audience.
+ The purpose is to accelerate the research and, especially, to make it accessibl
+e to a wider audience.
 \end_layout
 
 \begin_layout Standard
@@ -24735,7 +24401,7 @@ Since GVCs constitute a fairly new field of research, there are many ways
  and economic growth react when countries join GVCs and what the factors
  are that determine a successful relationship.
  From the standpoint of developing and emerging countries a very interesting
- question is if GVCs simplify industrialization and the formation of comparative
+ question is if GVCs simplify industrialisation and the formation of comparative
  advantage while high-income countries might look for an additional push
  for their stagnating post-crisis economies.
  We hope that decompr can play a part in this field and promote it.
@@ -24886,14 +24552,6 @@ begin{refsection}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section*
-Abstract
-\end_layout
-
-\begin_layout Standard
-Global Value Chains are ...
 \end_layout
 
 \begin_layout Section
@@ -27679,6 +27337,7 @@ name "fig:llmwwz"
 \align center
 \begin_inset Graphics
 	filename ../OECD-TiVA-LMIC-GVCs/misc/fva-dva-fin-inter.png
+	scale 40
 
 \end_inset
 
@@ -39120,54 +38779,6 @@ end{subappendices}
 
 \end_layout
 
-\begin_layout Chapter*
-Final Remarks
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addcontentsline{toc}{chapter}{Final Remarks}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO:
-\end_layout
-
-\begin_layout Itemize
-Gratitude to Arcand, Baldwin, Ugo, other Lore, Martina other profs, other
- PhD Development Economics and PhD Economics, Oliver Jutersonke, Michael
- Kende.
-\end_layout
-
-\begin_layout Itemize
-Gratitude to SNF for funding
-\end_layout
-
-\begin_layout Itemize
-Future analysis more complicated with machine learning, greater requirement
- for reproducibility.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter
 \start_of_appendix
 Reproducible Research Methods
@@ -39186,8 +38797,8 @@ Here I briefly discuss the combination of existing and new methods and tools
 \end_layout
 
 \begin_layout Standard
-First and foremost, it is essential to make clear which data is being used
- and in case it is primary data, how it was produced (e.g.
+First and foremost, I believe it is essential to make clear which data is
+ being used and in case it is primary data, how it was produced (e.g.
  research instruments).
  Where possible, the data itself should be included.
  If this is impossible to due e.g.
@@ -39204,12 +38815,10 @@ First and foremost, it is essential to make clear which data is being used
 Secondly, the computer code for producing the research results should be
  made available, in case this code produces intermediate data sets, where
  possible also make available.
-\end_layout
-
-\begin_layout Standard
-Comment the code, use e.g.
- markdown type conventions, # for section, use ## for subsection.
- Add a header to the file containing (commented out):
+ Ideally this code should also be described using comments.
+ This standardised by using markdown type conventions, such as # for a section
+ and ## for subsection.
+ In addition to this, I add a header to the file containing (commented out):
 \end_layout
 
 \begin_layout Enumerate
@@ -39259,14 +38868,19 @@ imported.RData
 \end_layout
 
 \begin_layout Standard
-Development versioning using Git, also useful for registering research designs
- (since logged), retracing steps.
- In addition to this, changes in all of the project files are logged using
- a version control software package.
+Since code is written in flat text files, it can be useful to use development
+ versioning.
+ Changes in all of the project files are logged using a version control
+ software package.
  I use the open-source version control software called Git.
  Projects using version control such as this are called repositories.
  These repositories are published on the internet on websites such as GitHub
  or BitBucket.
+ This also useful for registering research designs, since time is always
+ registered with a changeset.
+ Logging changes to code files can also help with retracing ones steps is
+ sudden changes in the analysis occur.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -39281,9 +38895,9 @@ Good reasons to use open-source R.
 \begin_layout Standard
 Additionally, when implementing new algorithms, packaging these as R libraries
  (extensions) and releasing under an open-source licence such as General
- Public Licence version 3 or later on the Comprensive R Archive Network
- (CRAN) website is a step towards replicablity.
- For instance, I packages the procedures implementing the Wang-Wei-Zhu algorithm
+ Public Licence version 3 or later on the Comprehensive R Archive Network
+ (CRAN) website is a step towards replicability.
+ For instance, I packaged the procedures implementing the Wang-Wei-Zhu algorithm
  used for the analysis as the 
 \begin_inset Flex Code
 status open
@@ -39305,7 +38919,7 @@ Available at: https://cran.r-project.org/web/packages/decompr/index.html
 
 \end_inset
 
- and it has since been downloaded over 6,000 times
+ and it has since been downloaded over 6,500 times
 \begin_inset Foot
 status collapsed
 
@@ -39324,54 +38938,19 @@ Data from the RStudio servers only, other CRAN mirrors to not release statistics
  doing a loop 34 times, one for each country) now have to generalised and
  transformed into a function, since R packages can only contain functions.
  As a result of this, the code which we developed for the analysis of the
- TiVa 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite
-\end_layout
-
-\end_inset
-
- data set, is now also being applied by other used to the wiod data set
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite timmer and cite quast
-\end_layout
-
-\end_inset
-
-.
+ TiVa data set, is now also being applied by others who for instance use
+ it with the WIOD data set.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-packrat
-\end_layout
-
-\end_inset
-
-
+Another helpful tool is the R package packrat, which stores a copy of the
+ packages used in the project folder, so any replications are done using
+ the exact same version on the package.
 \end_layout
 
 \begin_layout Standard
-Adding weaving code 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-cite Knut
-\end_layout
-
-\end_inset
-
-.
+As I mentioned in the introduction, I use weaving to ingrate the actual
+ analysis into the creation of the document.
  This also ties into 
 \begin_inset Flex Code
 status open
@@ -39383,7 +38962,7 @@ packrat
 \end_inset
 
 , since it makes clear which version of which libraries are used for the
- analysis.
+ analysis, as can be seen in the table below.
 \end_layout
 
 \begin_layout Standard
@@ -39449,7 +39028,7 @@ sessionInfo()
 \end_layout
 
 \begin_layout Standard
-Piping functions to make to more intuitive.
+Piping functions can be used to make code to more intuitive.
  As will most lines will have a structure beginning with the object to which
  the output is assigned followed by the assignment operator, followed by
  the function, followed by the input data, followed by the argument.
@@ -39459,7 +39038,7 @@ Piping functions to make to more intuitive.
  which examines fertility levels in the French speaking regions of Switzerland
  in 1888.
  In this example I reproduce a simplified version of an original study this
- data, looking at the difference in fertiliity levels between predominantly
+ data, looking at the difference in fertility levels between predominantly
  Catholic and predominantly protestant agricultural regions.
 \end_layout
 
@@ -39711,6 +39290,16 @@ swiss %>%
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+As can be seen in the figures and tables that I added in the appendices
+ of the chapters, I tried to use piping as much as possible.
+\end_layout
+
+\begin_layout Standard
+I believe that the combination of these methods as well others can help
+ make research more replicable.
 \end_layout
 
 \end_body
