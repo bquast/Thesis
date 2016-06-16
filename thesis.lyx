@@ -273,7 +273,9 @@ library(dplyr)
 \end_layout
 
 \begin_layout Standard
-As mentioned in the title, methodologically I focus on making the research
+In this dissertation I present four contributions to the development economics
+ literature.
+ As mentioned in the title, methodologically I focus on making the research
  in this thesis reproducible.
  Reproducibility is different from replicability in that is refers to regenerati
 ng the research results based on the same data, as opposed to replicability,
@@ -24199,7 +24201,7 @@ reference "tab:wwz-1"
  It shows that there are 5.47 units of domestic value added in the exports
  of final goods from Argentina's Agriculture industry to Turkey.
  In the same row the third term, 
-\begin_inset Formula $DVA_{I}NTrexI1$
+\begin_inset Formula $DVA\_INTrexI1$
 \end_inset
 
 , is slightly more complicated.
@@ -38884,9 +38886,9 @@ Since code is written in flat text files, it can be useful to use development
 \end_layout
 
 \begin_layout Standard
-Good reasons to use open-source R.
- Using open-source software in order to make the computational procedures
- of the statistical method verifiable.
+There are good reasons to use open-source software for the analysis.
+ Primarily, this makes the computational procedures of the statistical method
+ verifiable.
  In my case this means that all statistical analysis has been done using
  the statistical programming environment R.
  
