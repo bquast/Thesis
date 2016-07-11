@@ -57,7 +57,7 @@ Provides natbib 1
 \output_sync 0
 \bibtex_command biber
 \index_command default
-\paperfontsize default
+\paperfontsize 12
 \spacing onehalf
 \use_hyperref true
 \pdf_title "Three Contributions in Development Economics"
