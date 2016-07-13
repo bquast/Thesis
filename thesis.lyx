@@ -6691,6 +6691,10 @@ key "parker2000information,parker2000internetwork,parker2005two"
 .
 \end_layout
 
+\begin_layout Subsection
+Two-Sided Markets
+\end_layout
+
 \begin_layout Standard
 In the case of Internet adoption in a certain language, these sides are
  on the one hand the content creators, such as news websites and on the
@@ -6724,39 +6728,507 @@ key "arcand2013language"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+By considering that these markets are shaped by the protocols they agree
+ upon and by also viewing language as such a protocol, it emerges that the
+ two-sided market for Internet exists separately for each language.
+ We can model the differences in protocols (and language) as transaction
+ costs, if the linguistic barrier is significant enough, the transaction
+ is not conducted and agents leave the market.
+\end_layout
+
+\begin_layout Standard
+A two-sided market can be defined as an economic platform with two distinct
+ sets of agents (in this case Internet users and content creators), that
+ provide each other with network effects, meaning that they provide the
+ other side with greater value for entering the market.
+ 
+\end_layout
+
+\begin_layout Standard
+The model of a two-sided market is a specific case of a market with simple
+ network effects, such as the market for telephones.
+ In the market for telephones, all users act as both creators and consumers
+ of content, by speaking and listening respectively.
+ The more other people have telephones, the greater the benefit derived
+ from owning one is, since it can connect to more people (simple network
+ effects).
+\end_layout
+
+\begin_layout Standard
+The two-sided market is a specific case, since it restricts a set of agents
+ to one role (e.g.
+ transmitting) and the other agents to a complementary role (e.g.
+ receiving).
+ The network effects here manifest as a sort of seesaw, more transmitters
+ means greater utility is derived from being a receiver, and more receivers
+ in turn means that greater utility is derived from being a transmitter,
+ etcetera.
+ These are called cross-side network effects and a market that exhibits
+ them is called a Two-Sided Market (2SM).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Protocol Stack / Convention Ensemble
+\end_layout
+
+\begin_layout Standard
+Although often discussed as such, these markets and platforms do not existing
+ in isolation, but in fact build upon each other in a value chain (much
+ like other markets).
+\end_layout
+
+\begin_layout Standard
+The Internet itself is a set of agents (computers) that are connected to
+ each other via a protocol called the Internet Protocol (IP).
+ Viewed jointly, this can be seen as a platform with simple network effects,
+ since additional computers in the network communicate bidirectionally.
+ Therefore, more computers increase the utility of owning a computer, as
+ it can communicate with more other computers and their users.
+ In this market, there is no single intermediary, since users can connect
+ through any ISP and will still be able to connect to any other computer
+ on the Internet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-The increased range and affordability, taken together with stagnant growth,
- suggest that connectivity is lagging because of lower-than-expected demand,
- possibly as a result of perceived insufficient value.
- Part of this inadequate value proposition is that as Internet usage becomes
- more widespread, potential Internet users have lower than before affinity
- to the `global languages' that are currently dominant on the Internet.
- The amount of Internet content in certain languages is very disproportionate
- to the number of native speakers that are online.
- The current offering of online content, primarily in a small number of
- languages, therefore provides insufficient incentive for many to seek access
- to the Internet.
- On the one hand, English represents a relatively small percentage of the
- global population's native speakers (around 5%), it is already a much larger
- number of Internet-connected global population (around 25%), but at the
- same time represents more than 50% of all the online content.
- On the other hand, Hindi is also the native language for about 5% of the
- global population.
- However, of the online global population, it is the native language for
- about 2%, yet the number of websites in the Hindi language is under 0.1%
- of all web content.
- The `other' languages in this figure represent over half the global population,
- as can be seen in the top bar and around 20% of the Internet-connected
- population, yet all of these languages combined only account for around
- 10% of online content.
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Protocol Stack
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Social Media (simple network effects, proprietary)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam (one-way network effects)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Websites (cross-side network effects)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Email (simple network effects)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TCP/IP (simple network effects)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This platform is built upon by using additional protocols so that eventually
+ communication is conducted using a combination of protocols called the
+ protocol stack (in economic terms we might call this a "convention ensemble").
+ For instance, emails are sent through protocols such as the Simple Mail
+ Transfer Protocol (SMTP), which builds upon the Internet Protocol.
+ Of course, proprietary variants of such additional platforms with simple
+ network effects also exists.
+ For instance Twitter or WhatsApp behave similar to email in many ways,
+ but in both cases, there is only one single intermediary that users can
+ use to connect to the network.
+\end_layout
+
+\begin_layout Standard
+These additional protocols can change the nature of the network effects,
+ e.g.
+ from simple network effects to the cross-side network effects of a two-sided
+ market.
+ For instance, the WWW (websites) uses the HTTP protocol to transmit files
+ with HTML content.
+ In simplified view, the HTTP protocol is designed to transmit websites
+ from servers to users.
+ In this case, we thus distinguish between agents that send content (servers/web
+sites) and agents that receive content (users/browsers), the two sides benefit
+ from cross-side network effects, since more users means a greater audience
+ to websites and more websites means more content to consume for users.
+\end_layout
+
+\begin_layout Standard
+However, these additional protocols need not change the nature of the market.
+ For instance, agents that use email for communication will both send and
+ receive emails, making it a platform with simple network effects, just
+ like the Internet itself at the IP level.
+ Particularly, since users can chose from many email providers and still
+ communicate with all other users.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+General View of Protocols
+\end_layout
+
+\begin_layout Standard
+We can now use this approach of analysing the nature of the network effects
+ at every additional level of protocols to examine the role of language.
+ We return to the example of the WWW, which is a two-sided market based
+ on the fact that the HTTP basically works to transmit websites from servers
+ to users.
+ 
+\end_layout
+
+\begin_layout Standard
+These technical protocols enable the communication between the various computers
+ connected to the Internet in various ways.
+ However, essentially these computers merely fulfil a role in enabling human
+ communication.
+ As such other protocols of that human-to-human communication also play
+ a role, chief among those is the language of writing (or speaking).
+\end_layout
+
+\begin_layout Standard
+By moving beyond the technical-only interpretation of protocols, and including
+ language, we see that the additional protocols again lead to the creation
+ of distinct platforms.
+ It is thus the case that the two-sided market of the WWW is actually composed
+ of many two-sided markets in different languages (or non-linguistic communicati
+on).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Transaction Costs
+\end_layout
+
+\begin_layout Standard
+We can interpret these differences in protocol as a form of transaction
+ costs 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "coase1937nature"
+
+\end_inset
+
+.
+ Transaction costs have been broadly defined by Steven N.
+ S.
+ Cheung as: "any costs that are not conceivable in a "Robinson Crusoe economy".
+ We can interpret this as costs that stem from the presence of institutions
+ or conventions.
+\end_layout
+
+\begin_layout Standard
+For instance, consider the way in which people answer a fixed-line telephone.
+ Since the phone is shared by the household, the person calling does not
+ know who will answer the phone, it is therefore customary to state your
+ name when you answer the telephone.
+ With the rise of mobile phones, people who did not have mobile phones or
+ used them less expected people to answer them the same way you answer a
+ fixed-line phone, by stating your name, but people who did use mobile phones
+ quickly realised that it could only logically be expected that they would
+ be the one answering the phone, eliminating the need to state your name
+ and use just "hello" instead.
+ This was a partial breakdown of protocol.
+ We can interpret this as transaction costs, if the person calling was sufficien
+tly confused by not being told who they are speaking to, he/she might hang
+ up the phone.
+ Alternatively, they might feel offended and irritant, making the conversation
+ less effective or possibly cutting it short.
+\end_layout
+
+\begin_layout Standard
+Similar things apply to technical protocols.
+ For instance, consider the introduction of something like a new HTML tag,
+ this tag will be interpretable by new browsers that support these tags,
+ but not by older browsers, causing the older browsers to misrender part
+ of the page.
+ Depending on the gravity, this might make the page harder to view, or simply
+ impossible.
+ Similarly, old tags are sometimes deprecated (e.g.
+ IE6 specific tags), which means that they can no longer be interpreted
+ by newer browsers (e.g.
+ IE10), giving similar results.
+ The transactions costs might thus be sufficient to stop communication,
+ or simply hinder it.
+ If the hindering continues, it might be that the users consumers a smaller
+ amount of content.
+\end_layout
+
+\begin_layout Standard
+Language can also be interpreted as a protocol or convention for communication
+ and we can therefore also interpret linguistic differences as a transaction
+ cost.
+\end_layout
+
+\begin_layout Standard
+Intuitively we might think of language as a discrete variable, perhaps making
+ transactions costs a poor way to approximate this.
+ However, there are many cases in which linguistic differences are a definite
+ barrier, but not necessarily a breaking point.
+ For instance, a Portuguese speaker might be able to read a Spanish website
+ if Portuguese is not available, but they would always have less effort
+ in reading Portuguese (and thereby consume more).
+ This transaction cost would increase if we consider for instance an Italian
+ speaker reading Spanish.
+ Moving to a French speaker reading Spanish, which is really quite distinct,
+ but nevertheless some similarity in terms of vocabulary.
+ Moving to a different language family, such as German, the differences
+ probably become insurmountable.
+ For a Japanese speaker not a single word would be meaningful.
+ This is especially the case, as the Japanese speaker in question would
+ not understand the latin script.
+ 
+\end_layout
+
+\begin_layout Standard
+If we assume that the Internet's value only stems from communicating with
+ other people, then we might define a utility function like this: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+u_{i}()=-p+\sum_{j=1}^{n}d_{ij}l_{ij}v_{ij}c_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Whereby p represents the cost of connecting to the Internet and the the
+ other term is the value of all possible connections to all individuals.
+ Here, 
+\begin_inset Formula $v_{ij}$
+\end_inset
+
+ represents the value of the connection between individual 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $j$
+\end_inset
+
+, to individual 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ This is multiplied with the 
+\begin_inset Formula $l_{ij}$
+\end_inset
+
+ term, which is the likelihood that individuals 
+\begin_inset Formula $i$
+\end_inset
+
+ and
+\begin_inset Formula $j$
+\end_inset
+
+ will establish a connection given that they both have Internet connectivity.
+ This is again multiplied by the 
+\begin_inset Formula $d_{ij}$
+\end_inset
+
+ term, which represents the difficulty of communication between individuals
+ 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $j$
+\end_inset
+
+, Finally, this is multiplied with the decision of 
+\begin_inset Formula $j$
+\end_inset
+
+ to connect to the Internet or not 
+\begin_inset Formula $c_{j}$
+\end_inset
+
+ ,where 
+\begin_inset Formula $c_{j}∈{0,1}$
+\end_inset
+
+.
+ Of course this decision in turn depends on the utility of connecting to
+ 
+\begin_inset Formula $j$
+\end_inset
+
+, where 
+\begin_inset Formula $w_{j}∈{0,1}$
+\end_inset
+
+.
+ The term 
+\begin_inset Formula $w_{j}$
+\end_inset
+
+ represent whether it is worth it or not to connect:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+c_{j}()=w_{j}(-p+\sum_{k=1}^{n}d_{jk}l_{jk}v_{jk}c_{k})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Which means if:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+p<\sum_{k=1}^{n}d_{jk}l_{jk}v_{jk}c_{k}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then 
+\begin_inset Formula $w_{j}=1$
+\end_inset
+
+, otherwise 
+\begin_inset Formula $w_{j}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The move from simple network effects to the cross-side network effects is
+ made when the ease of communication variable 
+\begin_inset Formula $d_{ij}$
+\end_inset
+
+ stays high, but 
+\begin_inset Formula $d_{ji}$
+\end_inset
+
+ becomes very low (e.g.
+ HTTP).
+ This means that is would be relatively easy for a certain type of agent
+ (server) to communicate something to another type of agent (Internet user),
+ but that reverse communication is less easy.
+ In the context of language we could consider a Spanish speaker who could
+ communicate something to a Portuguese speaker, if the Portuguese speaker
+ has some passive understanding of Spanish.
+ But that this communication cannot be reversed, since the Portuguese speaker
+ does not have an active understanding or Spanish and the Spanish speaker
+ does not have a passive understanding of Portuguese.
+ Note that a market can also become two-sided if the information being communica
+ted is different (e.g.
+ buy vs.
+ selling a product).
+\end_layout
+
+\begin_layout Standard
+When communication breaks down in both directions, then markets start to
+ exist parallely.
+ For instance, in the above example, if the Portuguese speaker loses his
+ passive understanding of Spanish, then they cease to operate in a common
+ market, rather they each operate in a separate - parallel - market, in
+ this case a Portuguese-language market for communication and a Spanish-language
+ market for communication.
+\end_layout
+
+\begin_layout Standard
+The nature of these parallel markets is again determined by the protocols
+ that they use.
+ For instance, the market of Portuguese-language websites, is a two-sided
+ market, based on the fact that the underlying HTTP protocol functions so.
+\end_layout
+
+\begin_layout Standard
+These transaction costs could possibly explain why the automatic optimal
+ allocation of resources (according to the Coase theorem) does not allocate
+ any to groups with certain languages (even if the resource - i.e.
+ space on the Internet - is virtually unlimited).
+\end_layout
+
+\begin_layout Subsection
+Literature
 \end_layout
 
 \begin_layout Standard
