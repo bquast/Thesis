@@ -1,0 +1,61 @@
+% The Graduate Institute, Geneva
+% The Centre for Finance and Development
+% Bastiaan Quast
+% bastiaan.quast@graduateinstitute.ch
+%==================================================================
+% This file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2 or greater.
+%==================================================================
+% INSTRUCTIONS FOR THE GENEVA PACKAGE
+% simply calling the package will use the Graduate Institute Theme
+% if you pass the cfd option, the CFD theme will be used.
+% if you pass the colortext option, the normal text will be colored
+%==================================================================
+
+% define the colours
+\definecolor{gired}{RGB}{193,0,26} % Graduate Institute
+\definecolor{cfdblue}{RGB}{0,148,216} % CFD
+
+% declare the logical variable to assess the cfd option
+% the option can be passed to the package using \usepackage[cfd]{geneva}
+\newif\ifCFD
+\newif\ifcolortext
+
+% assess the cfd option
+\DeclareOption{gi}{\CFDfalse}
+\DeclareOption{cfd}{\CFDtrue}
+\DeclareOption*{\PackageWarning{thename}{Unknown option '\CurrentOption'.}}
+\ProcessOptions\relax
+\ExecuteOptions{CFD}
+
+\DeclareOption{colortext}{\colortexttrue}
+\DeclareOption*{\PackageWarning{thename}{Unknown option '\CurrentOption'.}}
+\ProcessOptions\relax
+\ExecuteOptions{colortext}
+
+
+
+% depending on wether cfd is passed, the use cfd theme
+% otherwise, use the Graduate Institute theme
+\ifCFD
+  \pgfdeclareimage[height=1.50cm]{university-logo}{CFD}
+  \usecolortheme[named=cfdblue]{structure} % official CFD colours
+  \setbeamercolor{logo}{bg=white}
+  \ifcolortext
+    \setbeamercolor{normal text}{fg=cfdblue}
+  \else
+    \setbeamercolor{alerted text}{fg=cfdblue}
+  \fi
+\else
+  \pgfdeclareimage[height=1.50cm]{university-logo}{GI}
+  \usecolortheme[named=gired]{structure} % official GI colours
+  \setbeamercolor{logo}{bg=white}
+    \ifcolortext
+    \setbeamercolor{normal text}{fg=gired}
+  \else
+    \setbeamercolor{alerted text}{fg=gired}
+  \fi
+\fi
+
+% declare the logo
+\logo{\pgfuseimage{university-logo}}
