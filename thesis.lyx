@@ -55,13 +55,15 @@ Provides natbib 1
 \graphics default
 \default_output_format pdf5
 \output_sync 0
-\bibtex_command biber
+\bibtex_command default
 \index_command default
 \paperfontsize 12
 \spacing onehalf
 \use_hyperref true
-\pdf_title "Three Contributions in Development Economics"
+\pdf_title "Four Reproducible Contributions in Development Economics"
 \pdf_author "Bastiaan Quast"
+\pdf_subject "PhD thesis"
+\pdf_keywords "Households, Internet, Global Value Chains"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
