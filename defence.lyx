@@ -279,16 +279,52 @@ Grandfathers and Grandsons
 Effects of a Male-Only Change in Pensions
 \end_layout
 
-\begin_layout Itemize
-Use Itemize a lot.
+\begin_layout Standard
+Motivation
 \end_layout
 
 \begin_layout Itemize
-Use very short sentences or short phrases.
+Income recipient and growth
 \end_layout
 
 \begin_layout Itemize
-These overlays are created using the Pause style.
+Growth and future income
+\end_layout
+
+\begin_layout Itemize
+Grandmothers and Granddaughters: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+South African persion, including black population
+\end_layout
+
+\begin_layout Itemize
+eligibility-age differential: women 65, men 60
+\end_layout
+
+\begin_layout Itemize
+life expectancy significantly lower: large selection bias
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Identification Strategy
+\end_layout
+
+\begin_layout Itemize
+Pension change (2010): men 65 -> 60, to a par
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+still selection bias based on life expectancy
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+NIDS: 2008 (pre) & 2011 (post)
 \end_layout
 
 \end_deeper
@@ -373,7 +409,7 @@ Global Value Chains in LICs
 status open
 
 \begin_layout Plain Layout
-Global Value Chains in LICs
+Global Value Chains in Low Income Countries
 \end_layout
 
 \end_inset
@@ -381,10 +417,24 @@ Global Value Chains in LICs
 
 \end_layout
 
-\begin_layout Frame
-this paper
+\begin_deeper
+\begin_layout FrameSubtitle
+R package: decompr
 \end_layout
 
+\begin_layout Itemize
+Use Itemize a lot.
+\end_layout
+
+\begin_layout Itemize
+Use very short sentences or short phrases.
+\end_layout
+
+\begin_layout Itemize
+These overlays are created using the Pause style.
+\end_layout
+
+\end_deeper
 \begin_layout Section*
 \start_of_appendix
 Comments
