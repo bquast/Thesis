@@ -208,55 +208,6 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Structuring a talk is a difficult task and the following structure may not
- be suitable.
- Here are some rules that apply for this solution: 
-\end_layout
-
-\begin_layout Itemize
-Exactly two or three sections (other than the summary).
- 
-\end_layout
-
-\begin_layout Itemize
-At *most* three subsections per section.
- 
-\end_layout
-
-\begin_layout Itemize
-Talk about 30s to 2min per frame.
- So there should be between about 15 and 30 frames, all told.
-\end_layout
-
-\begin_layout Itemize
-A conference audience is likely to know very little of what you are going
- to talk about.
- So *simplify*! 
-\end_layout
-
-\begin_layout Itemize
-In a 20min talk, getting the main ideas across is hard enough.
- Leave out details, even if it means being less precise than you think necessary.
- 
-\end_layout
-
-\begin_layout Itemize
-If you omit details that are vital to the proof/implementation, just say
- so once.
- Everybody will be happy with that.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Grandfathers and Grandsons
 \end_layout
@@ -422,22 +373,88 @@ Global Value Chains in Low Income Countries
 R package: decompr
 \end_layout
 
-\begin_layout Itemize
-Use Itemize a lot.
+\begin_layout Standard
+Implement trade decomposition procedures in R 
 \end_layout
 
 \begin_layout Itemize
-Use very short sentences or short phrases.
+Leontief
 \end_layout
 
 \begin_layout Itemize
-These overlays are created using the Pause style.
+Wang Wei Zhu (2013)
+\end_layout
+
+\begin_layout Standard
+Motivation:
+\end_layout
+
+\begin_layout Itemize
+simplify for end users
+\end_layout
+
+\begin_layout Itemize
+consistent and transparent approach
+\end_layout
+
+\begin_layout Standard
+Additional work:
+\end_layout
+
+\begin_layout Itemize
+gvc package: implement indicators
+\end_layout
+
+\begin_layout Itemize
+Interactive demo: 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://shiny.qua.st/decompr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+RStudio Add-in: GUI (soon)
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Global Value Chains in Low Income Countries
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+TiVa dataset
+\end_layout
+
+\begin_layout Standard
+Implement trade decomposition procedures in R 
+\end_layout
+
+\begin_layout Itemize
+Leontief
+\end_layout
+
+\begin_layout Itemize
+Wang Wei Zhu (2013)
 \end_layout
 
 \end_deeper
 \begin_layout Section*
 \start_of_appendix
-Comments
+Appendix: Comments
 \end_layout
 
 \begin_layout Subsection*
@@ -445,16 +462,6 @@ Grandfathers and Grandsons
 \end_layout
 
 \begin_layout Frame
-\begin_inset Argument 3
-status collapsed
-
-\begin_layout Plain Layout
-allowframebreaks
-\end_layout
-
-\end_inset
-
-
 \begin_inset Argument 4
 status open
 
@@ -465,12 +472,30 @@ Grandfathers and Grandsons
 \end_inset
 
 
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Effects of a Male-Only Change in Pensions
 \end_layout
 
 \begin_layout Standard
-Response to comments
+Comments
 \end_layout
 
+\begin_layout Itemize
+Income recipient and growth
+\end_layout
+
+\begin_layout Itemize
+Growth and future income
+\end_layout
+
+\begin_layout Itemize
+Grandmothers and Granddaughters: 
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
 Making the Next Billion Demand Access
 \end_layout
@@ -488,10 +513,28 @@ Making the Next Billion Demand Access
 
 \end_layout
 
-\begin_layout Frame
-comments on this paper
+\begin_deeper
+\begin_layout FrameSubtitle
+The Local-Content Effect of google.co.za in Setswana
 \end_layout
 
+\begin_layout Standard
+Comments
+\end_layout
+
+\begin_layout Itemize
+Two-Sided Market / Cross-side network effects
+\end_layout
+
+\begin_layout Itemize
+WWW content is hard
+\end_layout
+
+\begin_layout Itemize
+Social media content is easier: Facebook vendor lock-in
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
 Global Value Chains in LICs
 \end_layout
@@ -501,7 +544,7 @@ Global Value Chains in LICs
 status open
 
 \begin_layout Plain Layout
-Global Value Chains in LICs
+Global Value Chains in Low Income Countries
 \end_layout
 
 \end_inset
@@ -509,10 +552,24 @@ Global Value Chains in LICs
 
 \end_layout
 
-\begin_layout Frame
-comments on decompr and on gvc paper
+\begin_deeper
+\begin_layout FrameSubtitle
+R package: decompr
 \end_layout
 
+\begin_layout Standard
+Implement trade decomposition procedures in R 
+\end_layout
+
+\begin_layout Itemize
+Leontief
+\end_layout
+
+\begin_layout Itemize
+Wang Wei Zhu (2013)
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status collapsed
