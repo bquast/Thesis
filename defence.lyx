@@ -10,6 +10,8 @@
 \usecolortheme{geneva}
 % or ...
 
+\setbeamertemplate{navigation symbols}{}
+
 \setbeamercovered{transparent}
 % or whatever (possibly just delete it)
 \end_preamble
@@ -264,8 +266,7 @@ Grandfathers and Grandsons
 status open
 
 \begin_layout Plain Layout
-Make Titles Informative.
- Use Uppercase Letters.
+Grandfathers and Grandsons
 \end_layout
 
 \end_inset
@@ -275,8 +276,7 @@ Make Titles Informative.
 
 \begin_deeper
 \begin_layout FrameSubtitle
-Frame subtitles are optional.
- Use upper- or lowercase letters.
+Effects of a Male-Only Change in Pensions
 \end_layout
 
 \begin_layout Itemize
@@ -301,8 +301,7 @@ Making the Next Billion Demand Access
 status open
 
 \begin_layout Plain Layout
-Make Titles Informative.
- 
+Making the Next Billion Demand Access
 \end_layout
 
 \end_inset
@@ -310,35 +309,61 @@ Make Titles Informative.
 
 \end_layout
 
-\begin_layout Frame
-something
+\begin_deeper
+\begin_layout FrameSubtitle
+The Local-Content Effect of google.co.za in Setswana
 \end_layout
 
 \begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
+Motivation
 \end_layout
 
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Make Titles Informative.
- 
+\begin_layout Itemize
+Two-Sided Market / Cross-side network effects
 \end_layout
 
-\end_inset
-
-
+\begin_layout Itemize
+WWW content is hard
 \end_layout
 
-\begin_layout Frame
-bla
+\begin_layout Itemize
+Social media content is easier: Facebook vendor lock-in
 \end_layout
 
+\begin_layout Standard
+Quantifying Content
+\end_layout
+
+\begin_layout Itemize
+using visit counts instead of page counts
+\end_layout
+
+\begin_layout Standard
+Endogeneity
+\end_layout
+
+\begin_layout Itemize
+Maybe Google introduced the interface following increased usage among Setswana
+ speakers?
+\end_layout
+
+\begin_layout Itemize
+Botswana speaks Setswana
+\end_layout
+
+\begin_layout Itemize
+google.co.bw was translated in Setswana
+\end_layout
+
+\begin_layout Itemize
+introduction on google.co.za was a spillover, exogenous
+\end_layout
+
+\begin_layout Itemize
+google.co.za also introduced Xhosa, but not exogenous
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Global Value Chains in LICs
 \end_layout
