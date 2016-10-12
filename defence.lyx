@@ -279,6 +279,52 @@ NIDS: 2008 (pre) & 2011 (post)
 \end_layout
 
 \end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Grandfathers and Grandsons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Effects of a Male-Only Change in Pensions
+\end_layout
+
+\begin_layout Standard
+Results
+\end_layout
+
+\begin_layout Itemize
+Income recipient and growth
+\end_layout
+
+\begin_layout Itemize
+Growth and future income
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
 \begin_layout Section
 Making the Next Billion Demand Access
 \end_layout
@@ -417,10 +463,21 @@ target "http://shiny.qua.st/decompr"
 \end_layout
 
 \begin_layout Itemize
-RStudio Add-in: GUI (soon)
+RStudio Add-in: Graphical User Interface (soon)
 \end_layout
 
 \end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
 \begin_layout Frame
 \begin_inset Argument 4
 status open
@@ -436,19 +493,63 @@ Global Value Chains in Low Income Countries
 
 \begin_deeper
 \begin_layout FrameSubtitle
-TiVa dataset
+TiVa analysis
 \end_layout
 
 \begin_layout Standard
-Implement trade decomposition procedures in R 
+Confirming Existing Understanding 1995-2011
 \end_layout
 
 \begin_layout Itemize
-Leontief
+increase in backward linkage: importing 2 export (i2e)
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+i2e grew ~350%
+\end_layout
+
+\begin_layout Itemize
+i2e share of total exports 17% -> 23%
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Wang Wei Zhu (2013)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+pure double counting (pdc) as a proxy for GVC length
+\end_layout
+
+\begin_layout Itemize
+pdc share of total exports rose around 73%
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Recent years:
+\end_layout
+
+\begin_layout Itemize
+Recovery from the 2008 slump by 2010
+\end_layout
+
+\begin_layout Standard
+New Developing Country trends
+\end_layout
+
+\begin_layout Itemize
+South East Asia
+\end_layout
+
+\begin_layout Itemize
+Central and South America
+\end_layout
+
+\begin_layout Itemize
+Africa
 \end_layout
 
 \end_deeper
