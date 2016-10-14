@@ -3325,6 +3325,70 @@ Effects of a Male-Only Change in Pensions
 \end_layout
 
 \begin_layout Standard
+WfA households with and without a newly eligible member
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Weight for Age
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/latex-waz1-1.pdf
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Grandfathers and Grandsons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Effects of a Male-Only Change in Pensions
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -4410,74 +4474,6 @@ Observations
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Grandfathers and Grandsons
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout FrameSubtitle
-Effects of a Male-Only Change in Pensions
-\end_layout
-
-\begin_layout Standard
-WfA households with and without a newly eligible member
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Weight for Age
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figure/latex-waz1-1.pdf
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Section
 Global Value Chains in LICs
 \end_layout
@@ -4764,10 +4760,6 @@ status collapsed
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
 \lang british
 \begin_inset Caption Standard
 
@@ -4784,6 +4776,7 @@ Share of value added sourced from (i2e) or sold to (e2r) L(M)IC economies
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 
 \lang british
 \begin_inset Graphics
@@ -5206,11 +5199,11 @@ Latin America
 \end_layout
 
 \begin_layout Itemize
-Low backward and forward linkages: Argentina and Colombia
+Argentina and Colombia: Low backward and forward linkages
 \end_layout
 
 \begin_layout Itemize
-Better linkages: Chile and Costa Rica - intermediates
+Chile and Costa Rica: Better linkages & intermediaries
 \end_layout
 
 \begin_layout Standard
@@ -5427,6 +5420,74 @@ Interpretation of the treatment coefficient
 bargaining power
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Global Value Chains in Low Income Countries
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+TiVa analysis: Confirming Existing Understanding 1995-2011
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ZWFA Distributions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/latex-waz_boxplot-1.pdf
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 outliers driving the result
 \end_layout
@@ -5449,10 +5510,6 @@ The upper whisker extends from the hinge to the highest value that is within
 \end_layout
 
 \end_deeper
-\begin_layout Frame
-
-\end_layout
-
 \begin_layout Subsection*
 Global Value Chains in LICs
 \end_layout
